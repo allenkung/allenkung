@@ -1,0 +1,1223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Allen's Life]]></title>
+  <subtitle><![CDATA[Was künstlich ist verlanst geschlossenen Raum.]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://blog.allenkung.com/"/>
+  <updated>2016-01-29T09:56:27.000Z</updated>
+  <id>http://blog.allenkung.com/</id>
+  
+  <author>
+    <name><![CDATA[allen kung]]></name>
+    <email><![CDATA[mrgongxue@gmail.com]]></email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[推荐几款实用的 Wordpress Plugin]]></title>
+    <link href="http://blog.allenkung.com/2016/01/recommended-wordpress-plugins/"/>
+    <id>http://blog.allenkung.com/2016/01/recommended-wordpress-plugins/</id>
+    <published>2016-01-06T06:31:01.000Z</published>
+    <updated>2016-01-29T09:56:27.000Z</updated>
+    <content type="html"><![CDATA[<p>之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：</p>
+<ol>
+<li><a href="https://wordpress.org/plugins/json-api/" target="_blank" rel="external">JSON API</a></li>
+<li><a href="http://magicfields.org/" target="_blank" rel="external">Magic Fields 2</a></li>
+<li><a href="https://wordpress.org/plugins/wp-super-cache/" target="_blank" rel="external">WP Super Cache</a></li>
+<li><a href="http://blog.milandinic.com/wordpress/plugins/disable-google-fonts/" target="_blank" rel="external">Disable Google Fonts</a></li>
+<li><a href="http://lomu.me/post/wp-acceleration-for-china" target="_blank" rel="external">WP Acceleration for China</a></li>
+<li><a href="http://icwp.io/home" target="_blank" rel="external">WordPress Security Firewall</a></li>
+<li><a href="http://lesterchan.net/portfolio/programming/php/" target="_blank" rel="external">WP-DBManager</a></li>
+<li><a href="http://wordpress.org/extend/plugins/disable-comments/" target="_blank" rel="external">Disable Comments</a></li>
+<li><a href="http://wordpress.org/plugins/disable-wordpress-updates/" target="_blank" rel="external">Disable All WordPress Updates</a></li>
+<li><a href="http://www.jolanders.com/wordpress_plugins.php?plugin=custom-dashboard-help" target="_blank" rel="external">Custom Dashboard Help</a></li>
+<li><a href="http://wpdoc.de/plugins/" target="_blank" rel="external">Admin Dashboard Last Edits</a></li>
+<li><a href="http://w-shadow.com/blog/2008/12/20/admin-menu-editor-for-wordpress/" target="_blank" rel="external">Admin Menu Editor</a></li>
+</ol>
+<a id="more"></a>
+<p>如果安装 Wordpress Plugin 提示权限不够需要输入 FTP 账号验证的话，可以 SSH 到 Server 上配置下权限，Apache 和 Nginx 的默认用户是 www-data，通过以下文件可以看到:</p>
+<pre><code>$ cat /etc/nginx/nginx.conf
+</code></pre><p>或者：</p>
+<pre><code>$ ps -ef |grep apache2
+</code></pre><p>我们要做的就是把 Wordpress 所在目录的所有权交给 www-data:</p>
+<pre><code>$ sudo chgrp -R www-data ./wordpress
+$ sudo chown -R www-data:www-data ./wordpress
+</code></pre><p>接下来，重启，使配置生效:</p>
+<pre><code>$ sudo service nginx restart
+</code></pre><p>然后就发现终于可以愉快地玩耍啦！</p>
+<h3 id="1-_JSON_API"><a href="#1-_JSON_API" class="headerlink" title="1. JSON API"></a>1. JSON API</h3><p>虽然 Wordpress 在 4.4 <a href="https://wordpress.org/news/2015/12/clifford/" target="_blank" rel="external">Clifford</a> 开始把 REST API 纳入到 Core 中，但是我接触的时候用了 <a href="https://wordpress.org/plugins/json-api/" target="_blank" rel="external">JSON API</a> 这个插件。</p>
+<blockquote>
+<p>This plugin was created at <a href="http://moma.org/" target="_blank" rel="external">The Museum of Modern Art</a> for the weblog <a href="http://moma.org/explore/inside_out" target="_blank" rel="external">Inside/Out</a>, which is served from Ruby on Rails. Instead of reimplementing the site templates as a WordPress theme, we opted for a Rails front-end that displays content served from a WordPress back-end. JSON API provides the necessary interface for retrieving content and accepting comment submissions.</p>
+</blockquote>
+<p>事实上我就是看了这段介绍才对 REST API 有初步的认识，使用非常简单，比如对一个刚装完的 Wordpress 发送 GET request <code>http://localhost/wordpress/?json=1</code> 会返回 JSON 如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;  &#34;status&#34;: &#34;ok&#34;,&#10;  &#34;count&#34;: 1,&#10;  &#34;count_total&#34;: 1,&#10;  &#34;pages&#34;: 1,&#10;  &#34;posts&#34;: [&#10;    &#123;&#10;      &#34;id&#34;: 1,&#10;      &#34;type&#34;: &#34;post&#34;,&#10;      &#34;slug&#34;: &#34;hello-world&#34;,&#10;      &#34;url&#34;: &#34;http:\/\/localhost\/wordpress\/?p=1&#34;,&#10;      &#34;title&#34;: &#34;Hello world!&#34;,&#10;      &#34;title_plain&#34;: &#34;Hello world!&#34;,&#10;      &#34;content&#34;: &#34;&#60;p&#62;Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!&#60;\/p&#62;\n&#34;,&#10;      &#34;excerpt&#34;: &#34;Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!\n&#34;,&#10;      &#34;date&#34;: &#34;2009-11-11 12:50:19&#34;,&#10;      &#34;modified&#34;: &#34;2009-11-11 12:50:19&#34;,&#10;      &#34;categories&#34;: [],&#10;      &#34;tags&#34;: [],&#10;      &#34;author&#34;: &#123;&#10;        &#34;id&#34;: 1,&#10;        &#34;slug&#34;: &#34;admin&#34;,&#10;        &#34;name&#34;: &#34;admin&#34;,&#10;        &#34;first_name&#34;: &#34;&#34;,&#10;        &#34;last_name&#34;: &#34;&#34;,&#10;        &#34;nickname&#34;: &#34;&#34;,&#10;        &#34;url&#34;: &#34;&#34;,&#10;        &#34;description&#34;: &#34;&#34;&#10;      &#125;,&#10;      &#34;comments&#34;: [&#10;        &#123;&#10;          &#34;id&#34;: 1,&#10;          &#34;name&#34;: &#34;Mr WordPress&#34;,&#10;          &#34;url&#34;: &#34;http:\/\/wordpress.org\/&#34;,&#10;          &#34;date&#34;: &#34;2009-11-11 12:50:19&#34;,&#10;          &#34;content&#34;: &#34;&#60;p&#62;Hi, this is a comment.&#60;br \/&#62;To delete a comment, just log in and view the post&#39;s comments. There you will have the option to edit or delete them.&#60;\/p&#62;\n&#34;,&#10;          &#34;parent&#34;: 0&#10;        &#125;&#10;      ],&#10;      &#34;comment_count&#34;: 1,&#10;      &#34;comment_status&#34;: &#34;open&#34;&#10;    &#125;&#10;  ]&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Our old friend, in JSON format now. LOL. 我用了 NodeJS 的 <a href="https://github.com/request/request" target="_blank" rel="external">Request</a> middleware 去 call Wordpress 的 REST API 获取 JSON。</p>
+<h3 id="2-_Magic_Fields_2"><a href="#2-_Magic_Fields_2" class="headerlink" title="2. Magic Fields 2"></a>2. Magic Fields 2</h3><p>强烈推荐 <a href="http://magicfields.org/" target="_blank" rel="external">Magic Fields 2</a> 这个插件，可以根据不同需求生成表单，主要是</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：</p>
+<ol>
+<li><a href="https://wordpress.org/plugins/json-api/">JSON API</a></li>
+<li><a href="http://magicfields.org/">Magic Fields 2</a></li>
+<li><a href="https://wordpress.org/plugins/wp-super-cache/">WP Super Cache</a></li>
+<li><a href="http://blog.milandinic.com/wordpress/plugins/disable-google-fonts/">Disable Google Fonts</a></li>
+<li><a href="http://lomu.me/post/wp-acceleration-for-china">WP Acceleration for China</a></li>
+<li><a href="http://icwp.io/home">WordPress Security Firewall</a></li>
+<li><a href="http://lesterchan.net/portfolio/programming/php/">WP-DBManager</a></li>
+<li><a href="http://wordpress.org/extend/plugins/disable-comments/">Disable Comments</a></li>
+<li><a href="http://wordpress.org/plugins/disable-wordpress-updates/">Disable All WordPress Updates</a></li>
+<li><a href="http://www.jolanders.com/wordpress_plugins.php?plugin=custom-dashboard-help">Custom Dashboard Help</a></li>
+<li><a href="http://wpdoc.de/plugins/">Admin Dashboard Last Edits</a></li>
+<li><a href="http://w-shadow.com/blog/2008/12/20/admin-menu-editor-for-wordpress/">Admin Menu Editor</a></li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="Wordpress" scheme="http://blog.allenkung.com/tags/Wordpress/"/>
+    
+      <category term="Webdevelop" scheme="http://blog.allenkung.com/categories/Webdevelop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[入手 Aliyun ECS 后首先应该做的事情]]></title>
+    <link href="http://blog.allenkung.com/2015/11/things-needtodo-when-got-aliyunecs/"/>
+    <id>http://blog.allenkung.com/2015/11/things-needtodo-when-got-aliyunecs/</id>
+    <published>2015-11-24T07:11:01.000Z</published>
+    <updated>2016-02-13T14:58:02.000Z</updated>
+    <content type="html"><![CDATA[<p>持续更新中……</p>
+<h2 id="u66F4_u6539_root_user__u5BC6_u7801"><a href="#u66F4_u6539_root_user__u5BC6_u7801" class="headerlink" title="更改 root user 密码"></a>更改 root user 密码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ passwd&#10;Enter new UNIX password: &#10;Retype new UNIX password: &#10;passwd: password updated successfully</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="u521B_u5EFA_u666E_u901A_user"><a href="#u521B_u5EFA_u666E_u901A_user" class="headerlink" title="创建普通 user"></a>创建普通 user</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -m hello&#10;$ passwd hello&#10;Enter new UNIX password: &#10;Retype new UNIX password: &#10;passwd: password updated successfully</span><br></pre></td></tr></table></figure>
+<p>-m, –create-home 创建用户的主目录 </p>
+<h2 id="u7ED9_u666E_u901A_user__u6DFB_u52A0_sodo__u547D_u4EE4_u4F7F_u7528_u6743_u9650"><a href="#u7ED9_u666E_u901A_user__u6DFB_u52A0_sodo__u547D_u4EE4_u4F7F_u7528_u6743_u9650" class="headerlink" title="给普通 user 添加 sodo 命令使用权限"></a>给普通 user 添加 sodo 命令使用权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>找到<code>root ALL=(ALL:ALL) ALL</code>，把新建的 user 添加到这行下面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification&#10;root&#9;ALL=(ALL:ALL) ALL&#10;newuser&#9;ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<h2 id="u8BBE_u7F6E_user__u7684_shell_uFF1Ash_-_26gt_3B_bash"><a href="#u8BBE_u7F6E_user__u7684_shell_uFF1Ash_-_26gt_3B_bash" class="headerlink" title="设置 user 的 shell：sh -&gt; bash"></a>设置 user 的 shell：sh -&gt; bash</h2><p>/etc/passwd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newuser:x:1000:1000::/home/newuser:</span><br></pre></td></tr></table></figure>
+<p>发现 root 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+<p>照抄一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allen:x:1000:1000::/home/allen:/bin/bash</span><br></pre></td></tr></table></figure>
+<h2 id="u66F4_u6539_SSH__u9ED8_u8BA4_u7AEF_u53E3"><a href="#u66F4_u6539_SSH__u9ED8_u8BA4_u7AEF_u53E3" class="headerlink" title="更改 SSH 默认端口"></a>更改 SSH 默认端口</h2><ol>
+<li><p>修改/etc/ssh/sshd_config里的Port字段</p>
+<p> Port 22改为Port 1000（你自定义的端口）</p>
+</li>
+<li><p>重启sshd服务</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service ssh restart</span><br></pre></td></tr></table></figure>
+<h2 id="u7981_u7528_root__u767B_u5F55"><a href="#u7981_u7528_root__u767B_u5F55" class="headerlink" title="禁用 root 登录"></a>禁用 root 登录</h2><p>在 <code>/etc/ssh/sshd_config</code> 里找到 <code>PermitRootLogin yes</code> 设置成 <code>no</code></p>
+<h2 id="u4FEE_u6539_Hostname__u4E3B_u673A_u540D"><a href="#u4FEE_u6539_Hostname__u4E3B_u673A_u540D" class="headerlink" title="修改 Hostname 主机名"></a>修改 Hostname 主机名</h2><ol>
+<li>hostname 命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hostname newname</span><br></pre></td></tr></table></figure>
+<ol>
+<li>/etc/hostname 文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/hostname</span><br></pre></td></tr></table></figure>
+<ol>
+<li>/etc/hosts</li>
+</ol>
+<p>logout 生效</p>
+<h2 id="u4FEE_u6539_Welcome_Msg"><a href="#u4FEE_u6539_Welcome_Msg" class="headerlink" title="修改 Welcome Msg"></a>修改 Welcome Msg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/motd</span><br></pre></td></tr></table></figure>
+<h2 id="u5B89_u88C5_Git"><a href="#u5B89_u88C5_Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \&#10;  libz-dev libssl-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install git</span><br></pre></td></tr></table></figure>
+<p><a href="https://git-scm.com/book/zh-tw/v1/開始-安裝Git" target="_blank" rel="external">安裝Git</a></p>
+<h2 id="u5B89_u88C5_Nodejs"><a href="#u5B89_u88C5_Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>印象中 Ubuntu 14.04 apt-get 自带的 Node 版本很老，前往 Node 官网寻找最新版本的包安装方式：《<a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank" rel="external">Installing Node.js via package manager</a>》。</p>
+<p>基本步骤如下：</p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
+</code></pre><p>装完查看 Node 版本：</p>
+<pre><code>node -v
+</code></pre><p>接着安装 NPM：</p>
+<pre><code>sudo apt-get install npm
+</code></pre><p>国内 aliyun 的话还要装个 <a href="https://github.com/Pana/nrm" target="_blank" rel="external">nrm</a>，不然装东西慢到死！</p>
+<pre><code>sudo npm install nrm -g
+</code></pre><p>装完查看可用源：</p>
+<pre><code>$ nrm ls
+</code></pre><p>显示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* npm ---- https://registry.npmjs.org/&#10;  cnpm --- http://r.cnpmjs.org/&#10;  taobao - http://registry.npm.taobao.org/&#10;  eu ----- http://registry.npmjs.eu/&#10;  au ----- http://registry.npmjs.org.au/&#10;  sl ----- http://npm.strongloop.com/&#10;  nj ----- https://registry.nodejitsu.com/&#10;  pt ----- http://registry.npmjs.pt/</span><br></pre></td></tr></table></figure>
+<p>切换源：</p>
+<pre><code>nrm use taobao
+</code></pre><h2 id="u5B89_u88C5_Nginx"><a href="#u5B89_u88C5_Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<h3 id="u7981_u7528_IP__u8BBF_u95EE"><a href="#u7981_u7528_IP__u8BBF_u95EE" class="headerlink" title="禁用 IP 访问"></a>禁用 IP 访问</h3><p>一般用户不会用 IP 访问网站，基本访问 IP 的都是恶意攻击。所以这边在 <code>/etc/nginx/sites-available</code> 里新建一个 config 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server &#123;&#10;&#9;listen    80&#9;default;&#10;&#9;server_name  _;&#10;&#9;return 500;&#10;&#9;# rewrite ^(.*) http://www.xxx.com permanent;  &#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以根据自己的需求直接返回 500 或者重定向到其他网址，不过直接访问 IP 的流量一般也没什么价值重定向。保存，然后 <code>ln -s</code> 到 <code>sites-enable</code> 目录，<code>sudo service nginx restart</code> 生效。</p>
+<p>* 但是这样的话，localhost 也会无法使用，暂时没有找到其他方法。</p>
+<h2 id="u5B89_u88C5_Apache"><a href="#u5B89_u88C5_Apache" class="headerlink" title="安装 Apache"></a>安装 Apache</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+<h3 id="u7981_u7528_server-status"><a href="#u7981_u7528_server-status" class="headerlink" title="禁用 server-status"></a>禁用 server-status</h3><p>Apache 有时候默认开启了 server-status mod，在主机后面加上 <code>//server-status/</code> 会显示 server 相关的信息，禁用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/apache2/mods-available/status.conf</span><br></pre></td></tr></table></figure>
+<p>配置文件内容大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;IfModule mod_status.c&#62;&#10;#&#10;# Allow server status reports generated by mod_status,&#10;# with the URL of http://servername/server-status&#10;# Uncomment and change the &#34;.example.com&#34; to allow&#10;# access from other hosts.&#10;#&#10;&#60;Location /server-status&#62;&#10;    SetHandler server-status&#10;    Order deny,allow&#10;    Allow from all&#10;    Allow from localhost ip6-localhost&#10;#   Allow from .example.com&#10;&#60;/Location&#62;&#10;&#60;/IfModule&#62;</span><br></pre></td></tr></table></figure>
+<p>将其中的 <code>Allow from all</code> 改成 <code>Deny from all</code>，然后 <code>sudo service apache2 restart</code> 生效。</p>
+<h2 id="u5B89_u88C5_PHP"><a href="#u5B89_u88C5_PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install php5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install php5-mysql</span><br></pre></td></tr></table></figure>
+<h2 id="UFW_Firewall"><a href="#UFW_Firewall" class="headerlink" title="UFW Firewall"></a>UFW Firewall</h2><p>关闭所有外部对本机的访问（本机访问外部正常）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw default deny</span><br></pre></td></tr></table></figure>
+<p>开启/禁用相应端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw allow 80 &#20801;&#35768;&#22806;&#37096;&#35775;&#38382;80&#31471;&#21475;&#10;$ sudo ufw delete allow 80 &#31105;&#27490;&#22806;&#37096;&#35775;&#38382;80 &#31471;&#21475;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw allow from 192.168.1.1 &#20801;&#35768;&#27492;IP&#35775;&#38382;&#25152;&#26377;&#30340;&#26412;&#26426;&#31471;&#21475;&#10;$ sudo ufw deny smtp &#31105;&#27490;&#22806;&#37096;&#35775;&#38382;smtp&#26381;&#21153;&#10;$ sudo ufw delete allow smtp &#21024;&#38500;&#19978;&#38754;&#24314;&#31435;&#30340;&#26576;&#26465;&#35268;&#21017;&#10;$ sudo ufw deny proto tcp from 10.0.0.0/8 to 192.168.0.1 port 22 &#35201;&#25298;&#32477;&#25152;&#26377;&#30340;TCP&#27969;&#37327;&#20174;10.0.0.0/8 &#21040;192.168.0.1&#22320;&#22336;&#30340;22&#31471;&#21475;&#10;# &#21487;&#20197;&#20801;&#35768;&#25152;&#26377;RFC1918&#32593;&#32476;&#65288;&#23616;&#22495;&#32593;/&#26080;&#32447;&#23616;&#22495;&#32593;&#30340;&#65289;&#35775;&#38382;&#36825;&#20010;&#20027;&#26426;&#65288;/8,/16,/12&#26159;&#19968;&#31181;&#32593;&#32476;&#20998;&#32423;&#65289;&#65306;&#10;$ sudo ufw allow from 10.0.0.0/8&#10;$ sudo ufw allow from 172.16.0.0/12&#10;$ sudo ufw allow from 192.168.0.0/16</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw enable&#10;$ sudo ufw disable &#10;$ sudo ufw status</span><br></pre></td></tr></table></figure>
+<p><a href="http://wiki.ubuntu.org.cn/UFW防火墙简单设置" target="_blank" rel="external">UFW防火墙简单设置</a><br><a href="http://wiki.ubuntu.org.cn/Ufw使用指南" target="_blank" rel="external">Ufw使用指南</a></p>
+<p><a href="http://mozillazg.com/2013/01/linux-vps-first-things-need-to-do.html" target="_blank" rel="external">[linux]入手 VPS 后首先该做的事情</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>持续更新中……</p>
+<h2 id="u66F4_u6539_root_user__u5BC6_u7801"><a href="#u66F4_u6539_root_user__u5BC6_u7801" class="headerlink" title="更改 root user 密码"></a>更改 root user 密码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ passwd&#10;Enter new UNIX password: &#10;Retype new UNIX password: &#10;passwd: password updated successfully</span><br></pre></td></tr></table></figure>]]>
+    
+    </summary>
+    
+      <category term="Aliyun" scheme="http://blog.allenkung.com/tags/Aliyun/"/>
+    
+      <category term="Linux" scheme="http://blog.allenkung.com/tags/Linux/"/>
+    
+      <category term="Web Development" scheme="http://blog.allenkung.com/categories/Web-Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Small Project 中的 Git 使用心得]]></title>
+    <link href="http://blog.allenkung.com/2015/11/git-tips-in-small-project/"/>
+    <id>http://blog.allenkung.com/2015/11/git-tips-in-small-project/</id>
+    <published>2015-11-20T05:43:11.000Z</published>
+    <updated>2015-11-21T02:45:50.000Z</updated>
+    <content type="html"><![CDATA[<p>因为 <a href="http://gamebau.com" target="_blank" rel="external">公司官网</a> 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始就用了 Git 作为 Version Control System。</p>
+<p>比较了 <a href="http://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://bitbucket.org" target="_blank" rel="external">Bitbucket</a>，虽然前者的 community 比较强大，但是后者给小 studio 提供了非常吸引人的 plan：</p>
+<ul>
+<li><a href="https://github.com/pricing" target="_blank" rel="external">Github</a>：鼓励开源，按照 Private Repository 的数量收费；</li>
+<li><a href="https://bitbucket.org/product/pricing?tab=cloud-pricing" target="_blank" rel="external">Bitbucket</a>：按照 team 的人员数量收费，5 users 以内的 Private Repository 免费。</li>
+</ul>
+<p>这个 project 就我一个人，所以自然就选了 Bitbucket。一开始什么都在 master branch 上操作，主要是用来把白天公司 mbp 上没完成的代码 pass 到家里的 mbp 上继续写。然后觉得同时写各种功能变得越来越乱，就根据各种供能建了好多 branch，但是合来合去也觉得麻烦就怕会出错。</p>
+<p>稍微研究了下网上的 Git 部署策略文章，找到阮一峰老师的这篇《<a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">Git分支管理策略</a>》，终于找到适合自己的策略了。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/git-workflow.png-width620" alt="Git Workflow"></p>
+<!--readmore-->
+<p>大致是上图这样的 workflow，主要分成 3 个 branch:</p>
+<ol>
+<li>主线分支 Master</li>
+<li>开发分支 Develop</li>
+<li>临时性分支 temporary branches:<ul>
+<li>功能分支 Feature</li>
+<li>预发布分支 Release</li>
+<li>抓虫分支 Fixbug</li>
+</ul>
+</li>
+</ol>
+<p>具体各个 branch 的描述大家去看阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">文章</a>，这里仅仅提一下几个重点。</p>
+<h4 id="u4EE3_u7801_u5E93_u5E94_u8BE5_u6709_u4E00_u4E2A_u3001_u4E14_u4EC5_u6709_u4E00_u4E2A_u4E3B_u5206_u652F_Master"><a href="#u4EE3_u7801_u5E93_u5E94_u8BE5_u6709_u4E00_u4E2A_u3001_u4E14_u4EC5_u6709_u4E00_u4E2A_u4E3B_u5206_u652F_Master" class="headerlink" title="代码库应该有一个、且仅有一个主分支 Master"></a>代码库应该有一个、且仅有一个主分支 Master</h4><p>首先，代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支上发布并用 Tag 标记。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a 1.2</span><br></pre></td></tr></table></figure>
+<h4 id="u4E3A_u4E86_u4FDD_u8BC1_u7248_u672C_u6F14_u8FDB_u7684_u6E05_u6670_uFF0C_u4F7F_u7528__u2013no-ff__u53C2_u6570"><a href="#u4E3A_u4E86_u4FDD_u8BC1_u7248_u672C_u6F14_u8FDB_u7684_u6E05_u6670_uFF0C_u4F7F_u7528__u2013no-ff__u53C2_u6570" class="headerlink" title="为了保证版本演进的清晰，使用 –no-ff 参数"></a>为了保证版本演进的清晰，使用 –no-ff 参数</h4><p>默认情况下，Git 执行”快进式合并”（fast-farward merge），会直接将 Master 分支指向 Develop 分支。使用–no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法。关于合并的更多解释，请参考 Benjamin Sandofsky 的《<a href="http://sandofsky.com/blog/git-workflow.html" target="_blank" rel="external">Understanding the Git Workflow</a>》。</p>
+<p>将Develop分支发布到Master分支的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#20999;&#25442;&#21040;Master&#20998;&#25903;&#10;$ git checkout master&#10;&#10;# &#23545;Develop&#20998;&#25903;&#36827;&#34892;&#21512;&#24182;&#10;$ git merge --no-ff develop</span><br></pre></td></tr></table></figure>
+<h4 id="u8BB0_u5F97_u5220_u9664_u4E34_u65F6_u6027_u5206_u652F"><a href="#u8BB0_u5F97_u5220_u9664_u4E34_u65F6_u6027_u5206_u652F" class="headerlink" title="记得删除临时性分支"></a>记得删除临时性分支</h4><p>Feature、Release、Fixbug 这三种分支都属于临时性需要，使用完以后，应该删除，使得代码库的常设分支始终只有 Master 和 Develop。</p>
+<p>创建一个功能分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-x develop</span><br></pre></td></tr></table></figure>
+<p>开发完成后，将功能分支合并到 develop 分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout develop&#10;$ git merge --no-ff feature-x</span><br></pre></td></tr></table></figure>
+<p>删除 feature 分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d feature-x</span><br></pre></td></tr></table></figure>]]></content>
+    <summary type="html">
+    <![CDATA[<p>因为 <a href="http://gamebau.com" target="_blank" rel="external">公司官网</a> 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始]]>
+    </summary>
+    
+      <category term="Git" scheme="http://blog.allenkung.com/tags/Git/"/>
+    
+      <category term="Web Development" scheme="http://blog.allenkung.com/categories/Web-Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Webkit not respecting overflow:hidden with border radius]]></title>
+    <link href="http://blog.allenkung.com/2015/11/webkit-not-respecting-overflow-hidden-with-border-radius/"/>
+    <id>http://blog.allenkung.com/2015/11/webkit-not-respecting-overflow-hidden-with-border-radius/</id>
+    <published>2015-11-19T10:12:26.000Z</published>
+    <updated>2015-11-20T05:35:49.000Z</updated>
+    <content type="html"><![CDATA[<p>最近在 project 中想要实现这样一个效果：光标移过 icon 的时候，background 图片 zoom in 响应这个 hover 事件。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/webkit-not-respecting-overflow-hidden-with-border-radius-01.gif" alt="With border-radius"></p>
+<p>容器结构很简单，一个 <code>overflow:hidden</code> 的背景容器，和一张作为前景的  img：</p>
+<pre><code>&lt;div class=&quot;box&quot;&gt;
+    &lt;div class=&quot;bg-container&quot;&gt;
+        &lt;img src=&quot;bg.jpg&quot; / &gt;
+    &lt;/div&gt;
+    &lt;img src=&quot;fg.png&quot; /&gt;
+&lt;/div&gt;
+</code></pre><p>然后问题来了，仔细观察上面的 gif 会发现，当 bg.jpg 在 webkit 下执行 <code>transform: scale()</code> 动画的时候，<code>overflow:hidden</code> 的 mask 容器 <code>border-radius</code> 会瞬间失效直到动画结束。（笔者偷懒并没有去测试 IE 和 FF）</p>
+<p>我尝试了下用图片遮罩，就是盖一个白色的圆角 mask 在背景上面：</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/webkit-not-respecting-overflow-hidden-with-border-radius-02.jpg" alt="With mask"></p>
+<p>不过如果这个 mask 的 top 位置和背景一致的话，在动画执行的时候就会产生一条 border 线（可能还是浏览器渲染的关系），这个比较容易解决写个 padding 就好了：</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/webkit-not-respecting-overflow-hidden-with-border-radius-03.jpg" alt=""></p>
+<p>Stackoverflow 上这两篇提供不同的思路比较有帮助，不过最终笔者换了其他的<a href="http://gamebau.com/games" target="_blank" rel="external">实现方式</a>：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/14383632/webkit-border-radius-and-overflow-bug-when-using-any-animation-transition" target="_blank" rel="external">add height:100%</a></li>
+<li><a href="http://stackoverflow.com/questions/16878279/overflowhidden-ignored-with-border-radius-and-css-transforms-webkit-only" target="_blank" rel="external">add -webkit-mask-image</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在 project 中想要实现这样一个效果：光标移过 icon 的时候，background 图片 zoom in 响应这个 hover 事件。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/we]]>
+    </summary>
+    
+      <category term="CSS3" scheme="http://blog.allenkung.com/tags/CSS3/"/>
+    
+      <category term="Front-end" scheme="http://blog.allenkung.com/tags/Front-end/"/>
+    
+      <category term="Web Development" scheme="http://blog.allenkung.com/categories/Web-Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[关于 GTD 的一些想法]]></title>
+    <link href="http://blog.allenkung.com/2015/10/ideas-about-GTD/"/>
+    <id>http://blog.allenkung.com/2015/10/ideas-about-GTD/</id>
+    <published>2015-10-18T18:33:26.000Z</published>
+    <updated>2015-10-18T18:34:57.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u62D6_u5EF6_u4E4B_u82E6"><a href="#u62D6_u5EF6_u4E4B_u82E6" class="headerlink" title="拖延之苦"></a>拖延之苦</h2><p>作为一个拖延癌晚期病患，饱受拖延症给人生带来的种种懊恼之苦，便经常时不时地总结下对症良药。一旦狠下心来坚持久了就会成功比如去年减肥 20 斤，不过后来健身房装修所以功亏一篑又开始胖了。</p>
+<p>为啥明明对自己的人生计划得挺好，但总是事与愿违，看着周遭的人与事越变越好，唯独自己却陷入困境。说穿了，主要还是拖延（懒）吧！</p>
+<h2 id="u5B58_u5728_u4E3B_u4E49"><a href="#u5B58_u5728_u4E3B_u4E49" class="headerlink" title="存在主义"></a>存在主义</h2><p>早些时候读虚无主义觉得仿佛就人生没有任何意义，宇宙中所以万物都逃离不了湮灭的结果。但是萨特的存在主义是一种人道主义，他让我明白了光靠「想」是无用的，理念需要借助「人」作为介质，通过「行动」才能对现实世界造成影响。</p>
+<blockquote>
+<p>Ideas → Actions → Effects</p>
+</blockquote>
+<p>所以只有行动才能造就意义，人只有通过行动来创造自身。</p>
+<a id="more"></a>
+<h2 id="u65B9_u6CD5_u8BBA"><a href="#u65B9_u6CD5_u8BBA" class="headerlink" title="方法论"></a>方法论</h2><p>老子在《道德经》里有这么一段话：</p>
+<blockquote>
+<p>天下大事，必作于细。<br>天下难事，必作于易。</p>
+</blockquote>
+<p>非常有道理的 GTD 原则，涓涓细流，汇流成海。</p>
+<h3 id="1-__u8BBE_u7ACB_u53EF_u8BC4_u4F30_u7684_u76EE_u6807"><a href="#1-__u8BBE_u7ACB_u53EF_u8BC4_u4F30_u7684_u76EE_u6807" class="headerlink" title="1. 设立可评估的目标"></a>1. 设立可评估的目标</h3><p>所谓可评估的目标是指明确的可以被验收的目标，比如「好身材」就是一个模糊的目标，「像某某某一样的身材」稍微好一点，进一步量化就是「60KG／有明显的胸肌和腹肌／细又结实的大腿／不驼背」。</p>
+<h3 id="2-__u91CF_u5316_u8FC7_u7A0B_u5BF9_u8C61"><a href="#2-__u91CF_u5316_u8FC7_u7A0B_u5BF9_u8C61" class="headerlink" title="2. 量化过程对象"></a>2. 量化过程对象</h3><p>将目标拆解为可以量化的分目标对象，比如「每天200个仰卧起坐／100个俯卧撑／100个深蹲」。</p>
+<h3 id="3-__u8BBE_u7ACB_Deadline"><a href="#3-__u8BBE_u7ACB_Deadline" class="headerlink" title="3. 设立 Deadline"></a>3. 设立 Deadline</h3><p>都说 Deadline 是第一生产力，合理的 Deadline 必须基于对可评估目标的量化对象之上。</p>
+<h3 id="4-__u8BBE_u7ACB_Milestone"><a href="#4-__u8BBE_u7ACB_Milestone" class="headerlink" title="4. 设立 Milestone"></a>4. 设立 Milestone</h3><p>解耦不同阶段，便于达成目标和计算 delay。</p>
+<h3 id="5-__u81EA_u5927_u5230_u5C0F_u7684_u65F6_u95F4_u5206_u5272_u548C_u4EFB_u52A1_u5206_u914D"><a href="#5-__u81EA_u5927_u5230_u5C0F_u7684_u65F6_u95F4_u5206_u5272_u548C_u4EFB_u52A1_u5206_u914D" class="headerlink" title="5. 自大到小的时间分割和任务分配"></a>5. 自大到小的时间分割和任务分配</h3><ul>
+<li>Yearly</li>
+<li>Monthly</li>
+<li>Weekly</li>
+<li>Daily</li>
+</ul>
+<p>自大到小，将量化内容逐一分配。</p>
+<h3 id="6-__u5468_u671F_u6027_Check_Review__u548C_u8C03_u6574_u65F6_u95F4_u7EBF"><a href="#6-__u5468_u671F_u6027_Check_Review__u548C_u8C03_u6574_u65F6_u95F4_u7EBF" class="headerlink" title="6. 周期性 Check Review 和调整时间线"></a>6. 周期性 Check Review 和调整时间线</h3><p>由此可见，能不能做的判断依据就是：</p>
+<ul>
+<li>目标可评估</li>
+<li>Deadline</li>
+</ul>
+<p>日常除了系统性的任务外，还有留一点给临时性的任务。</p>
+<ul>
+<li>系统性任务（相关联的）</li>
+<li>临时任务（一次性的）</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u62D6_u5EF6_u4E4B_u82E6"><a href="#u62D6_u5EF6_u4E4B_u82E6" class="headerlink" title="拖延之苦"></a>拖延之苦</h2><p>作为一个拖延癌晚期病患，饱受拖延症给人生带来的种种懊恼之苦，便经常时不时地总结下对症良药。一旦狠下心来坚持久了就会成功比如去年减肥 20 斤，不过后来健身房装修所以功亏一篑又开始胖了。</p>
+<p>为啥明明对自己的人生计划得挺好，但总是事与愿违，看着周遭的人与事越变越好，唯独自己却陷入困境。说穿了，主要还是拖延（懒）吧！</p>
+<h2 id="u5B58_u5728_u4E3B_u4E49"><a href="#u5B58_u5728_u4E3B_u4E49" class="headerlink" title="存在主义"></a>存在主义</h2><p>早些时候读虚无主义觉得仿佛就人生没有任何意义，宇宙中所以万物都逃离不了湮灭的结果。但是萨特的存在主义是一种人道主义，他让我明白了光靠「想」是无用的，理念需要借助「人」作为介质，通过「行动」才能对现实世界造成影响。</p>
+<blockquote>
+<p>Ideas → Actions → Effects</p>
+</blockquote>
+<p>所以只有行动才能造就意义，人只有通过行动来创造自身。</p>]]>
+    
+    </summary>
+    
+      <category term="GTD" scheme="http://blog.allenkung.com/tags/GTD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Gulp Plugin 入门]]></title>
+    <link href="http://blog.allenkung.com/2015/10/basic-gulp-plugin/"/>
+    <id>http://blog.allenkung.com/2015/10/basic-gulp-plugin/</id>
+    <published>2015-10-13T08:04:40.000Z</published>
+    <updated>2015-11-21T02:51:26.000Z</updated>
+    <content type="html"><![CDATA[<p>最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 <a href="http://gulpjs.com/plugins/" target="_blank" rel="external">plugin</a>。其中一篇《<a href="http://segmentfault.com/a/1190000000494326" target="_blank" rel="external">前端从零单排之 Gulp</a>》里提到了几个基本的 plugin，觉得很实用：</p>
+<ol>
+<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">Less compile (gulp-less)</a></li>
+<li><a href="https://github.com/postcss/autoprefixer" target="_blank" rel="external">Autoprefixer (gulp-autoprefixer)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">Minify CSS (gulp-minify-css)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-jshint/" target="_blank" rel="external">JSHint (gulp-jshint)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat/" target="_blank" rel="external">Concatenation (gulp-concat)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify/" target="_blank" rel="external">Uglify (gulp-uglify)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin/" target="_blank" rel="external">Compress images (gulp-imagemin)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-livereload" target="_blank" rel="external">LiveReload (gulp-livereload)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-clean" target="_blank" rel="external">Clean files for a clean build (gulp-clean)</a></li>
+<li><a href="https://npmjs.org/package/gulp-cache/" target="_blank" rel="external">Caching of images so only changed images are compressed (gulp-cache)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-notify/" target="_blank" rel="external">Notify of changes (gulp-notify)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-ejs/" target="_blank" rel="external">EJS Generator (gulp-ejs)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-watch" target="_blank" rel="external">gulp-watch</a></li>
+<li><a href="https://www.npmjs.com/package/main-bower-files" target="_blank" rel="external">main-bower-files</a></li>
+</ol>
+<a id="more"></a>
+<hr>
+<h3 id="1-_Less_compile__28gulp-less_29"><a href="#1-_Less_compile__28gulp-less_29" class="headerlink" title="1. Less compile (gulp-less)"></a>1. Less compile (gulp-less)</h3><p>自动编译 LESS 文件的插件。</p>
+<h3 id="2-_Autoprefixer__28gulp-autoprefixer_29"><a href="#2-_Autoprefixer__28gulp-autoprefixer_29" class="headerlink" title="2. Autoprefixer (gulp-autoprefixer)"></a>2. Autoprefixer (gulp-autoprefixer)</h3><p>自动分析 CSS 代码并编译成带有兼容前缀的 CSS：</p>
+<pre><code>a {
+    display: flex;
+}
+</code></pre><p>compiles to:</p>
+<pre><code>a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+</code></pre><p>同时，也会自动去除没有必要的已经失效的前缀，比如：</p>
+<pre><code>a {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+</code></pre><p>compiles to:</p>
+<pre><code>a {
+    border-radius: 5px;
+}
+</code></pre><h3 id="3-_Minify_CSS__28gulp-minify-css_29"><a href="#3-_Minify_CSS__28gulp-minify-css_29" class="headerlink" title="3. Minify CSS (gulp-minify-css)"></a>3. Minify CSS (gulp-minify-css)</h3><p>自动压缩 CSS 文件的插件。</p>
+<h3 id="4-_JSHint__28gulp-jshint_29"><a href="#4-_JSHint__28gulp-jshint_29" class="headerlink" title="4. JSHint (gulp-jshint)"></a>4. JSHint (gulp-jshint)</h3><p>著名的 JavaScript 代码纠察工具 gulp 插件。</p>
+<h3 id="5-_Concatenation__28gulp-concat_29"><a href="#5-_Concatenation__28gulp-concat_29" class="headerlink" title="5. Concatenation (gulp-concat)"></a>5. Concatenation (gulp-concat)</h3><p>JavaScript Concatenation 文件合并插件，将多个 JS 文件合并编译成一个文件。</p>
+<h3 id="6-_Uglify__28gulp-uglify_29"><a href="#6-_Uglify__28gulp-uglify_29" class="headerlink" title="6. Uglify (gulp-uglify)"></a>6. Uglify (gulp-uglify)</h3><p>Minify JavaScript with UglifyJS2，JS 压缩插件。</p>
+<h3 id="7-_Compress_images__28gulp-imagemin_29"><a href="#7-_Compress_images__28gulp-imagemin_29" class="headerlink" title="7. Compress images (gulp-imagemin)"></a>7. Compress images (gulp-imagemin)</h3><p>图片压缩插件，Minify PNG, JPEG, GIF and SVG images.</p>
+<h3 id="8-_LiveReload__28gulp-livereload_29"><a href="#8-_LiveReload__28gulp-livereload_29" class="headerlink" title="8. LiveReload (gulp-livereload)"></a>8. LiveReload (gulp-livereload)</h3><p>实时监听刷新插件。</p>
+<h3 id="9-_Clean_files_for_a_clean_build__28gulp-clean_29"><a href="#9-_Clean_files_for_a_clean_build__28gulp-clean_29" class="headerlink" title="9. Clean files for a clean build (gulp-clean)"></a>9. Clean files for a clean build (gulp-clean)</h3><p>清除文件的插件，用于生成新文件之前。</p>
+<h3 id="10-_Caching_of_images_so_only_changed_images_are_compressed__28gulp-cache_29"><a href="#10-_Caching_of_images_so_only_changed_images_are_compressed__28gulp-cache_29" class="headerlink" title="10. Caching of images so only changed images are compressed (gulp-cache)"></a>10. Caching of images so only changed images are compressed (gulp-cache)</h3><p>缓存插件？还没搞懂，以后再补充。</p>
+<h3 id="11-_Notify_of_changes__28gulp-notify_29"><a href="#11-_Notify_of_changes__28gulp-notify_29" class="headerlink" title="11. Notify of changes (gulp-notify)"></a>11. Notify of changes (gulp-notify)</h3><p>gulp plugin to send messages based on Vinyl Files or Errors to Mac OS X, Linux or Windows using the node-notifier module. Fallbacks to Growl or simply logging</p>
+<h3 id="12-_EJS_Generator__28gulp-ejs_29"><a href="#12-_EJS_Generator__28gulp-ejs_29" class="headerlink" title="12. EJS Generator (gulp-ejs)"></a>12. EJS Generator (gulp-ejs)</h3><p>A plugin for Gulp that parses ejs template files</p>
+<h3 id="13-_gulp-watch"><a href="#13-_gulp-watch" class="headerlink" title="13. gulp-watch"></a>13. gulp-watch</h3><p>File watcher that uses super-fast chokidar and emits vinyl objects.</p>
+<h3 id="14-_main-bower-files"><a href="#14-_main-bower-files" class="headerlink" title="14. main-bower-files"></a>14. main-bower-files</h3><p>Get main files from your installed bower packages.</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 <a href="http://gulpjs.com/plugins/">plugin</a>。其中一篇《<a href="http://segmentfault.com/a/1190000000494326">前端从零单排之 Gulp</a>》里提到了几个基本的 plugin，觉得很实用：</p>
+<ol>
+<li><a href="https://www.npmjs.com/package/gulp-less">Less compile (gulp-less)</a></li>
+<li><a href="https://github.com/postcss/autoprefixer">Autoprefixer (gulp-autoprefixer)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css">Minify CSS (gulp-minify-css)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-jshint/">JSHint (gulp-jshint)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat/">Concatenation (gulp-concat)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify/">Uglify (gulp-uglify)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin/">Compress images (gulp-imagemin)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-livereload">LiveReload (gulp-livereload)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-clean">Clean files for a clean build (gulp-clean)</a></li>
+<li><a href="https://npmjs.org/package/gulp-cache/">Caching of images so only changed images are compressed (gulp-cache)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-notify/">Notify of changes (gulp-notify)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-ejs/">EJS Generator (gulp-ejs)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-watch">gulp-watch</a></li>
+<li><a href="https://www.npmjs.com/package/main-bower-files">main-bower-files</a></li>
+</ol>]]>
+    
+    </summary>
+    
+      <category term="Front-end" scheme="http://blog.allenkung.com/tags/Front-end/"/>
+    
+      <category term="Javascript" scheme="http://blog.allenkung.com/tags/Javascript/"/>
+    
+      <category term="Web Development" scheme="http://blog.allenkung.com/categories/Web-Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Tom Hunter: A Life In Photos]]></title>
+    <link href="http://blog.allenkung.com/2015/09/a-life-in-photos/"/>
+    <id>http://blog.allenkung.com/2015/09/a-life-in-photos/</id>
+    <published>2015-09-13T07:52:01.000Z</published>
+    <updated>2015-09-13T17:43:54.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-01.jpg-width620" alt="Mingsheng Lecture, Tom Hunter: A Life In Photos"></p>
+<p><a href="http://www.tomhunter.org" target="_blank" rel="external">Tom Hunter</a> 是一位平民艺术家，他从周遭的社区和生活中吸取灵感，他的作品丰富多样，探讨不同于主流视角的生活方式，同时具备鲜明的个人风格。</p>
+<a id="more"></a>
+<h4 id="u6444_u5F71_u7F18_u8D77"><a href="#u6444_u5F71_u7F18_u8D77" class="headerlink" title="摄影缘起"></a>摄影缘起</h4><p>80 年代末，Tom Hunter 在 Brick Lane Market 经营一家旧物商店。在此期间他开始为他的顾客们拍照，从此开始了他的摄影生涯。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-03.jpg-width620" alt="Brick Lane, Tom Hunter"></p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-04.jpg-width620" alt="Brick Lane, Tom Hunter"></p>
+<h4 id="Ghetto__u8D2B_u6C11_u533A_u7684_u751F_u6D3B"><a href="#Ghetto__u8D2B_u6C11_u533A_u7684_u751F_u6D3B" class="headerlink" title="Ghetto 贫民区的生活"></a>Ghetto 贫民区的生活</h4><p>1993/94 年期间，Tom 居住于伦敦东郊的一处贫民街区，在此期间 Tom 拍摄纪录了自己的朋友和邻居们的生活。出现在<a href="http://www.tomhunter.org/the-ghetto-series/" target="_blank" rel="external">这一系列</a>作品中的人物，虽然经济上拮据，但生活和文化依然不失多样性和丰富的细节。事实上，这一系列被命名为“Ghetto”是对当地报纸的一篇文章的反讽。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-05.jpg-width620" alt="The Ghetto Series, Tom Hunter"></p>
+<p>下面这幅充满禅意氛围的作品中，请注意天花板，Tom 解释到由于屋顶漏水所以屋主通过一层塑料薄膜来引流。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-06.jpg-width620" alt="The Ghetto Series, Tom Hunter"></p>
+<h4 id="u7528_u827A_u672F_u4FDD_u536B_u5BB6_u56ED"><a href="#u7528_u827A_u672F_u4FDD_u536B_u5BB6_u56ED" class="headerlink" title="用艺术保卫家园"></a>用艺术保卫家园</h4><p>当政府想要拆除 Tom 多住的贫民区时，Tom 意识到自己作为艺术家的责任和义务。他到处奔走，通过他的作品让公众关注他的街区。让公众明白一个显而易见的道理：贫民区的生活虽然不同于中产阶级或者上流社会，但依然值得尊重和关心。最后 Tom 的艺术保卫家园行动终于取得了胜利，如今这片街区依然保存在伦敦一角。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-07.jpg-width620" alt="This is Tom with his street model before it was sold to the Museum of London"></p>
+<h4 id="u65C5_u884C_u8005/_u5B09_u76AE_u7ECF_u5386"><a href="#u65C5_u884C_u8005/_u5B09_u76AE_u7ECF_u5386" class="headerlink" title="旅行者/嬉皮经历"></a>旅行者/嬉皮经历</h4><p>TRAVELLERS 系列作品主要纪录了 Tom 的公路旅行生涯。Tom 和朋友买了一辆双层巴士，改装成旅行“大篷车”，花了两年时间周游欧洲，辗转于各种聚会和音乐节。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-08.jpg-width620" alt="TRAVELLERS, Tom Hunter"><br><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-09.jpg-width620" alt="TRAVELLERS, Tom Hunter"></p>
+<h4 id="u5173_u5FC3_u5E95_u5C42_u751F_u6D3B_B7_u65E0_u540D_u6C0F_u7CFB_u5217"><a href="#u5173_u5FC3_u5E95_u5C42_u751F_u6D3B_B7_u65E0_u540D_u6C0F_u7CFB_u5217" class="headerlink" title="关心底层生活·无名氏系列"></a>关心底层生活·无名氏系列</h4><p>由于 Tom 自己也有收到政府通知勒令离开住所的痛苦经历，而这些通知信的收信人总是“PERSONS UNKNOWN”，仿佛他们不知道他们正在驱逐和碾碎的是一个活生生的人和他的全部生活。所以这一系列是拍摄纪录那些被政府驱逐的“无名氏”们的生活。这一系列中 Tom 大量借鉴了古典艺术的布局和场景，比如这幅《Woman Reading a Possession Order》借鉴了维米尔德《窗前读信的少女》，当然其中也不乏艺术家本人对古典作品的喜爱和独特见解。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-10.jpg-width620" alt="Woman Reading a Possession Order, Tom Hunter"></p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-11.jpg-width620" alt="《窗前读信的少女》约翰内斯·维米尔"></p>
+<h4 id="u620F_u5267_u6027/_u4E9A_u6587_u5316_B7Life_and_Death_in_Hackney"><a href="#u620F_u5267_u6027/_u4E9A_u6587_u5316_B7Life_and_Death_in_Hackney" class="headerlink" title="戏剧性/亚文化·Life and Death in Hackney"></a>戏剧性/亚文化·Life and Death in Hackney</h4><p>在这一些列中，Tom 的作品表现出强烈的戏剧性、对比和隐喻。对于生活本真的思考让这组作品被一种严肃的气氛所笼罩。同时有别于其他主流的作品，Tom 的关注点是一种亚文化，一个主流媒体中不在场的阶级、社群。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-12.jpg-width620" alt="The Way Home, Tom Hunter"></p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-13.jpg-width620" alt="Eve of The Party, Tom Hunter"></p>
+<h4 id="u6BCD_u4EB2_u7684_u6000_u62B1_B7Dublin_Bay"><a href="#u6BCD_u4EB2_u7684_u6000_u62B1_B7Dublin_Bay" class="headerlink" title="母亲的怀抱·Dublin Bay"></a>母亲的怀抱·Dublin Bay</h4><p>经历了 Life and Death 系列的痛苦思考，Tom 一度觉得生活太沉重了，所以他决定离开伦敦，去往都柏林休整一段时间（Tom 的祖上好像是爱尔兰人）。在 Dublin 期间我们的艺术家好像迷上了“针孔摄影”，这个系列都是针孔摄像机拍的，Tom 说他想起了《Ulysses》里的诗句：</p>
+<blockquote>
+<p>“A great sweet mother? The snot green sea. The scrotum tightening sea… Our mighty mother!” — James Joyce, Ulysses</p>
+</blockquote>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-14.jpg-width620" alt="Dublin Bay Bathing Places Series, Tom Hunter"></p>
+<h4 id="u770B_u4E0D_u89C1_u7684_u5E7D_u7075_B7Prayer_Places"><a href="#u770B_u4E0D_u89C1_u7684_u5E7D_u7075_B7Prayer_Places" class="headerlink" title="看不见的幽灵·Prayer Places"></a>看不见的幽灵·Prayer Places</h4><p>同样是针孔的 Prayer Places 系列，Tom 拍摄了不同宗教的祈祷场所。由于针孔的特殊拍摄方法，一次曝光可能长达数十分钟乃至几小时，所以在场景中走动的人因为在整个曝光过程中停留的相对时间太短，都成了“看不见的幽灵”。这是个非常有趣的情况，看上去空无一人的照片事实上充满了祈祷的人们，只不过随着时间的流逝，在底片上他们存在的痕迹太过微渺。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-15.jpg-width620" alt="Prayer Places, Tom Hunter"></p>
+<h4 id="u62A8_u51FB_u793E_u4F1A_u73B0_u5B9E"><a href="#u62A8_u51FB_u793E_u4F1A_u73B0_u5B9E" class="headerlink" title="抨击社会现实"></a>抨击社会现实</h4><p>作为一个平民艺术家，Tom 也拍摄了一些反映社会现实、抨击执政者对底层阶级疾苦视而不见的题材。下幅作品中，墙上的点点都是蟑螂，Tom 愤慨地谴责政府不作为，让老人们住在地狱一般的环境中。还有一些关于社保房的题材，大家有兴趣可以去 Tom 的<a href="http://www.tomhunter.org" target="_blank" rel="external">网站</a>查看。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-16.jpg-width620" alt="Living in Hell, Tom Hunter"></p>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>Tom Hunter 是一个多产的艺术家，他的作品题材涉猎广泛，参考绘画、文学和历史给 Tom 的作品印上了鲜明的个人特征。同时他也继承了绘画先辈们的现实主义批判风格，出身社会底层的他关心底层人民的生活，誓为他们在主流媒体缺席之下的代言人，忠实地纪录了这个亚文化社群的丰富生活细节。为消除公众误会，理解和接受亚文化而努力战斗。</p>
+<p>毫无疑问，造就 Tom Hunter 艺术的，正是他对自身所处社群的质朴的关心和爱。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-02.jpg-width620" alt="Tom Hunter"></p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-17.jpg-width620" alt=""></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/a-life-in-photos-01.jpg-width620" alt="Mingsheng Lecture, Tom Hunter: A Life In Photos"></p>
+<p><a href="http://www.tomhunter.org">Tom Hunter</a> 是一位平民艺术家，他从周遭的社区和生活中吸取灵感，他的作品丰富多样，探讨不同于主流视角的生活方式，同时具备鲜明的个人风格。</p>]]>
+    
+    </summary>
+    
+      <category term="Tom Hunter" scheme="http://blog.allenkung.com/tags/Tom-Hunter/"/>
+    
+      <category term="Photography" scheme="http://blog.allenkung.com/categories/Photography/"/>
+    
+      <category term="Lecture" scheme="http://blog.allenkung.com/categories/Photography/Lecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[ejs 中的 HTML tag 转义问题]]></title>
+    <link href="http://blog.allenkung.com/2015/08/ejs-html-escape-problem/"/>
+    <id>http://blog.allenkung.com/2015/08/ejs-html-escape-problem/</id>
+    <published>2015-08-31T03:26:01.000Z</published>
+    <updated>2015-11-24T07:59:51.000Z</updated>
+    <content type="html"><![CDATA[<p>最近在用 <a href="http://expressjs.com/" target="_blank" rel="external">Express</a> 开发公司网站，用了 <a href="https://github.com/jeresig/i18n-node-2" target="_blank" rel="external">i18n-node-2</a> 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：</p>
+<pre><code>这里是&lt;a href=&quot;#&quot;&gt;链接&lt;/a&gt;的文字内容
+</code></pre><p>上面这段存到 JSON 数组里的话要转义一下：</p>
+<pre><code>&quot;这里是&lt;a href=\&quot;#\&quot;&gt;链接&lt;/a&gt;的文字内容&quot;
+</code></pre><p>但是在 ejs 模板中输出的时候 HTML tag 总是 output 转义字符串（Escape Sequence）：</p>
+<pre><code>这里是&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;链接&amp;lt;/a&amp;gt;的文字内容
+</code></pre><p>查阅了 ejs 的 github <a href="https://github.com/tj/ejs" target="_blank" rel="external">README</a> 文档中有如下介绍：</p>
+<ul>
+<li>Unbuffered code for conditionals etc <code>&lt;% code %&gt;</code></li>
+<li>Escapes html by default with <code>&lt;%= code %&gt;</code></li>
+<li>Unescaped buffering with <code>&lt;%- code %&gt;</code></li>
+</ul>
+<p>发现想要 output HTML字符实体（Character Entities）的话只要使用 <code>&lt;%- code %&gt;</code>输出就可以啦！原来这么简单，本来还想是不是设计一个转义函数，瞬间觉得自己萌萌哒 ^_^</p>
+<hr>
+<p>相关资料：</p>
+<ul>
+<li><a href="http://www.css88.com/tool/html-escape/" target="_blank" rel="external">前端开发工具箱：HTML 在线转义工具</a></li>
+<li><a href="http://114.xixik.com/character/" target="_blank" rel="external">HTML 字符实体（Character Entities），转义字符串（Escape Sequence）</a></li>
+<li><a href="http://www.w3chtml.com/html/character.html" target="_blank" rel="external">HTML 转义字符</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>最近在用 <a href="http://expressjs.com/" target="_blank" rel="external">Express</a> 开发公司网站，用了 <a href="https://github.com/jeresig/i18n-node-2]]>
+    </summary>
+    
+      <category term="Front-end" scheme="http://blog.allenkung.com/tags/Front-end/"/>
+    
+      <category term="JavaScript" scheme="http://blog.allenkung.com/tags/JavaScript/"/>
+    
+      <category term="ejs" scheme="http://blog.allenkung.com/tags/ejs/"/>
+    
+      <category term="Web Development" scheme="http://blog.allenkung.com/categories/Web-Development/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[凯瑟琳•雅丝：影像的时空维度与体系]]></title>
+    <link href="http://blog.allenkung.com/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/"/>
+    <id>http://blog.allenkung.com/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/</id>
+    <published>2015-08-23T16:47:58.000Z</published>
+    <updated>2015-08-26T18:55:25.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-01.JPG-width620" alt="凯瑟琳•雅丝：影像的时空维度与体系，民生美术馆"></p>
+<p>这次讲座之前我并不知道 <a href="https://en.wikipedia.org/wiki/Catherine_Yass" target="_blank" rel="external">Catherine Yass</a> 其人，也未见过她的作品。下午还在犹豫要不要参加民生举办的这次讲座，但是主题“<a href="http://www.douban.com/event/25037774/" target="_blank" rel="external">影像的时空维度与体系</a>”实在太吸引人。结果 Yass 女士的作品很有深度，为我打开了一扇窗，让人大开眼界。</p>
+<p>由于摄影师的作品中很喜欢颠倒重置画面，所以和我们视频讲座的时候也是颠倒的 LOL</p>
+<a id="more"></a>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-02.jpg-width620" alt="Presented upside down, Descent, 2002"></p>
+<h4 id="Presented_upside_down_2C_Descent_2C_2002"><a href="#Presented_upside_down_2C_Descent_2C_2002" class="headerlink" title="Presented upside down, Descent, 2002"></a>Presented upside down, Descent, 2002</h4><p>这个作品是用吊车将摄影机从正在建设的大楼工地高空倒挂着缓缓落下，大楼身处伦敦市中心金融区，旁边是花旗等银行巨擎的大楼。由于浓雾的关系，一开始观众既不能感受到身处何地，也不能察觉到这是一个颠倒的镜头；对着这个进行中的建筑骨架，甚至连所处的时代都无法迅速辨认。随着摄影机缓缓落下，当然对于观众来讲仿佛是镜头在缓缓上升。此时时空被打乱，观众们得以和他们所处的现实所隔绝，被置入一个「茫然失措/空白」的境遇。然而，随着摄影机渐渐接近地面，背景中出现其他大楼（花旗银行），观众们回过神来意识到自己的「处境」。而此时由于摄影机加速下落，观众们还未来得及接受这个倒置的现实，画面中的「地面和行人」就像整个厚重的现实和历史一般从天而降砸向观众。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-03.jpg-width620" alt="Wall, 2004"></p>
+<h4 id="Wall_2C_2004"><a href="#Wall_2C_2004" class="headerlink" title="Wall, 2004"></a>Wall, 2004</h4><p>这个作品摄于以色列和巴勒斯坦边境，以色列通过竖立混泥土板所组成的墙将巴勒斯坦隔绝起来。在这组作品之中，观众的视线被高高的混泥土墙所阻隔，无法穿透观察到墙另一边的情况。作者有意凸显整个墙绵延的景象，粉碎观众想要越过墙的幻想。同时，观众从画面中亦无法获取确切的时间线索。现实中负有政治色彩的混泥土高墙被作者解构、重构为束缚观众空间，架空观众时间的道具。随着观众对作者和高墙之下人们的感同身受，藉由次作者提出反思：国家机器行使它权力的同时，难道组成国家的一个一个个体就一点责任都没有吗？</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-04.jpg-width620" alt="Lock, 2006"></p>
+<h4 id="Lock"><a href="#Lock" class="headerlink" title="Lock"></a>Lock</h4><p>这个作品是我们天朝的三峡大坝，由于大坝的巨大落差，轮船经过大坝时，两侧闸门关闭蓄水直到堰塞湖水位和上游或者下游一致。Cathrine Yass 的作品「Lock」通过纪录并解构这一过程，构建影像与时空的全新维度。</p>
+<p>首先两侧闸门关闭之时，轮船处于某种空间上封闭的状态，而这种状态一直绵延到蓄水池水位变化结束。于此同时，轮船的海拔随着水位变化而变化，但是缺乏参照物的观众并不能直观感受到这种变化。进入蓄水池后，闸门的关闭，仿佛通往过去的历史被关闭；而未来（出蓄水池方向）的闸门也是关闭（未知）的，于是当蓄水完成，闸门打开的瞬间，这似曾相识的历史重复，观众已经忘记这究竟是通往「未来」还是「过去」的通道。时空被重置、颠倒。这不正是我们现在所面临的境遇吗？</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-05.jpg-width620" alt="High Wire, 2008"></p>
+<h4 id="High_Wire"><a href="#High_Wire" class="headerlink" title="High Wire"></a>High Wire</h4><p>作品「High Wire」拍摄的是英国最早的保障房，曾经欧洲最高的建筑。当年政府为了剔除贫民窟，将人们赶到垂直的保障房中，而现在，这个保障房的计划已经失败破产，房子马上也将被拆除。</p>
+<p>Catherine Yass 通过拍摄在保障房楼顶之间走钢丝的人，来反思国家机器决策的过程。走钢丝的人一旦离开出发点，就会把注意力集中在且只在自己脚下的钢丝。在这个场景中，出发点和目的地已经被对生命的担忧所阻隔，只有脚下的瞬间是真实可信的。这个注意力的集中势必造成短视，而观众也跟着走钢丝的人一起参与到这种短视中。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-06.jpg-width620" alt="Lighthouse, 2011"></p>
+<h4 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h4><blockquote>
+<p>About five miles off the coast of East Sussex, England, a strange construction rises from the English Channel: the <a href="http://www.trinityhouse.co.uk/lighthouses/lighthouse_list/royal_sovereign.html" target="_blank" rel="external">Royal Sovereign lighthouse</a>. A boxy white cabin capped by a helicopter landing platform seems precariously balanced on a single concrete pillar. On a corner of the platform, a cylindrical tower for the light tops out at over 90 feet above sea level. Built in 1971, the lighthouse was fully automated and converted to solar power in 1994, so that today it appears abandoned, as if it were a remnant of a drowned planet.</p>
+</blockquote>
+<p>灯塔作品所拍摄的是 1971 年英国政府建造服役的灯塔。这座灯塔在当时用了很新颖的设计，在大海中耸立的四方形底座和独居一角的灯塔。Catherine Yass 通过镜头的倒置、从海面空中海底多角度拍摄的画面，让本身造型怪异的灯塔在观众的眼里更加混乱不知所措。卫星导航技术投入使用之后，灯塔便退役，而随着它一起退役的仿佛是一个失落的世界。</p>
+<p>这个失去了它存在意义／价值的不知为何方物，通过不断的颠倒和旋转，似乎要撕裂观众的时空。在技术的不断革新和人类文明的不断演进中，原本为人类指明方向的灯塔似乎成了无限时间长河之中的孤独见证者亦或是某种失去了意义的隐喻。</p>
+<h4 id="u63D0_u95EE_u548C_u603B_u7ED3"><a href="#u63D0_u95EE_u548C_u603B_u7ED3" class="headerlink" title="提问和总结"></a>提问和总结</h4><p>欣赏了 Catherine Yass 的这些作品之后，觉得她在不断地消解、重构被摄物，若有若无之间似乎在探索某个问题、寻找某个答案。而这个问题本身我觉得是非常抽象很难言说之物，我问 Cathernine Yass 女士是否这么多年来经过这么多的探索已经靠近了问题的答案。</p>
+<p>Yass 女士说她并没有找到答案，欧洲的思潮似乎走到了终点，未来非常不清晰。所以她并找到没有答案，并且问我中国是不是也是这样的状态。</p>
+<p>我个人觉得 Yass 女士通过消解影像所构建的问题并不存在终极的答案，最靠近这个答案的问题本身。而问题本身也是不可言说之物，只有通过不断地解构去逼近。正如同 <a href="https://en.wikipedia.org/wiki/Stefan_George" target="_blank" rel="external">Stefan George</a> 在「The Word」一诗结尾写道：</p>
+<blockquote>
+<p>So I renounced and sadly see: / Where word breaks off no thing may be. 所以我哀伤地学会了绝弃：/ 词语破碎处无物存在。</p>
+</blockquote>
+<p>在我看来，Catherine Yass 的作品中充满了诗意。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-08.jpg-width620" alt="Catherine Yass"></p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-07.jpg-width620" alt="Poster"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-01.JPG-width620" alt="凯瑟琳•雅丝：影像的时空维度与体系，民生美术馆"></p>
+<p>这次讲座之前我并不知道 <a href="https://en.wikipedia.org/wiki/Catherine_Yass">Catherine Yass</a> 其人，也未见过她的作品。下午还在犹豫要不要参加民生举办的这次讲座，但是主题“<a href="http://www.douban.com/event/25037774/">影像的时空维度与体系</a>”实在太吸引人。结果 Yass 女士的作品很有深度，为我打开了一扇窗，让人大开眼界。</p>
+<p>由于摄影师的作品中很喜欢颠倒重置画面，所以和我们视频讲座的时候也是颠倒的 LOL</p>]]>
+    
+    </summary>
+    
+      <category term="Catherine Yass" scheme="http://blog.allenkung.com/tags/Catherine-Yass/"/>
+    
+      <category term="Photography" scheme="http://blog.allenkung.com/categories/Photography/"/>
+    
+      <category term="Lecture" scheme="http://blog.allenkung.com/categories/Photography/Lecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[市井雄心]]></title>
+    <link href="http://blog.allenkung.com/2015/08/cities-and-ambition/"/>
+    <id>http://blog.allenkung.com/2015/08/cities-and-ambition/</id>
+    <published>2015-08-12T23:28:00.000Z</published>
+    <updated>2015-08-16T05:06:02.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/cities-and-ambition.jpg" alt="逞强的配图君"></p>
+<p>前段时间看到网上疯传 Pual Graham 的<a href="http://www.paulgraham.com/cities.html" target="_blank" rel="external">《Cites and Ambition》</a>，大意是不同城市有不同的气质，人们在城市中摄取力量找到拼搏的方向，也可能沦为城市理想的一部分。文章最后，作者洗白表明生活在市井之间也要胸怀雄心大志。</p>
+<p>于是 Pual Graham 这篇文章的标题就被翻成了《市井雄心》，我也是因这个标题而被吸引。俗话说 lost in translation，Pual Graham 大篇幅在讲不同城市之间的不同气质，剑桥的智慧、纽约的钱、硅谷的改变世界等等，而一个“市井雄心”就把整篇文章的糖水部分洗白了。</p>
+<a id="more"></a>
+<p>“市井雄心”这四个字充满了戏剧性的对比，字面匆匆一看，一个充满市井气的小商人形象在我的印象里并不会有什么改变世界的雄心壮志，最多不过在大城市买上几套房和豪车，再娶个小娇妻。</p>
+<p>但是转而一想，“市井”是斤斤计较分厘不让的现实主义，而“雄心”是胸怀天下的理想主义。乍一看确实挺吓人，试想一个务实的理想主义者多可怕。</p>
+<p>也许是被 Pual Graham 的高大上唬住了，如果把“市井”理解为小隐于市，“雄心”不局限于赚大钱或者改变世界，那么“市井雄心”这四个字还是挺靠谱的。</p>
+<p>突然想起前几年英年早逝的崇明籍师兄张晖在他的遗作《<a href="http://book.douban.com/subject/22264311/" target="_blank" rel="external">无声无光集</a>》中的序言：</p>
+<blockquote>
+<p>钱谦益《牧斋有学集》中有一卷诗叫《长干塔光集》，其中收入一首长诗专讲顺治十四年（丁酉，1657年）冬天南京长干塔于夜间大放光芒之事。长干塔是明永乐十年（1412年）敕建大报恩寺时所造的九级琉璃塔，高百馀丈，为当时全国最高建筑，以琉璃、黄金铸成塔顶，鼎盛时夜间更有128盏燃灯，其光远播几十里外。据陈寅恪《柳如是别传》考证，当时钱谦益正住在长干寺秘密从事复明运动。那么，他在诗中刻意表彰长干塔大放光明，其寓意可知。有趣的是，当晚陪同钱谦益一起礼塔的还有钱澄之，但他却在自己的诗中说长干塔“是夜仿佛有光”。这不是陶渊明“彷佛若有光”的希望，而是陷入黑暗的绝望。长干塔是否放光，必然有一个客观的事实，然而却因诗人的心境有所不同，光芒便在有无之间。 </p>
+<p>在我现在的住所，也可见一座高约50米的慈寿寺塔。此塔为万历四年（1576年）神宗生母李太后所建，因檐角挂有风铃3000多枚，俗称玲珑塔。微风拂过，清脆之声曾遍及禅院，撒落四周人家。如今慈寿寺已毁，风铃早已不存，有声的宝塔，遂成无声的沉默。 </p>
+<p>在嘈杂的市声与闪烁的霓虹中，面对无声无光的石塔，我日复一日地读书写作，只为辑录文字世界中的吉光片羽。本书所收录的这些文字，即为我几年来在编校古籍、撰写论文之外的部分感想，正是书中这些有声有光的人与文，陪我度过了无声无光的夜与昼。 </p>
+<p>是为序。 </p>
+<p>张 晖<br>2012年7月14日 </p>
+</blockquote>
+<p>张晖师兄一直从事古籍研究工作，2013 年过世的时候年仅 36 岁，过世前不久妻子刚生了孩子，好不容易解决了房子的问题。其所事职业并不能带来优异的报酬，但是仍然专心研究古籍，正如他自己自序所述：“在嘈杂的市声与闪烁的霓虹中，面对无声无光的石塔，我日复一日地读书写作，只为辑录文字世界中的吉光片羽。”</p>
+<p>我想张晖应该配得上“市井雄心”这四个字吧。</p>
+<p>不管怎样，“市井雄心”这个词语本身充满戏剧的张力，同时又饱含深情和希望，一种右派的生活方式辅以左派的理想，那种安分的叛逆和激流勇退的智慧，都是这个浮躁的时代所应该予以深深思考的命题。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/cities-and-ambition.jpg" alt="逞强的配图君"></p>
+<p>前段时间看到网上疯传 Pual Graham 的<a href="http://www.paulgraham.com/cities.html">《Cites and Ambition》</a>，大意是不同城市有不同的气质，人们在城市中摄取力量找到拼搏的方向，也可能沦为城市理想的一部分。文章最后，作者洗白表明生活在市井之间也要胸怀雄心大志。</p>
+<p>于是 Pual Graham 这篇文章的标题就被翻成了《市井雄心》，我也是因这个标题而被吸引。俗话说 lost in translation，Pual Graham 大篇幅在讲不同城市之间的不同气质，剑桥的智慧、纽约的钱、硅谷的改变世界等等，而一个“市井雄心”就把整篇文章的糖水部分洗白了。</p>]]>
+    
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Impacting Society Through Photography]]></title>
+    <link href="http://blog.allenkung.com/2015/07/impacting-society-through-photography/"/>
+    <id>http://blog.allenkung.com/2015/07/impacting-society-through-photography/</id>
+    <published>2015-07-20T00:29:40.000Z</published>
+    <updated>2015-08-22T05:25:53.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-01.jpg-width620" alt="Impacting Society Through Photography Poster"></p>
+<p>前不久又听了一场 Mark Neville 关于《<a href="http://www.douban.com/event/24747374/" target="_blank" rel="external">Impacting Society Through Photography 用摄影直接影响社会</a>》的讲座，作为《<a href="http://www.douban.com/event/24623183/" target="_blank" rel="external">时代映像：1960年以来的英国摄影</a>》特展的邀请作者，相较上次的<a href="/2015/05/giving-photos-back/" title="《归还照片》Mark Neville">《归还照片》Mark Neville</a>场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。</p>
+<a id="more"></a>
+<h4 id="u53CD_u601D_u548C_u98A0_u8986_u4F20_u7EDF"><a href="#u53CD_u601D_u548C_u98A0_u8986_u4F20_u7EDF" class="headerlink" title="反思和颠覆传统"></a>反思和颠覆传统</h4><p>在格拉斯哥项目书之前，Neville 先生印象中英国的传统 social documentary photography book 都是设计精美的白人富有阶级茶几上的装饰和摆放物。</p>
+<p>于是，Neville 先生通过反思这种存在的合理性决定要颠覆这种传统的 social documentary photography。Glasgow Book Project 的初衷就是要打破和颠覆传统，它的存在形式和对整个社区物质和精神的反馈，都已经超越和重绘了纪实摄影的边界，这种行为艺术式的激进颠覆突显了它的革命性所在。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-03.jpg" alt="The Port Glasgow Book Project"></p>
+<h4 id="u82F1_u5F0F_u5E7D_u9ED8_u548C_u8C03_u4F83"><a href="#u82F1_u5F0F_u5E7D_u9ED8_u548C_u8C03_u4F83" class="headerlink" title="英式幽默和调侃"></a>英式幽默和调侃</h4><p>作为一个典型的英国人，即便是在相对严肃的纪实摄影中 Neville 先生也没有放过任何一个可以开玩笑的机会。</p>
+<p>在《The Port Glasgow Book》中，有许多与场景不是那么搭调的奇特帽子。Neville 先生与设计师朋友合作设计了一些造型感很强的帽子道具，并且将它们加入到拍摄计划中，想让未来看到这些照片的人觉得：wow，那个时代竟然会有这么前卫的帽子，很神奇。其实这是作者的一个英式幽默。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-02.jpg" alt="Town Hall Xmas Party 1, Mark Neville, 2005"></p>
+<h4 id="u9879_u76EE_u5BF9_u793E_u533A_u7684_u53CD_u9988"><a href="#u9879_u76EE_u5BF9_u793E_u533A_u7684_u53CD_u9988" class="headerlink" title="项目对社区的反馈"></a>项目对社区的反馈</h4><p>《The Port Glasgow Book》完成之后，Neville 先生将所有画册免费派送给当地居民，而这个派送是由当地少年足球队完成，派送费用作为回报反馈给足球队。</p>
+<blockquote>
+<p>The book was uniquely delivered, free, to the eight thousand households in the Port by the members of the local Boys Football Club. In this way, rather than having a public artwork imposed upon them, the Portonians received a document of their lives and of their participation as both the hosts and protagonists of an artistic experiment. </p>
+</blockquote>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-04.jpg" alt="Boys who delivered the books, Mark Neville, 2005"></p>
+<p>由于《The Port Glasgow Book》除了当地居民没有其他途径获得，所以后来项目成名后该书在 ebay 上能拍出很高的价格，对此 Neville 先生很高兴毕竟也算是代表他对当地社区的感谢和回馈。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-07.jpg" alt="Firing Range&#39;, Mark Neville, 2010"></p>
+<p>作为背负着战地记者标签的摄影师，Neville 先生坦言战地的经验是极为糟糕的，他花了很久才从阴影中走出来。为了能够帮助到那些经历过战场地狱般经验的军人，《THE HELMAND WORK》的摄影册免费赠予创伤后应激障碍困扰的军人和他们家属。</p>
+<h4 id="u8868_u8FBE_u653F_u6CBB_u89C2_u70B9"><a href="#u8868_u8FBE_u653F_u6CBB_u89C2_u70B9" class="headerlink" title="表达政治观点"></a>表达政治观点</h4><p>Social documentary photography 的另一个争论就是摄影师本身究竟只是作为一个客观的记录者，还是应该不吝于在作品中表达自己政治观点和诉求。</p>
+<p>既然讲座的课题是 impacting society through photographt，Neville 显然是后者。依我看来，Neville 先生是一个坚定的行动派，他的很多作品都是立场先行。同时诸多作品都旨在披露贫富差异、种族隔阂等社会现实问题，从不掩盖他自身激进的左派政治观点。他坚信摄影是表达自己政治立场的民主手段。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-05.jpg" alt="Nightingale Primary School, Mark Neville 2012"></p>
+<p>有时候 Neville 先生会对自己的作品采用故意复古的处理，让照片看起来像上世纪七、八十年代的照片，以此来警示人们同样的社会问题，今天仍然在发生，社会并没有多少改变甚至更糟。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-06.jpg" alt="Braddock # 13, Mark Neville, 2012"></p>
+<h4 id="u5BF9_u4E3B_u6D41_u5A92_u4F53_u8BDD_u8BED_u6743_u7684_u53CD_u6297"><a href="#u5BF9_u4E3B_u6D41_u5A92_u4F53_u8BDD_u8BED_u6743_u7684_u53CD_u6297" class="headerlink" title="对主流媒体话语权的反抗"></a>对主流媒体话语权的反抗</h4><p>我个人很喜欢 Neville 先生作品的一个关键点是，他的作品总不是你对主流媒体所预期的那种类型。他的作品所展现的视角总是在主流媒体的视角之外，作为一种证据、一种拷问、一种补充和在主流媒体中不在场的立场。</p>
+<p>作为一个独立摄影师，Neville 的很多项目都来自于各种机构的赞助，即便如此，Neville 先生表示他接受委托的一个前提是赞助方不能干扰他的创作，让他能够以他自己的方式拍他想拍的照片。</p>
+<p>这种对主流话语权的坚定反抗，对于默默无名的摄影师来说不可想象。Neville 先生日益渐涨的知名度并没有让他为声名所累，反而成为他创作自由的保护壁。既然如此，作为他的粉丝我便更应该多多地向大家介绍他。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-08.jpg" alt="Somerford Grove Adventure Playground in Tottenham, Mark Neville, 2012"></p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-09.jpg" alt="Somerford Grove Adventure Playground in Tottenham, Mark Neville 2012"></p>
+<h4 id="u63D0_u95EE_u73AF_u8282"><a href="#u63D0_u95EE_u73AF_u8282" class="headerlink" title="提问环节"></a>提问环节</h4><p>讲座的最后，我问 Neville 先生是如何保持这种激进的批判创作立场，随着年龄的增大这种立场是否会削减？</p>
+<p>Neville 先生再次表示摄影是一种独特又民主的创作工具，他喜欢用摄影去表达自己的观点。随着年纪的增大他觉得体力确实会差一点，拿那么多的器材会觉得体力不支（他至今还是胶片拥护者，因为他觉得胶片有更好的色彩）。但是他迥然一身，父母很早就过世了，也没有家庭的牵绊，所以他要做的就是努力创作，去乌克兰拍摄战争对当地社区的影响等等。</p>
+<p>当被人问及为什么在他的作品中时不时表露出一种对当地社区的特殊关心时，他回答道：我度过了比较奇怪的童年，我现在没有家人，所以我试图通过不用的项目融入当地的社区，在这个过程中找到家的感觉。或许只是因为我想感受被爱的感觉。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-01.jpg-width620" alt="Impacting Society Through Photography Poster"></p>
+<p>前不久又听了一场 Mark Neville 关于《<a href="http://www.douban.com/event/24747374/">Impacting Society Through Photography 用摄影直接影响社会</a>》的讲座，作为《<a href="http://www.douban.com/event/24623183/">时代映像：1960年以来的英国摄影</a>》特展的邀请作者，相较上次的<a href="/2015/05/giving-photos-back/" title="《归还照片》Mark Neville">《归还照片》Mark Neville</a>场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。</p>]]>
+    
+    </summary>
+    
+      <category term="Mark Neville" scheme="http://blog.allenkung.com/tags/Mark-Neville/"/>
+    
+      <category term="Photography" scheme="http://blog.allenkung.com/categories/Photography/"/>
+    
+      <category term="Lecture" scheme="http://blog.allenkung.com/categories/Photography/Lecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[良心挂机头 Sigma 17-70/ƒ2.8-4 MACRO 入手]]></title>
+    <link href="http://blog.allenkung.com/2015/07/sigma-17-70/"/>
+    <id>http://blog.allenkung.com/2015/07/sigma-17-70/</id>
+    <published>2015-07-07T18:19:54.000Z</published>
+    <updated>2015-07-07T19:12:10.000Z</updated>
+    <content type="html"><![CDATA[<p><img src="http://macallen.qiniudn.com/blog/sigma-17-70.jpg" alt="Sigma 17-70/f2.8-4 MACRO, ISO 100, 17mm, f/2.8, 1/80s "></p>
+<p>七八年前读大学的时候就在 YY 这枚人物风景静物小品老少皆宜的副厂挂机头，当然到今天已经更新换代过几代产品了。此头良心之处在于 17-70 的黄金档焦段、最大 ƒ2.8 光圈、HSM 超声波对焦马达、OS 防帕金森，外加 1:2 微距。所有上述炫酷功能加起来总共只要 1998，只要 998（误）！</p>
+<p>去年把柜子里的胶片相机陆陆续续都出掉了，也算玩过一些乱七八糟的<a href="http://flickr.com/people/macallen/" target="_blank" rel="external">器材</a>。然后数码设备就只剩 05 年入的 Nikon D50 了（依然好用质量真好），镜头剩一枚 Sigma 10-20 残幅广角，主要用来拍摄风景和室内装潢。</p>
+<p>今年年初的时候考虑换机身，主要是老机器毕竟十年了出片质量感觉锐度不够，不知是机身成像单元老化衰减还是今日和网上的图片相比要求变高了。Beta 同学推荐索大法 a7 全画幅微单，骚气十足，但是菜家镜头群价格偏高，不符合我只用平民单反的价值观。</p>
+<p>然后转而考虑 Fuji 的复古旁轴系列，也是垂涎已久。x100 系列因为不能更换镜头所以不符合更换主力器材的出发点，x-pro1 现在价格公道、童叟无欺，而且镜头群个个良心。无奈见到真机后感觉体积略大，不符合我对小鸟依人的追求。</p>
+<p>再则考虑到之前的 nikon 口 10-20 镜头，为了降低更新成本，所以在 D5500 刚上市的时候抄底购入上一代入门机 D5300。这两代变化不是很大，且 D5300 已经去处了低通滤镜（虽然我也不知道具体啥用）。最坑的是因为买的国行，所以 GPS 被阉割了……</p>
+<p>正好手边有 Nikon 35/2 和广受好评的 Sigma 35/1.4，所以简单拍了一些样图供各位参考。大光圈依然是羡慕不来的，不过我最大的目的便是用 MACRO 来拍自己做的食物，敬请期待！</p>
+<a id="more"></a>
+<p><img src="http://macallen.qiniudn.com/blog/nikon-35.jpg" alt="Nikon 35/f2, ISO 100, 35mm, f/3.2, 1/100s "></p>
+<p><img src="http://macallen.qiniudn.com/blog/sigma-35-14.jpg" alt="Sigma 35/f1.4, ISO 100, 35mm, f/1.4, 1/320s "></p>
+<p><img src="http://macallen.qiniudn.com/blog/sigma-35-2.jpg" alt="Sigma 35/f1.4, ISO 100, 35mm, f/2, 1/200s "></p>
+<p><img src="http://macallen.qiniudn.com/blog/sigma-35-28.jpg" alt="Sigma 35/f1.4, ISO 100, 35mm, f/2.8, 1/100s "></p>
+<p><img src="http://macallen.qiniudn.com/blog/sigma-d5300.jpg" alt="Sigma 17-70 + Nikon D5300, iPhone 5C 拍摄 "></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><img src="http://macallen.qiniudn.com/blog/sigma-17-70.jpg" alt="Sigma 17-70/f2.8-4 MACRO, ISO 100, 17mm, f/2.8, 1/80s "></p>
+<p>七八年前读大学的时候就在 YY 这枚人物风景静物小品老少皆宜的副厂挂机头，当然到今天已经更新换代过几代产品了。此头良心之处在于 17-70 的黄金档焦段、最大 ƒ2.8 光圈、HSM 超声波对焦马达、OS 防帕金森，外加 1:2 微距。所有上述炫酷功能加起来总共只要 1998，只要 998（误）！</p>
+<p>去年把柜子里的胶片相机陆陆续续都出掉了，也算玩过一些乱七八糟的<a href="http://flickr.com/people/macallen/">器材</a>。然后数码设备就只剩 05 年入的 Nikon D50 了（依然好用质量真好），镜头剩一枚 Sigma 10-20 残幅广角，主要用来拍摄风景和室内装潢。</p>
+<p>今年年初的时候考虑换机身，主要是老机器毕竟十年了出片质量感觉锐度不够，不知是机身成像单元老化衰减还是今日和网上的图片相比要求变高了。Beta 同学推荐索大法 a7 全画幅微单，骚气十足，但是菜家镜头群价格偏高，不符合我只用平民单反的价值观。</p>
+<p>然后转而考虑 Fuji 的复古旁轴系列，也是垂涎已久。x100 系列因为不能更换镜头所以不符合更换主力器材的出发点，x-pro1 现在价格公道、童叟无欺，而且镜头群个个良心。无奈见到真机后感觉体积略大，不符合我对小鸟依人的追求。</p>
+<p>再则考虑到之前的 nikon 口 10-20 镜头，为了降低更新成本，所以在 D5500 刚上市的时候抄底购入上一代入门机 D5300。这两代变化不是很大，且 D5300 已经去处了低通滤镜（虽然我也不知道具体啥用）。最坑的是因为买的国行，所以 GPS 被阉割了……</p>
+<p>正好手边有 Nikon 35/2 和广受好评的 Sigma 35/1.4，所以简单拍了一些样图供各位参考。大光圈依然是羡慕不来的，不过我最大的目的便是用 MACRO 来拍自己做的食物，敬请期待！</p>]]>
+    
+    </summary>
+    
+      <category term="Photography" scheme="http://blog.allenkung.com/categories/Photography/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[《归还照片》Mark Neville]]></title>
+    <link href="http://blog.allenkung.com/2015/05/giving-photos-back/"/>
+    <id>http://blog.allenkung.com/2015/05/giving-photos-back/</id>
+    <published>2015-05-18T22:18:41.000Z</published>
+    <updated>2015-07-29T05:42:40.000Z</updated>
+    <content type="html"><![CDATA[<p>上周末去<a href="http://www.minshengart.com" target="_blank" rel="external">民生美术馆</a>听了 <a href="http://www.markneville.com" target="_blank" rel="external">Mark Neville</a> 的讲座《<a href="http://www.douban.com/event/24335033/" target="_blank" rel="external">归还照片 Giving Photos Back</a>》，Mark 是一位来自伦敦的<em>摄影艺术家</em>，正如大卫·康帕尼所说，「艺术家马克·内维尔重新构想了纪实摄影可以做到的事情以及应该做到的事情」。</p>
+<p>讲座上，Mark 和大家 share 了过去的几个项目。Mark 的艺术作品是以一个个 project 的形式，所以每个 project 都有它的周期和阶段，Mark 展示了这些令人深思的作品从立项到完成和过程之间种种故事。从 Mark 的作品就可以看出，无疑他是一个非常优秀的 storyteller，在场的人们跟着 Mark 所描述的那些故事所包含的惊人清晰的细节，仿佛亲身参与到 Mark 的创作中。与此同时，也被 Mark 这些照片背后想要表述的苦苦寻求的隐喻所深深打动。在我看来，Mark 远超出了摄影师的范畴，他是一名令人尊敬的艺术家，相机只是他的工具。</p>
+<a id="more"></a>
+<hr>
+<h2 id="The_Port_Glasgow_Book_Project"><a href="#The_Port_Glasgow_Book_Project" class="headerlink" title="The Port Glasgow Book Project"></a>The Port Glasgow Book Project</h2><p><img src="http://macallen.qiniudn.com/blog/giving-photos-back-glasgow-book-pj.jpg" alt="The Port Glasgow Book Project, MARK NEVILLE"></p>
+<blockquote>
+<p>2004 - 2006<br>Book production and unique dissemination as a public artwork, 2004/2005<br>Photographs, text, and audio, later forming a gallery installation in 2006</p>
+<p>In 2004 Neville spent a year as an artist in residence in Port Glasgow, the world centre for shipbuilding fifty years ago, now a town facing an industrial and economic decline. The result of this stay was a beautifully produced coffee table-style book conceived as a symbolic gift to the community. The book was uniquely delivered, free, to the eight thousand households in the Port by the members of the local Boys Football Club. In this way, rather than having a public artwork imposed upon them, the Portonians received a document of their lives and of their participation as both the hosts and protagonists of an artistic experiment. The book is not available anywhere else, commercially or otherwise, in shops or by mail order.</p>
+</blockquote>
+<p>2004 年 Mark 来到英国的港口小镇格拉斯哥展开为期一年的纪实摄影项目。这个小镇一度是世界的造船工业中心，今天已经衰落得不成样子。在这一年中 Mark 和当地人一起生活并记录着当地社区的点点滴滴，最终出版了一本摄影画册《格拉斯哥项目书》。</p>
+<p>但是项目没有结束，Mark 将这本 coffee table-style 的册子全数回赠给小镇居民。当地社区对该册子的反应不一，有些人称赞它有些人贬低它。其中最激进的做法是有人将它付之一炬，Mark 说那是当地社区的两个不同教派因为自己教派的照片比另一个教派少出现了几张，所以觉得这是一种侮辱。</p>
+<p>不管如何，Mark 忠实地将社区对这本记录自己的画册的不同反应，通过不同的媒介收集、记录下来。最终展现给公众的艺术品包含了册子本身和围绕这个册子的来自社区的各种反馈，Mark 的展现仿佛将整个格拉斯哥小镇和它当地社区的居民们搬到了展览现场。这种行为艺术早已超越了纪实摄影的范畴。</p>
+<p>最终的最终，《格拉斯哥项目书》获得了广泛的好评和关注，由于这本画册并没有其他渠道出版，所以小镇居民们手中来自 Mark 的礼物就成了唯一获取该画册的来源。听说在 ebay 上最高有人愿意出 500 英镑来收购该书，Mark 很高兴，他觉得这是他和他的项目对小镇居民最后的回报。</p>
+<p>我觉得这也是本次讲座《归还照片 Giving Photos Back》的名称由来。</p>
+<h2 id="Here_is_London"><a href="#Here_is_London" class="headerlink" title="Here is London"></a>Here is London</h2><p><img src="http://macallen.qiniudn.com/blog/giving-photos-back-here-is-london.jpg" alt="Here is London, MARK NEVILLE"></p>
+<blockquote>
+<p>Photo essay consisting of 20 images, 2012. Commissioned by New York Times Magazine</p>
+<p>Nominated for the Pulitzer Prize 2013 by the New York Times   </p>
+<p>‘From December 2011 to January 2012, Mark Neville traveled around London, capturing diverse portraits ranging from nightlife to banking, education to community organizing, and the ways these worlds intersect.’</p>
+<p>The work was made synchronously in response to a new text by writer China Mieville ‘Oh, London, You Drama Queen’, simultaneously commissioned by the New York Times Magazine for its March 2012 Photography Special Magazine on London.</p>
+</blockquote>
+<p>2012 年，New York Times 委托 Mark 拍摄一组 London 的照片，这就是后来的《这里是伦敦》项目，该项目获得了 2013 的普利策提名。Mark 接到这个委托之后，便开始思考他想要展现的家乡 London 是什么样子。在光鲜亮丽的世界大都市背后，隐藏着些什么样的矛盾。作为一名独立艺术家，Mark 或许很讨厌那些充满商业意味的作品，他想通过拍摄所揭示的是表面之下的真实。</p>
+<p>我觉得 Mark 在这个项目中所展现出的那种思考和行动，很好了继承了西方当代知识分子介入和改造社会的优秀传统。Mark 通过拍摄作为世界所熟知的金融中心伦敦，拍摄那些银行家们、金融领域的青年才俊纸醉金迷的夜生活，同时又拍摄了工薪阶层小孩的生活，让两者形成鲜明又有趣的对比。将伦敦的贫富差距展现在公众面前，让人们通过这组照片产生更多的思考。</p>
+<p>如此侠义心肠的 Mark，自然就不是政府所喜欢的人。Mark 在谈到后面一个战地项目出版物时提到过英国政府的审查也是无处不在。</p>
+<h2 id="BRADDOCK/SEWICKLEY"><a href="#BRADDOCK/SEWICKLEY" class="headerlink" title="BRADDOCK/SEWICKLEY"></a>BRADDOCK/SEWICKLEY</h2><p><img src="http://macallen.qiniudn.com/blog/giving-photos-back-pittsburgh.jpg" alt="BRADDOCK/SEWICKLEY, MARK NEVILLE"></p>
+<blockquote>
+<p>Commissioned by the Andy Warhol Museum, exhibited at the Andy Warhol Museum as part of the exhibition ‘Factory Direct’.</p>
+<p>‘Braddock/Sewickley’ is a series of fifty images which were initially exhibited at the Andy Warhol Museum as a slide installation. The work examines the legacy of the steel industry in Pittsburgh, focusing upon the impact it has had in forming the contrasting culture and lifestyles of two of its boroughs, Braddock and Sewickley.</p>
+</blockquote>
+<p>2012 年同年，Mark 接到安迪沃霍尔博物馆的委托，为匹兹堡拍摄一组照片。这又是一个败落的前工业城市，暗暗地隐藏着不同族裔、肤色之间的矛盾。Mark 参考了一些上个年代的摄影作品，发现出了人们的穿着之外其实当地人的生活并没有什么不同。Mark 游走于不同的社区之间（由于族裔矛盾有些街区的治安很差），试图记录他们的生活并找到引发一些思考的蛛丝马迹。</p>
+<h2 id="The_Helmand_Work"><a href="#The_Helmand_Work" class="headerlink" title="The Helmand Work"></a>The Helmand Work</h2><p>Mark 分享的最后一个 project，也是最沉重的一个，最为战地摄影师的体验。他花了整整两年才让自己的心态恢复平静，他说如果让他再有一次选择的机会，他会选择放弃这个项目。Mark share 了一些关于战场情况的故事，播放了一段慢速摄影默片。在影片中他坐在坦克上，拿着摄影机，坦克长途跋涉穿过一个当地的贸易市场。因为是慢速摄影，所以每个人的表情和动作都被放大了，地上还有坦克和机枪投下的影子。这是一段非常震撼的影片，我没有找到，在 youtube 上找到<a href="https://www.youtube.com/watch?v=l48cYrs2E7s" target="_blank" rel="external">另外一段</a>。</p>
+<p>P.S.: 感谢网友 @benshu 提供我上面说的默片 youtube 网址：<a href="https://youtu.be/ARSr-qa4Bdo" target="_blank" rel="external">https://youtu.be/ARSr-qa4Bdo</a></p>
+<p>如同前面所说的 Mark 是一个非常好的 storyteller，他还 share 了这样一个故事：</p>
+<p>有一天早上他发现自己的摄影机被子弹打坏了，由于这段时间在战场的压抑经历，因为这个时间终于奔溃了，就拿着摄影机哭了起来。哭着哭着发现很多大兵用奇怪的眼神看着他，于是他就灰溜溜地逃回帐篷里继续哭。这个时候他没有意识到帐篷里还有另一个大兵在睡觉。当他哭着哭着终于快消停的时候，转过头就看到一个热狗/汉堡，中间夹着那个大兵的 penis。在战场上，只有通过黑色幽默才能打碎对绝望的恐惧。回到英国后，Mark 和那个大兵依然保持着很好的朋友关系（在每天生死不明的战场建立友谊非常快）。最后 Mark 忍不住问那个大兵朋友，为什么你的 penis 上纹着一个钻石？大兵说，它们都是最硬的并且都是女人最好的朋友。</p>
+<p>听完这个故事，我想 Mark 还真是一个典型的英国人。</p>
+<p><img src="http://macallen.qiniudn.com/blog/giving-photos-back-01.jpg" alt="Poster"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>上周末去<a href="http://www.minshengart.com">民生美术馆</a>听了 <a href="http://www.markneville.com">Mark Neville</a> 的讲座《<a href="http://www.douban.com/event/24335033/">归还照片 Giving Photos Back</a>》，Mark 是一位来自伦敦的<em>摄影艺术家</em>，正如大卫·康帕尼所说，「艺术家马克·内维尔重新构想了纪实摄影可以做到的事情以及应该做到的事情」。</p>
+<p>讲座上，Mark 和大家 share 了过去的几个项目。Mark 的艺术作品是以一个个 project 的形式，所以每个 project 都有它的周期和阶段，Mark 展示了这些令人深思的作品从立项到完成和过程之间种种故事。从 Mark 的作品就可以看出，无疑他是一个非常优秀的 storyteller，在场的人们跟着 Mark 所描述的那些故事所包含的惊人清晰的细节，仿佛亲身参与到 Mark 的创作中。与此同时，也被 Mark 这些照片背后想要表述的苦苦寻求的隐喻所深深打动。在我看来，Mark 远超出了摄影师的范畴，他是一名令人尊敬的艺术家，相机只是他的工具。</p>]]>
+    
+    </summary>
+    
+      <category term="Mark Neville" scheme="http://blog.allenkung.com/tags/Mark-Neville/"/>
+    
+      <category term="Photography" scheme="http://blog.allenkung.com/categories/Photography/"/>
+    
+      <category term="Lecture" scheme="http://blog.allenkung.com/categories/Photography/Lecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2015 年初 California Sunshine 自驾（一）]]></title>
+    <link href="http://blog.allenkung.com/2015/04/california-trip-2015-part1/"/>
+    <id>http://blog.allenkung.com/2015/04/california-trip-2015-part1/</id>
+    <published>2015-04-22T05:49:57.000Z</published>
+    <updated>2015-07-06T15:42:25.000Z</updated>
+    <content type="html"><![CDATA[<p>在美帝出差了大半年的 Rohn 同学说：要不回国之前你飞过来，我们自驾西海岸晃一圈。作为一个对自己执行力低下还算有自知之明的人，就理所当然地把所有的攻略准备都交给了 Rohn 同学。美帝的公路交通太发达，魔都的驾照都不用公正就可以租车。其实这次加州旅行之前都没有怎么「自驾游」过，自己开车最远的旅行距离也就从上海开到绍兴滑雪，所以突然跑到异国他乡开上个几千公里路程也算是一种奇妙的经历。</p>
+<a id="more"></a>
+<p>订了东航的直飞航班，机上基本都是国人。经过漫长的飞行，抵达三藩机场的时候是早上，突然在海洋中见到大陆的时候心里一激动（有种电影里移民船只看到自由女神像的感觉，只不过这里是西海岸）。透过狭小的机窗俯瞰，首先见到的是火柴盒大小的船拖着白色水花的长长尾巴，然后看到一座小岛（不同于以前见过的岛屿，有种非常干净的形状和颜色），接着是连绵的山脉和整齐的街区（应该是富人区）。飞机盘旋下降，上午 9 点多的阳光透过远处山脉的晨霭，一种心中向往已久的资本主义大自然味道扑面而来，激动之情无以言表。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-02.jpg" alt="飞机上俯瞰三藩机场"></p>
+<p>出关时整飞机的国人，有来投靠美帝家人的看不懂不能使用 cellphone 标语的国人小孩，而窗口长着国人脸却不会讲中文的美帝官员大叔，产生了戏剧性的鲜明对比。礼貌地跟敲章黑人大叔表明自己是来 Silicon Vallery 朝圣并出示返程机票预订单之后顺利放行，Rohn 和 锉子くん已经租好车在接机口等我啦！有一种心情叫：他乡遇故知。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-03.jpg" alt="从三藩机场去 Downtown 路上"></p>
+<h2 id="San_Francisco__u4E09_u85E9"><a href="#San_Francisco__u4E09_u85E9" class="headerlink" title="San Francisco 三藩"></a>San Francisco 三藩</h2><p>Rohn 租了辆 Toyota Rav SUV（9 天包含保险 1k 刀左右，魔都驾照可以直接租车），放完我们仨的行李还很宽敞。在三藩 Fishermans Wharf 附近找地方停车的时候发现一辆 Tesla，司机是一对老年夫妇（真是能够接受新事物呀！）。土包子第一次用塞硬币的停车器，发现美帝停车贵、车位难找。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-04.jpg" alt="路边停车时看到的 Tesla"></p>
+<h3 id="Fishmans_Wharf"><a href="#Fishmans_Wharf" class="headerlink" title="Fishmans Wharf"></a>Fishmans Wharf</h3><p>每个海边城市都有渔人码头，而且都开发成旅游景点了。三藩的 Fishmans Wharf 特别长，有好多个。码头上有许多才艺表演（唱歌和绘画还有扮雕塑）的艺人争风吃醋（听说不用缴税啊！），特别是音乐表演有种互相砸场的感觉。听说这边的大螃蟹很出名又便宜……可惜我不吃水里的东西……画圈圈……</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-05.jpg" alt="三藩游客 Guide"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-06.jpg" alt="Fishmans Wharf"></p>
+<p>码头上有一堆加州海狮，看上去特别懒在晒着太阳睡午觉（其实海狮吃相蛮凶残的），旁边的海鸟飞来飞去真担心冷不防被海狮一口咬死。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-07.jpg" alt="Zalophus 晒太阳"></p>
+<p>还有一个海军博物馆，后来发现美帝好像到处都有 Navy Museum，是退役下来的舰艇太多了吧……总之「爱国教育」开展得很不错。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-08.jpg" alt="The navy museum"></p>
+<p>远处可以眺望到恶魔岛（Alcatraz Island）和天使岛（Angel Island），看着眼熟突然想起来就是 X-men 最后一战里万磁王把金门大桥架过去的那个监狱岛，心里不禁一阵小激动。由于时间有限就只能远眺过过瘾了。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-09.jpg" alt="Alcatraz Island 恶魔岛"></p>
+<h3 id="Lombard_St"><a href="#Lombard_St" class="headerlink" title="Lombard St."></a>Lombard St.</h3><p>Rohn 想把车开去走一遍三藩著名的「九曲花街」（Lombard Street）来检验下自己的车技，我和锉子出于对 Rohnくん车技的不信任，决定遵守「不作死就不会死」的原则。用 11 路走过去过过眼瘾拍拍照就好啦~ 三藩的路况确实挺吓人的，多数路都有很陡的坡度，每个路口都还要停车，特别是上坡的时候不断地小路考……很容易一身冷汗唉！</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-10.jpg" alt="三藩过山车一般的路况"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-11.jpg" alt="Lombard Street 著名的九曲花街"></p>
+<h3 id="Golden_Gate_Bridge"><a href="#Golden_Gate_Bridge" class="headerlink" title="Golden Gate Bridge"></a>Golden Gate Bridge</h3><p>记得水果 WWDC 开发者大会用过一张金门大桥的照片，印象非常深，作为三藩市的标志性建筑，我们当然要到此一游啦。可惜没有找到好的拍摄角度，离大桥最近的 Vista Point 跟我朝景点一样挤满了游客，车位有限只能转圈圈等人家车开走了才能停。而且很坑的是角度很一般，不过来自世界各地的游客们依然拿着自拍杆乐此不疲（好后悔没有在国内带一根自拍杆出来，找了 Bestbuy、Walmart 等好多店都找不到便宜的，最后在一个 outlets 里卖手机配件的印度小哥那花了 39 刀才拿下）。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-12.jpg" alt="Golden Gate Bridge 金门大桥"></p>
+<p>于是我们决定开车晃一圈看看能不能晃到山顶看日落（脑补沐浴在夕阳余晖下的金门大桥），由于时间还早所以一路开呀开，开到一个 <a href="https://www.google.com/maps/@37.997032,-122.45673,3a,75y,306.74h,87.37t/data=!3m4!1e1!3m2!1sWhba57Zq3GHqiA_A8X7wJQ!2e0" target="_blank" rel="external">China Camp State Park</a>，很好奇跟 China 有什么关系。在 China Camp Sate Park 路牌帮一群骑单车的老外合影，他们全家带着小 baby 一起长途骑车旅行，cultural difference，我朝家长想必很少有这种情况。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-13.jpg" alt="China Camp State Park"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-14.jpg" alt="China Camp beach"></p>
+<p>天色渐暗，返程去山上看金门日落，哪知天有不测风云，途径一个<a href="https://www.google.com/maps/@37.838836,-122.484971,3a,75y,286.71h,84.65t/data=!3m4!1e1!3m2!1s2RfOORIkQR0hMhjHih-pfg!2e0" target="_blank" rel="external">隧道口</a>（Danes Dr）就堵在原地 1-2 个小时。police officer 说前面有 accident，于是我就正好在车里睡觉倒时差。后来才发现隧道（Bunker Rd）很狭窄是单行的……等到达山顶（Hawk Hill）的时候太阳早落山了……残念</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-15.jpg" alt="夜色中山顶眺望 Golden Gate Bridge"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-16.jpg" alt="夜色中通过 Golden Gate Bridge"></p>
+<h3 id="Castro_St"><a href="#Castro_St" class="headerlink" title="Castro St."></a>Castro St.</h3><p>回到 San Francisco 走马观花继续晃著名景点，作为允许同性合法婚姻的加州，彩虹街（连十字路口的斑马线都是彩虹色的）的每栋楼都挂着彩虹旗。路上一对对痴男男怨女女们手牵手，丝毫没有违和感。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-17.jpg" alt="Castro St."></p>
+<h3 id="Twin_Peaks"><a href="#Twin_Peaks" class="headerlink" title="Twin Peaks"></a>Twin Peaks</h3><p>第一天最后一站是 San Francisco 的 Twin Peaks，晚上盘山公路有点点吓人，山顶有点冷不过景色很好，就是天色已晚只看到万家灯火。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-18.jpg" alt="夜色中在 Twin Peaks 眺望三藩"></p>
+<p>最后回到在三藩读书的锉子くん寝室 House 打地铺，木有看到同住的几个妹子……</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-19.jpg" alt="锉子住在山上"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-20.jpg" alt="锉子的住处早上俯瞰三藩"></p>
+<h2 id="San_Jose__u5723_u4F55_u585E_uFF08_u7845_u8C37_uFF09"><a href="#San_Jose__u5723_u4F55_u585E_uFF08_u7845_u8C37_uFF09" class="headerlink" title="San Jose 圣何塞（硅谷）"></a>San Jose 圣何塞（硅谷）</h2><p>硅谷朝圣是这次旅行的重中之重，也是不远千里走单骑的主要原因。作为一个不务正业的三流码农，一直以来都以硅谷大(pian)牛(zi)们的名(che)言(dan)为精神食粮。特别是作为一枚专业果粉（陆家嘴 Apple Store 003 号顾客），到水果总部朝圣是我的人生梦想，不过一想到教主「昔人已乘黄鹤去，此地空余黄鹤楼」，忍不住泪奔 (T＿T)。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-21.jpg" alt="出发去硅谷"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-22.jpg" alt="San Francisco - Oakland Bay Bridge"></p>
+<p>接下来几天旅途每天都是十个多小时的车程，所以我和 Rohn 一个上午一个下午换着开车（锉子竟然没有驾照，活该没有妹子！）。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-23.jpg" alt="Here comes a fat face 肥脸来一张"></p>
+<h3 id="Apple"><a href="#Apple" class="headerlink" title="Apple"></a>Apple</h3><p>Silicon Vallery 第一站就是 Apple 啦！呼叫 @Beta，我是开飞机的舒克！我在你们公司总部门口啦！其实大楼外观很普通啦，所以教主才要造飞碟的吧！</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-24.jpg" alt="Apple 厂门标牌"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-25.jpg" alt="Apple 总部大楼"></p>
+<p>因为周末不上班的关系，连 Visitor Shop 也没有开门，只好在著名的 1 Infinite Loop 牌子前合个影作罢（自拍杆的优越感提现出来了！）。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-26.jpg" alt="1 Infinite Loop 留影"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-27.jpg" alt="1 Infinite Loop 合影"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-28.jpg" alt="作为一家谷地科技公司停车场怎能没有 Tesla"></p>
+<p>不过瘾又跑去 Apple 新总部（飞碟）的工地晃了一圈，都围起来了几乎没看到啥，总之好大一片地。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-29.jpg" alt="Apple 新总部（飞碟）工地"></p>
+<p>接着又跑去 Steve Jobs 养父母的旧宅 — 水果公司诞生的车库朝圣，由于门口竖了警告牌私人领地神圣不可侵犯（真是教主的风格噗嗤）只能从街上看看。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-30.jpg" alt="Apple 创立车库"></p>
+<p>最后跑去 Steve Jobs 诉讼了很久终于拆除的历史文物官邸，已经夷为平地了。教主的两个家离 Apple 都挺近的，这边的宅邸都很低调（Silicon Vallery 都是富人啊……）。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-31.jpg" alt="Steve Jobs 宅邸旧址"></p>
+<h3 id="Google"><a href="#Google" class="headerlink" title="Google"></a>Google</h3><p>水果厂楼感觉还好啦，去完 Google 的厂区才知道 Silicon Vallery 的码农多好命，简直就是国家一级保护动物「程序猿」的天堂！Google 的位置在 San Francisco Bay 的底部，Google 有一座山，你木有听错，一座山啊我了个去……用来遛狗、玩遥控飞机、登高远望、思考人生的绝佳选择，值得拥有！相较之下，张江这种破地方……真是……终于明白什么叫业(you)界(qian)良(ren)心(xin)！</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-32.jpg" alt="Shoreline Park at Mountain View"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-33.jpg" alt="Shoreline Park at Mountain View"></p>
+<p>无敌自拍杆，拍拍拍！Google 的办公楼马路对面还有足球场、篮球场什么的，就像一个大学校园。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-34.jpg" alt="Google 路牌合影"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-35.jpg" alt="Google Building 合影"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-36.jpg" alt="Google Logo 留影"></p>
+<p>Google 的 Visitor Shop 周末也不开，虽然在我朝用不了谷歌的 App，虽然谷歌毫无节操地毙了 Google Reader，但是依然不能阻止 Google 成为我心目中世界上最伟大的广告公司之一（Facebook 后来居上了要）。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-37.jpg" alt="Google Visitor Shop @ Mountain View"></p>
+<p>在厂门口看到一辆 Lexus SUV 顶着超声波雷达，应该是 Google 的自动驾驶汽车，车里有阿三工程师在敲着笔记本电脑……看来是现场修 bug……停了半天没有动……</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-38.jpg" alt="Google 的 Lexus SUV 改装自动驾驶汽车"></p>
+<p>之后又参观了仙童和 HP 的创始纪念碑，Silicon Vallery 的朝圣是振奋人心的，在这个风景优美的小小山谷中，谱写了改变世界的整个现代信息工业革命史。那些以一己之力改变世界的英雄们犹如伟大的先知，告诉世人他们平凡的故事和不平凡的人生。而在某个时刻，我们产生一种错觉，仿佛这历史的重任也将会降落到我们自己的肩膀之上。究竟是时势造英雄，还是英雄造时势？Silicon Vallery 依然继续着它自己的神话，在每日第一缕阳光照破山谷中紫色的晨雾，照进 Silicon vallery 的英雄们改变世界梦里的时候。</p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-39.jpg" alt="仙童半导体创始纪念碑"></p>
+<p><img src="http://macallen.qiniudn.com/blog/california-trip-2015-40.jpg" alt="HP 创始纪念碑（同时也是 Silicon Vallery 的创始纪念碑）"></p>
+<p>图太多了，所以决定把游记分成几篇写吧，第一篇就差不多到这里了。To be continued…</p>
+<!--## California Highway 1
+## Las Vegas
+## Los Angeles
+## San Diego-->
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在美帝出差了大半年的 Rohn 同学说：要不回国之前你飞过来，我们自驾西海岸晃一圈。作为一个对自己执行力低下还算有自知之明的人，就理所当然地把所有的攻略准备都交给了 Rohn 同学。美帝的公路交通太发达，魔都的驾照都不用公正就可以租车。其实这次加州旅行之前都没有怎么「自驾游」过，自己开车最远的旅行距离也就从上海开到绍兴滑雪，所以突然跑到异国他乡开上个几千公里路程也算是一种奇妙的经历。</p>]]>
+    
+    </summary>
+    
+      <category term="2015 年初 California Sunshine 自驾" scheme="http://blog.allenkung.com/tags/2015-%E5%B9%B4%E5%88%9D-California-Sunshine-%E8%87%AA%E9%A9%BE/"/>
+    
+      <category term="Travel" scheme="http://blog.allenkung.com/categories/Travel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[我的上进心并未死去 — 哲学随笔]]></title>
+    <link href="http://blog.allenkung.com/2015/04/a-philosophy-essay/"/>
+    <id>http://blog.allenkung.com/2015/04/a-philosophy-essay/</id>
+    <published>2015-04-13T14:14:57.000Z</published>
+    <updated>2015-04-22T10:44:15.000Z</updated>
+    <content type="html"><![CDATA[<p>「我的上进心并未死去」，这是小说《<a href="http://book.douban.com/subject/1082522/" target="_blank" rel="external">家</a>》结尾巴金笔下的大哥觉新写给三弟觉慧的信上一行。本来这篇文章的题目应该更激列、或愤世嫉俗，比如「<a href="http://book.douban.com/subject/1082522/" target="_blank" rel="external">我的奋斗</a> — 哲学笔记」（希特勒梗）；或者是更诗意的类似「<a href="http://book.douban.com/subject/1030294/" target="_blank" rel="external">林中之路</a> — 哲学学习随笔」（海德格尔梗）。但随着年纪增大，年少时读过的觉新 — 这个既向腐旧的礼教妥协，同时又支持弟弟决绝的革命理想，左右摇摆、痛苦不已的两难角色 — 越来越生动和清晰。这个处境是不是很像萨特当年寻找的第三条路？回忆读哲学的过程，一路走来，就是抱着觉新的这种心态，一个塞林格笔下的麦田守望者。</p>
+<a id="more"></a>
+<h3 id="u4E00_u3001_u60C5_u7AA6_u521D_u5F00_uFF1A_u7B1B_u5361_u5C14_u6211_u601D_u6545_u6211_u5728"><a href="#u4E00_u3001_u60C5_u7AA6_u521D_u5F00_uFF1A_u7B1B_u5361_u5C14_u6211_u601D_u6545_u6211_u5728" class="headerlink" title="一、情窦初开：笛卡尔我思故我在"></a>一、情窦初开：笛卡尔我思故我在</h3><p>说起哲学，最初的印象停留在中学政治课<a href="http://zh.wikipedia.org/zh/赫拉克利特" target="_blank" rel="external">赫拉克利特</a>的「人不能两次踏进同一条河」，还有沉迷了好一段时间的<a href="http://zh.wikipedia.org/wiki/笛卡尔" target="_blank" rel="external">笛卡尔</a>「我思故我在」。虽然那个时候的烦恼是「少年不识愁滋味」，但是「问题」已经在「自由」缺席的时候悄悄地埋下了种子。</p>
+<h3 id="u4E8C_u3001_u521D_u604B_uFF1A_u6885_u6D1B_u5E9E_u5E1D_u300A_u4E16_u754C_u7684_u6563_u6587_u300B"><a href="#u4E8C_u3001_u521D_u604B_uFF1A_u6885_u6D1B_u5E9E_u5E1D_u300A_u4E16_u754C_u7684_u6563_u6587_u300B" class="headerlink" title="二、初恋：梅洛庞帝《世界的散文》"></a>二、初恋：梅洛庞帝《世界的散文》</h3><p>后来上了大学，专业课不喜欢就躲在图书馆里如饥似渴地看书。那时候寝室的小床有一半都被各种书籍占据，自己的借书卡不够用就拿同学的卡同时借。师大唯一的好处就是没多少学生喜欢看书：书架上一堆一堆的书不像上海图书馆的书总是出借状态。印象最深的是徐汇西部图书馆三楼有个文科阅览室是在二楼的天台绕过去再上楼，非常隐蔽没多少人知道，一屋子书的霉味。当年发现书架上整排书页都发黄了的萨特文集一本都没拉下，鼻子一酸，眼泪就在眼眶里打转，觉得自己不小心闯入了藏经阁！</p>
+<p>说来好笑，最早读的哲学书虽然不能免俗也是类似柏拉图、苏格拉底的入门读物。但要是谈到哪本算初恋，那么一定是在电路课堂最后一排座位读杨大春翻译<a href="https://zh.wikipedia.org/wiki/莫里斯·梅洛-龐蒂" target="_blank" rel="external">梅洛庞帝</a>的《<a href="http://book.douban.com/subject/1416721/" target="_blank" rel="external">世界的散文</a>》，现在早已忘记当时何以把这么晦涩难懂的学术书读得如此津津有味，一定是在某个瞬间心性得到了敞开，进入了一个「去蔽」的世界。从此仿佛有了「内功」，各种哲学架势就没那么晦涩难懂了。</p>
+<h3 id="u4E09_u3001_u82E6_u604B_uFF1A_u9ED1_u683C_u5C14_u3001_u5EB7_u5FB7_u548C_u65AF_u5BBE_u8BFA_u838E"><a href="#u4E09_u3001_u82E6_u604B_uFF1A_u9ED1_u683C_u5C14_u3001_u5EB7_u5FB7_u548C_u65AF_u5BBE_u8BFA_u838E" class="headerlink" title="三、苦恋：黑格尔、康德和斯宾诺莎"></a>三、苦恋：黑格尔、康德和斯宾诺莎</h3><p>马哲课程说马克思理论的来源是<a href="https://zh.wikipedia.org/wiki/费尔巴哈" target="_blank" rel="external">费尔巴哈</a>，所以就去读了费尔巴哈，读完发现费尔巴哈的思想挺单纯：「大家抛下矛盾一起去喝酒」。于是又去读费尔巴哈理论的源头<a href="https://zh.wikipedia.org/wiki/格奥尔格·威廉·弗里德里希·黑格尔" target="_blank" rel="external">黑格尔</a>，结果《逻辑学》完全读不懂。感觉吃了大亏，又转而跑去读<a href="https://zh.wikipedia.org/wiki/伊曼努尔·康德" target="_blank" rel="external">康德</a>和<a href="https://zh.wikipedia.org/wiki/巴魯赫·斯賓諾莎" target="_blank" rel="external">斯宾诺莎</a>，终于学到了一个很受用的价值观，也就是康德的墓志铭：有两件事物越思考就越觉得震撼与敬畏，那便是我头上的星空和我心中的道德准则。</p>
+<blockquote>
+<p>“Zwei Dinge erfüllen das Gemüt mit immer neuer und zunehmender Bewunderung und Ehrfurcht, je öfter und anhaltender sich das Nachdenken damit beschäftigt: Der bestirnte Himmel über mir, und das moralische Gesetz in mir.“ ——《实践理性批判》（Kritik der praktischen Vernunft）</p>
+</blockquote>
+<h3 id="u56DB_u3001_u81F3_u9AD8_u65E0_u4E0A_u7684_u8BD7_u610F_uFF1A_u8377_u5C14_u5FB7_u6797_u548C_u6D77_u5FB7_u683C_u5C14"><a href="#u56DB_u3001_u81F3_u9AD8_u65E0_u4E0A_u7684_u8BD7_u610F_uFF1A_u8377_u5C14_u5FB7_u6797_u548C_u6D77_u5FB7_u683C_u5C14" class="headerlink" title="四、至高无上的诗意：荷尔德林和海德格尔"></a>四、至高无上的诗意：荷尔德林和海德格尔</h3><blockquote>
+<p>假如生活是十足的辛劳，人可否</p>
+<p>抬眼望，仰天而问：我甘愿这样？</p>
+<p>当然。只要善——这纯真者</p>
+<p>仍与他的心同在，他就乐意按照神性来测度自身。</p>
+<p>难道神乃子虚乌有，不可证知？</p>
+<p>抑或他显露自身，有如苍穹？</p>
+<p>我宁可相信后者。神乃人之尺度。</p>
+<p>人建功立业，但他诗意地</p>
+<p>栖居在大地上。如果可以，我要说，</p>
+<p>那被称之为神之形象的人，较之</p>
+<p>充满星辉的夜色，更为纯真。</p>
+<p>大地上可还有一种尺度？</p>
+<p>绝无。</p>
+</blockquote>
+<p>第一次读<a href="https://zh.wikipedia.org/wiki/弗里德里希·荷爾德林" target="_blank" rel="external">荷尔德林</a>《人诗意地栖居在大地上》，激动得失语，终于明白什么是诗意。再加上<a href="https://zh.wikipedia.org/wiki/海德格尔" target="_blank" rel="external">海德格尔</a>的阐释，跟「我思故我在」时代相比此时真正开始思考人的意义。明白了生命本身就包含着死亡的种子，每个人都是将死的过客，唯有在世的时间可以把握。</p>
+<blockquote>
+<p>你所寻者近了，正上前来迎接你。—— 荷尔德林《归家》</p>
+</blockquote>
+<p>所以诗人何为？</p>
+<blockquote>
+<p>待到英雄们在铁铸的摇篮中长成， </p>
+<p>勇敢的心灵像从前一样， </p>
+<p>去造访万能的神祗。 </p>
+<p>而在这之前，我却常感到， </p>
+<p>与其孤身独涉，不如安然沉睡。 </p>
+<p>何苦如此等待，沉默无言，茫然失措。 </p>
+<p>在这贫困的时代，诗人何为? </p>
+<p>可是，你却说，诗人是酒神的神圣祭司 </p>
+<p>在神圣的黑夜中，他走遍大地。 </p>
+<p>—— 荷尔德林《面包与美酒》</p>
+</blockquote>
+<p>那么，诗歌又是什么呢？</p>
+<blockquote>
+<p>我于是哀伤地学会了弃绝</p>
+<p>词语破碎之处无物存在。</p>
+<p>—— 《词语》</p>
+</blockquote>
+<h3 id="u4E94_u3001_u827A_u672F_u7684_u754C_u9650_uFF1A_u7EAA_u5FB7_u6CE8_u89E3_u6D6E_u58EB_u5FB7"><a href="#u4E94_u3001_u827A_u672F_u7684_u754C_u9650_uFF1A_u7EAA_u5FB7_u6CE8_u89E3_u6D6E_u58EB_u5FB7" class="headerlink" title="五、艺术的界限：纪德注解浮士德"></a>五、艺术的界限：纪德注解浮士德</h3><p>在理解了诗意之后，又读了好多歌德相关的书。发现初中时候读《浮士德》完全是当神话故事来读，其实《浮士德》特别的精妙，每一句句子都有很多哲理。直到读到<a href="https://zh.wikipedia.org/wiki/安德烈·紀德" target="_blank" rel="external">纪德</a>的《艺术的界限》，书中引用了《浮士德》第二部第二场中小精灵著名的一句：</p>
+<blockquote>
+<p>Was künstlich ist verlanst geschlossenen Raum.¹（任何艺术都需要一个封闭的空间）</p>
+</blockquote>
+<p>¹ 化学家瓦格纳在实验室里试图破解创造的秘密。他在一个小玻璃瓶里混合了一些气体和液体，造出了一个小精灵。小精灵提醒其“父”不要砸碎他栖身的玻璃瓶，因为虽说自然之物可在自然界扩展，但艺术的产品只能占据一个有限的空间。 </p>
+<p>突然顿悟这就是造物的奥秘啊：所有的物体也好、文化也好，想要生存都必须划定一个界限，只有在其界限之内才有生存的意义和可能。那段时间正好也在玩摄影，读了一些顾铮的摄影理论，发现在纪德书中的这个发现简直就是艺术批判的神器！</p>
+<h3 id="u516D_u3001_u4EBA_u662F_u4E00_u79CD_u81EA_u7531_u7684_u5B58_u5728_uFF1A_u8428_u7279"><a href="#u516D_u3001_u4EBA_u662F_u4E00_u79CD_u81EA_u7531_u7684_u5B58_u5728_uFF1A_u8428_u7279" class="headerlink" title="六、人是一种自由的存在：萨特"></a>六、人是一种自由的存在：萨特</h3><p>而萨特，不得不提的<a href="https://zh.wikipedia.org/wiki/萨特" target="_blank" rel="external">萨特</a>，直到若干年以后从<a href="https://zh.wikipedia.org/wiki/马里奥·巴尔加斯·略萨" target="_blank" rel="external">略萨</a>的<a href="/2014/06/spirit-executive/" title="回忆">回忆</a>中读到他，才一下子搞明白当年第一次读到萨特的时候是怎样的心情。换句话说初识萨特的震动太过猛烈以致于多年后才能反应过来自己的人生已经截然不同。</p>
+<blockquote>
+<p>萨特的存在主义是一种无神论的存在主义，这就是说，他既否定了上帝造人的神话，又否定了先天的性善论和性恶论。在他看来，是先有人，然后通过人的自由选择的行动，人才成为或是好人，或是恶人。英雄和懦夫都不是天生的，而是通过人的主动选择使他成为英雄或者懦夫，即存在先于本质。由于人的行为出自于自由选择，所以要承担责任，不但对行为的后果负责，而且对自己成为怎样的人也要承担责任。正因为如此，所以它是一种人道主义。它强调了人的主观能动性，又强调了自由承担责任的绝对性，是合乎情理的。萨特的存在主义是一种新的人生主张和人生信仰，它强调主体意识的自我选择、自我负责，其核心是主体的自由。</p>
+</blockquote>
+<h3 id="u4E03_u3001_u7B2C_u4E8C_u6027_u4E0E_u5973_u6743_uFF1A_u6CE2_u4F0F_u74E6"><a href="#u4E03_u3001_u7B2C_u4E8C_u6027_u4E0E_u5973_u6743_uFF1A_u6CE2_u4F0F_u74E6" class="headerlink" title="七、第二性与女权：波伏瓦"></a>七、第二性与女权：波伏瓦</h3><p>因为读萨特的关系，不得不提<a href="https://zh.wikipedia.org/wiki/西蒙·波娃" target="_blank" rel="external">海狸</a>，<br>波伏瓦让我意识到社会性别的存在，同时意识到权力的存在。我从来不掩饰自己是一个女权主义者的事实，这就是萨特和波伏瓦的「正确」。</p>
+<h3 id="u516B_u3001_u6743_u529B_u7684_u74E6_u89E3_uFF1A_u798F_u67EF"><a href="#u516B_u3001_u6743_u529B_u7684_u74E6_u89E3_uFF1A_u798F_u67EF" class="headerlink" title="八、权力的瓦解：福柯"></a>八、权力的瓦解：福柯</h3><blockquote>
+<p>疯狂不是病，是理性的强权为他划定了牢笼。—— 米歇尔福柯</p>
+</blockquote>
+<p><a href="https://zh.wikipedia.org/wiki/米歇尔·福柯" target="_blank" rel="external">福柯</a>是一个意外收获，读福柯的源起应该是因为<a href="https://zh.wikipedia.org/wiki/杰里米·边沁" target="_blank" rel="external">边沁</a>的圆形监狱理论。福柯的分析让人大开眼界，仿佛打开另一扇门，突然意识到权力就和空气一样虽然看不见摸不着，但却无处不在。福柯对于话语权的理论，更是让我意识到新闻自由的重要性（而这又恰恰是民主的前提，虽然之前有胡适做铺垫，但通过福柯我的思想真正走向民主）。</p>
+<h3 id="u4E5D_u3001_u5FE7_u90C1_u7684_u70ED_u5E26_u548C_u7ED3_u6784_u4EBA_u7C7B_u5B66_uFF1A_u5217_u7EF4_u65AF_u7279_u52B3_u65AF"><a href="#u4E5D_u3001_u5FE7_u90C1_u7684_u70ED_u5E26_u548C_u7ED3_u6784_u4EBA_u7C7B_u5B66_uFF1A_u5217_u7EF4_u65AF_u7279_u52B3_u65AF" class="headerlink" title="九、忧郁的热带和结构人类学：列维斯特劳斯"></a>九、忧郁的热带和结构人类学：列维斯特劳斯</h3><blockquote>
+<p>这个世界开始的时候，人类并不存在，这个世界结束的时候，人类也不会存在。我将用一生的生命加以描述，设法要了解的人类制度、道德和习俗，只不过是一闪即逝的光辉花朵。对整个世界而言，这些光辉花朵不具任何意义，如果有意义的话，也只不过整个世界生灭的过程中允许人类扮演人类所扮演的那份角色罢了。</p>
+<p>就像个人并非单独存在于群体里面一样，就像一个社会并非单独存在于其他社会之中一样，人类并不是单独存在于宇宙之中。</p>
+<p>当有一天人类所有文化所形成的色带或彩虹终于被我们的狂热推入一片空无之中；只要我们仍然存在，只要世界仍然存在，就会展示给我们一条与通往奴役之路相反的道路；人类或许无法追随那条道路前行，但思考那条道路使人类具有特权使自己的存在有价值。这是每个社会都想取得的特权，不论其信仰是什么，不论其政治体系如何，也不论其文明程度的高低；在这种特权上面，每个社会把它的闲暇、它的快乐、它的心安自得以及它的自由都联系其上；这种对生命不可或缺的、可以解开联系的可能性，这种可能性就是去掌握住，在我们这个种属可以短暂地中断其蚁窝似的活动，思考一下其存在的本质以及其继续存在的本质，在思想界限之下，在社会之外之上：对一块比任何人类的创造物都远为漂亮的矿石沉思一段时间；去闻一闻一朵水仙花的深处所散发出来的味道，其香味所隐藏的学问比我们所有书本全加起来还多；或者是在那充满耐心、宁静与互谅的短暂凝视之中，这种凝视有时候，经由某种非自愿的互相了解，会出现于一个人与一只猫的短暂的互相注目之中。</p>
+<p>—— 列维-斯特劳斯《忧郁的热带》</p>
+</blockquote>
+<p>接触到<a href="https://zh.wikipedia.org/wiki/克勞德·李維-史陀" target="_blank" rel="external">列维斯特劳斯</a>是因为梁文道老师在《开卷八分钟》节目中介绍到他的散文《忧郁的热带》，没想到会对自己影响那么深：一方面因为结构人类学的关系对文化、习俗、神话有了全新的见解，甚至尝试将结构主义带入其他领域中来理解事物之间的关系；同时也正是因为大师对不同文化的宽容态度，才让我之后顺利遇见了萨义德和文化多元主义。</p>
+<h3 id="u5341_u3001_u540E_u6B96_u6C11_u4E3B_u4E49_u3001_u4E1C_u65B9_u5B66_u548C_u6587_u5316_u591A_u5143_u4E3B_u4E49_uFF1A_u8428_u4E49_u5FB7"><a href="#u5341_u3001_u540E_u6B96_u6C11_u4E3B_u4E49_u3001_u4E1C_u65B9_u5B66_u548C_u6587_u5316_u591A_u5143_u4E3B_u4E49_uFF1A_u8428_u4E49_u5FB7" class="headerlink" title="十、后殖民主义、东方学和文化多元主义：萨义德"></a>十、后殖民主义、东方学和文化多元主义：萨义德</h3><blockquote>
+<p>我们在远方写作。—— 爱德华萨义德</p>
+</blockquote>
+<p>有一次我在查阅<a href="https://zh.wikipedia.org/wiki/埃德蒙德·胡塞爾" target="_blank" rel="external">胡塞尔</a>现象学论文的时候在一个学者的 blog 上看到上面这句话。于是搜索了<a href="https://zh.wikipedia.org/wiki/爱德华·萨义德" target="_blank" rel="external">爱德华萨义德</a>，在读过萨义德的一系列书包括《东方学》、《文化帝国主义》、自传《格格不入》等等后，一个后殖民主义的新世界又打开了（第 n 次打开新世界，为我的词语匮乏道歉）。</p>
+<p>读过萨义德之后，我比任何时候都有勇气去践行萨特和波伏瓦教于我的那种「介入」哲学，比以往任何时候都清晰地知道自己的良心所指。</p>
+<h3 id="u7ED3_u8BED"><a href="#u7ED3_u8BED" class="headerlink" title="结语"></a>结语</h3><p>学习哲学是为了搞明白人生的种种困惑，同时又不想简答又偷懒地把宗教作为答案来搪塞。似乎「你好，忧愁！」才是这篇文章的主题，不过我想强调的是「我的上进心并未死去」，未来的学习之路还很漫长，萨特在世的时候从不固步自封，一直跟着时代进步。</p>
+<p>曾经在豆瓣上看到一个帖子提问：存在主义已落后在时代之后了吗？有个我不能赞同更多的回复：</p>
+<blockquote>
+<p>楼主的问题是“存在主义已落后在时代之后了吗？”“如今有多少人还在讨论存在主义？”作为一种哲学思想，不同于流行文化，出镜率高、喉咙响就一定有道理，因此不在乎人们是否还在讨论它与否，或者不在乎有多少人还信仰它与否。人类社会从古到今，出现过许许多多的哲学思潮。每一种哲学都代表某种世界观，不同的世界观（或主义）在基本见地上是很不同的、难以调和的，它们存在的作用一是供一部分人信仰它，二是供人们在不同见地间做比较。</p>
+</blockquote>
+<p>正所谓「未曾哭过长夜的人，不足以语人生」，愿君做个好梦。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>「我的上进心并未死去」，这是小说《<a href="http://book.douban.com/subject/1082522/">家</a>》结尾巴金笔下的大哥觉新写给三弟觉慧的信上一行。本来这篇文章的题目应该更激列、或愤世嫉俗，比如「<a href="http://book.douban.com/subject/1082522/">我的奋斗</a> — 哲学笔记」（希特勒梗）；或者是更诗意的类似「<a href="http://book.douban.com/subject/1030294/">林中之路</a> — 哲学学习随笔」（海德格尔梗）。但随着年纪增大，年少时读过的觉新 — 这个既向腐旧的礼教妥协，同时又支持弟弟决绝的革命理想，左右摇摆、痛苦不已的两难角色 — 越来越生动和清晰。这个处境是不是很像萨特当年寻找的第三条路？回忆读哲学的过程，一路走来，就是抱着觉新的这种心态，一个塞林格笔下的麦田守望者。</p>]]>
+    
+    </summary>
+    
+      <category term="Philosophy" scheme="http://blog.allenkung.com/categories/Philosophy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[简单又美味的冬日寿喜锅]]></title>
+    <link href="http://blog.allenkung.com/2015/02/%E7%AE%80%E5%8D%95%E5%8F%88%E7%BE%8E%E5%91%B3%E7%9A%84%E5%86%AC%E6%97%A5%E5%AF%BF%E5%96%9C%E9%94%85/"/>
+    <id>http://blog.allenkung.com/2015/02/简单又美味的冬日寿喜锅/</id>
+    <published>2015-02-11T15:30:08.000Z</published>
+    <updated>2015-03-06T19:32:34.000Z</updated>
+    <content type="html"><![CDATA[<p>做了才发现，想要吃上一顿寿喜锅出乎意料地简单呢！开始是看了<a href="http://www.xiachufang.com/recipe/126512/" target="_blank" rel="external">下厨房</a>这个菜谱觉得也不麻烦才动了做「鋤焼き | すきゃき | sukiyaki」的念想，但是进一步研究了<a href="http://www.zhihu.com/question/21872922" target="_blank" rel="external">知乎</a>的菜谱，发现如果偷懒一点的话连昆布汤底、柴鱼片和味淋都可以省去(/≥▽≤/)，直接买日式火锅酱油来调味就好了。</p>
+<a id="more"></a>
+<p>在炖すき焼き之前，一口优质的<strong>铸铁锅</strong>是必须的，理由如下：</p>
+<ul>
+<li>铸铁锅可以让食材受热均匀；</li>
+<li>来保养得当的铸铁锅不会粘锅（可以煎出优秀的荷包蛋，请看<a href="http://www.zhihu.com/question/21190731/answer/39277876" target="_blank" rel="external">这篇</a>）；</li>
+<li>最重要的一点，对于较考究的吃货，一口古色古香铸铁锅才能烘托出すき焼き的气氛来！</li>
+</ul>
+<p>其实，我觉得料理すき焼き一台<strong>瓦斯炉</strong>也是必备厨具，理由如下：</p>
+<ul>
+<li>因为使用铸铁锅的目的就是均匀加热食物，所以如果用电磁炉的话就失去意义了（电磁炉不会加热锅体而是直接作用于食材）；</li>
+<li>虽然之前的准备工作都可以直接放煤气炉上处理，但是上桌的时候为了保持食材继续加热同时增加料理的趣味性，瓦斯炉也是必备；</li>
+</ul>
+<p>关于食材，也很简单都很容易买到。</p>
+<h3 id="u6C64_u5E95_uFF1A"><a href="#u6C64_u5E95_uFF1A" class="headerlink" title="汤底："></a>汤底：</h3><ul>
+<li><del>昆布干</del></li>
+<li><del>柴鱼片</del></li>
+<li><del>味淋</del></li>
+<li><del>清酒</del></li>
+<li><del>糖</del></li>
+<li><del>盐</del></li>
+<li>日式酱油</li>
+</ul>
+<p>汤底偷懒的做法就是直接倒半瓶日式酱油，我用的是「MORITA 盛田调味汁 400ml」，2-3 人直接倒半瓶（大家按照自己的口味来吧）。</p>
+<h3 id="u6B63_u6599_uFF1A"><a href="#u6B63_u6599_uFF1A" class="headerlink" title="正料："></a>正料：</h3><ul>
+<li>雪花牛肉片（偷懒的话可以用速冻的火锅牛肉片解冻下）</li>
+<li>鲜香菇（为了好看要划十字刀疤哦）</li>
+<li>金针菇</li>
+<li>大葱</li>
+<li>娃娃菜</li>
+<li>老豆腐</li>
+<li>黄油</li>
+<li><del>蛋液（不是很喜欢吃生鸡蛋唉）</del></li>
+</ul>
+<h3 id="u6B65_u9AA4_uFF1A"><a href="#u6B65_u9AA4_uFF1A" class="headerlink" title="步骤："></a>步骤：</h3><ol>
+<li>将食材归类切好；</li>
+<li>先把黄油在铸铁锅里化开，然后翻炒切片的大葱，再放入牛肉片翻炒到半熟，老豆腐可以煎一下也可以不煎；</li>
+<li>倒入适量开水，半瓶（200ml）日式酱油；</li>
+<li>将之前切好的食材摆入锅中，造型要美丽！</li>
+<li>移锅至瓦斯炉，开吃！</li>
+</ol>
+<h3 id="u603B_u7ED3_u548C_u4E0B_u6B21_u6539_u8FDB_uFF1A"><a href="#u603B_u7ED3_u548C_u4E0B_u6B21_u6539_u8FDB_uFF1A" class="headerlink" title="总结和下次改进："></a>总结和下次改进：</h3><ol>
+<li>香菇要选小一点形状饱满的；</li>
+<li>牛肉不要煎得太老；</li>
+<li>可以加点玉米、蟹肉棒、亲亲肠之类的食材；</li>
+<li>汤底试试看用传统的昆布调味一下应该会更鲜；</li>
+<li>豆腐要老一点才好吃，不能一夹就碎；</li>
+<li>碗具换一套日式的应该吃起来会更有味道！</li>
+<li>暂时就这些了，下次做完再改进！</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>做了才发现，想要吃上一顿寿喜锅出乎意料地简单呢！开始是看了<a href="http://www.xiachufang.com/recipe/126512/">下厨房</a>这个菜谱觉得也不麻烦才动了做「鋤焼き | すきゃき | sukiyaki」的念想，但是进一步研究了<a href="http://www.zhihu.com/question/21872922">知乎</a>的菜谱，发现如果偷懒一点的话连昆布汤底、柴鱼片和味淋都可以省去(/≥▽≤/)，直接买日式火锅酱油来调味就好了。</p>]]>
+    
+    </summary>
+    
+      <category term="chef&#39;s menu for 2015" scheme="http://blog.allenkung.com/tags/chef-s-menu-for-2015/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[每日时间分配和效率的研究探讨]]></title>
+    <link href="http://blog.allenkung.com/2015/02/%E6%AF%8F%E6%97%A5%E6%97%B6%E9%97%B4%E5%88%86%E9%85%8D%E5%92%8C%E6%95%88%E7%8E%87%E7%9A%84%E7%A0%94%E7%A9%B6%E6%8E%A2%E8%AE%A8/"/>
+    <id>http://blog.allenkung.com/2015/02/每日时间分配和效率的研究探讨/</id>
+    <published>2015-02-09T07:10:26.000Z</published>
+    <updated>2015-02-09T08:24:43.000Z</updated>
+    <content type="html"><![CDATA[<p>年初列了许多需要完成的目标，最近在思考从何着手，突然发现自己一直以来都忽略了一个显而易见的事实：无论工作狂还是拖延症晚期病患，<strong>一天只有 24 小时</strong>。想明白了这个问题，再算一算每天的闲余时间，不禁有股紧迫感涌上心来（当然拖延症该来的时候还是不可阻挡地来）。</p>
+<p><img src="http://macallen.qiniudn.com/blog/daily-life-time.jpg" alt="每天的24小时"></p>
+<p>工作日去掉「睡眠」和「交通」、「工作」固定占用的时间，还要算上吃饭（一日三餐平均每顿 1 小时，再强行挤进洗漱的时间），<strong>每天只剩下可怜的 4 小时可供自己调用的业余时间了。</strong>周末如果不睡懒觉的话，也就多出 8 x 2 小时，这样一周满打满算也就 <em>( 4 x 7 ) + ( 8 x 2 ) = 44 小时</em>。如果按照「一万小时定律[^1]」来算，那么所有的业余时间用来做同一件事情，四年半以后就可以成为这个领域的专家。如果同时有多个业余爱好，那么需要花上十年或者更久才行，强烈感觉到<strong>再不行动就老了！</strong></p>
+<p>以前总感觉还有整年的时间不争朝夕，其实就算完全放弃社交、发呆装傻的时间，一年也只有 2280 小时 / 95 天属于自己的时间（自由时间伤不起）。</p>
+<p>写到这里，觉得有必要把年初定的目标们重新计划一下才能确保年尾能顺利交差啊！</p>
+<p>[^1]: 人们眼中的天才之所以卓越非凡，并非天资超人一等，而是付出了持续不断的努力。1万小时的锤炼是任何人从平凡变成超凡的必要条件（要成为某个领域的专家，需要 10000 小时）。 —— 格拉德威尔《异类》</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>年初列了许多需要完成的目标，最近在思考从何着手，突然发现自己一直以来都忽略了一个显而易见的事实：无论工作狂还是拖延症晚期病患，<strong>一天只有 24 小时</strong>。想明白了这个问题，再算一算每天的闲余时间，不禁有股紧迫感涌上心来（当然拖延症该来的时候还是不]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Books for Jan 2015]]></title>
+    <link href="http://blog.allenkung.com/2015/01/Books-for-Jan-2015/"/>
+    <id>http://blog.allenkung.com/2015/01/Books-for-Jan-2015/</id>
+    <published>2015-01-20T17:22:18.000Z</published>
+    <updated>2015-01-20T17:44:53.000Z</updated>
+    <content type="html"><![CDATA[<p>台北的夜深了，一个人在陌生的城市里，想找个说话的人都寻不得，忍不住想家。家里至少还有猫猫和兔兔，我知道这种在半夜身体疲惫时冷不防袭来的空虚感也是白日里现实生活的写照。没有具体目标的时候就会这样，就像小时候爸妈不在身边的晚上睡不着，或者失恋后痛苦不堪的失眠。躲藏在墙角阴影里的应该是自己内心中焦虑的那个部分吧，应该是某种自我防御机制，潜意识在制造危机感。</p>
+<p>一月剩下的时间都在旅途中，所以应该也没什么机会读书了，就把已经读完的三本总结下：</p>
+<ol>
+<li><p>《<a href="http://book.douban.com/subject/6021440/" target="_blank" rel="external">黑客与画家</a>》 Paul Graham  </p>
+<p> 本书是典型的 Nerd 类文学，基本上 IT 男以外的物种就不要靠近了，我觉得单从内容来说在国内可能过誉了。但是作者在书中对 Lisp 语言用尽了赞美之词，之前就有听说 Lisp 很神奇，读完让人有种跃跃欲试的感觉。</p>
+</li>
+<li><p>《<a href="http://book.douban.com/subject/1192090/" target="_blank" rel="external">球状闪电</a>》 刘慈欣 </p>
+<p> 在地铁和飞机上读完的小说，大刘的小说很顺畅，读起来依然让人耳目一新。跟厚厚的《三体》比起来，此书更适合作为老刘的入门之选。</p>
+</li>
+<li><p>《<a href="http://book.douban.com/subject/20431965/" target="_blank" rel="external">只有医生知道!</a>》 张羽  </p>
+<p> 女性必读，女同胞们应该更科学地了解自己。作为协和妇产科大夫，作者从医生的角度给大家带来一个又一个有趣又极具科普意义的小故事。其中前 2/3 品质非常高，快结尾时让我有想要草草收尾的感觉。无论如何，是本女性必读的好书！</p>
+</li>
+</ol>
+<p>睡了，安安~</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>台北的夜深了，一个人在陌生的城市里，想找个说话的人都寻不得，忍不住想家。家里至少还有猫猫和兔兔，我知道这种在半夜身体疲惫时冷不防袭来的空虚感也是白日里现实生活的写照。没有具体目标的时候就会这样，就像小时候爸妈不在身边的晚上睡不着，或者失恋后痛苦不堪的失眠。躲藏在墙角阴影里的]]>
+    </summary>
+    
+      <category term="reading list for 2015" scheme="http://blog.allenkung.com/tags/reading-list-for-2015/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Reading List for 2015]]></title>
+    <link href="http://blog.allenkung.com/2015/01/Reading-List-for-2015/"/>
+    <id>http://blog.allenkung.com/2015/01/Reading-List-for-2015/</id>
+    <published>2015-01-18T11:31:52.000Z</published>
+    <updated>2015-01-18T12:37:10.000Z</updated>
+    <content type="html"><![CDATA[<p>大致整理了一下今年要读的书，其中有几本比较厚（比如《芥川龙之介全集》买了快 2 年了一册都还没读完），所以任重而道远啊……家里还有一些为了免运费顺手买的薄册子（比如奥威尔的《1984》）也要抽时间扫一遍……这么一整理感觉今年充实多了啊！頑張れ〜</p>
+<p>每本读完都会来写书评的，这样才能监督自己嘛~大家要是有今年相同在读的书可以组织书友会交流~</p>
+<a id="more"></a>
+<ol>
+<li>《<a href="http://book.douban.com/subject/6021440/" target="_blank" rel="external">黑客与画家</a>》 Paul Graham </li>
+<li>《<a href="http://book.douban.com/subject/1192090/" target="_blank" rel="external">球状闪电</a>》 刘慈欣 </li>
+<li>《<a href="http://book.douban.com/subject/20431965/" target="_blank" rel="external">只有医生知道!</a>》 张羽 </li>
+<li>《<a href="http://book.douban.com/subject/25871624/" target="_blank" rel="external">开端：意图与方法 : 意图与方法</a>》 Edward Said</li>
+<li>《<a href="http://book.douban.com/subject/26293066/" target="_blank" rel="external">你是一切的答案</a>》 简里里</li>
+<li>《<a href="http://book.douban.com/subject/25917542/" target="_blank" rel="external">共情时代</a>》 弗朗斯•德瓦尔 </li>
+<li>《<a href="http://book.douban.com/subject/24935042/" target="_blank" rel="external">时间之墟</a>》 宝树 </li>
+<li>《<a href="http://book.douban.com/subject/25747217/" target="_blank" rel="external">只有医生知道！2</a>》 张羽 </li>
+<li>《<a href="http://book.douban.com/subject/11443351/" target="_blank" rel="external">谁比谁傻多少</a>》 王朔 </li>
+<li>《<a href="http://book.douban.com/subject/20390373/" target="_blank" rel="external">人文主义与民主批评</a>》 Edward Said</li>
+<li>《<a href="http://book.douban.com/subject/11613166/" target="_blank" rel="external">日本意气</a>》 藤本箕山 / 九鬼周造 / 阿部次郎 </li>
+<li>《<a href="http://book.douban.com/subject/25811516/" target="_blank" rel="external">日本的八个审美意识</a>》 黑川雅之 </li>
+<li>《<a href="http://book.douban.com/subject/1432673/" target="_blank" rel="external">Life and Death in Shanghai</a>》 Nien Cheng </li>
+<li>《<a href="http://book.douban.com/subject/6960434/" target="_blank" rel="external">川端康成文学的自然审美</a>》吴舜立 </li>
+<li>《<a href="http://book.douban.com/subject/19962419/" target="_blank" rel="external">1750-1890年的欧洲建筑</a>》 巴里·伯格多尔 </li>
+<li>《<a href="http://book.douban.com/subject/24863442/" target="_blank" rel="external">无印良品生活研究所</a>》 無印良品 </li>
+<li>《<a href="http://book.douban.com/subject/1870268/" target="_blank" rel="external">美国大城市的死与生</a>》 简·雅各布斯 </li>
+<li>《<a href="http://book.douban.com/subject/5395162/" target="_blank" rel="external">天人五衰</a>》 三岛由纪夫 </li>
+<li>《<a href="http://book.douban.com/subject/25660221/" target="_blank" rel="external">代表作和被代表作</a>》 张佳玮 </li>
+<li>《<a href="http://book.douban.com/subject/2216583/" target="_blank" rel="external">沉重的肉身</a>》 刘小枫 </li>
+<li>《<a href="http://book.douban.com/subject/1317885/" target="_blank" rel="external">寄语海狸</a>》 萨特 </li>
+<li>《<a href="http://book.douban.com/subject/24879730/" target="_blank" rel="external">日本AV影像史</a>》 藤木TDC </li>
+<li>《<a href="http://book.douban.com/subject/19962936/" target="_blank" rel="external">只是孩子</a>》 Patti Smith </li>
+<li>《<a href="http://book.douban.com/subject/1036947/" target="_blank" rel="external">给青年小说家的信</a>》 略萨</li>
+<li>《<a href="http://book.douban.com/subject/2073481/" target="_blank" rel="external">城市与狗</a>》 略萨</li>
+<li>《<a href="http://book.douban.com/subject/20375518/" target="_blank" rel="external">模糊性的道德</a>》西蒙娜·德·波伏瓦 </li>
+<li>《<a href="http://book.douban.com/subject/6060421/" target="_blank" rel="external">假面自白</a>》 三岛由纪夫 </li>
+<li>《<a href="http://book.douban.com/subject/20561931/" target="_blank" rel="external">恋爱中的建筑</a>》 中村拓志 </li>
+<li>《<a href="http://book.douban.com/subject/3090801/" target="_blank" rel="external">万有引力之虹</a>》 托马斯·品钦 </li>
+<li>《<a href="http://book.douban.com/subject/2974879/" target="_blank" rel="external">梦的解析</a>》弗洛伊德 </li>
+<li>《<a href="http://book.douban.com/subject/2155342/" target="_blank" rel="external">货币的非国家化</a>》 弗里德里希·冯·哈耶克 </li>
+<li>《<a href="http://book.douban.com/subject/20507206/" target="_blank" rel="external">众病之王-癌症传</a>》 悉达多·穆克吉 </li>
+<li>《<a href="http://book.douban.com/subject/20441938/" target="_blank" rel="external">字体故事</a>》 西蒙·加菲尔德 </li>
+<li>《<a href="http://book.douban.com/subject/6794036/" target="_blank" rel="external">害羞的屁股</a>》 让-吕克·亨尼希 </li>
+<li>《<a href="http://book.douban.com/subject/1457542/" target="_blank" rel="external">芥川龙之介全集</a>》 芥川龙之介 </li>
+<li>《<a href="http://book.douban.com/subject/1437687/" target="_blank" rel="external">性经验史</a>》 米歇尔.福柯 </li>
+<li>《<a href="http://book.douban.com/subject/25721226/" target="_blank" rel="external">沉默的螺旋</a>》 伊丽莎白·诺尔-诺依曼 </li>
+<li>《<a href="http://book.douban.com/subject/20392524/" target="_blank" rel="external">恶时辰</a>》 加西亚·马尔克斯</li>
+<li>《<a href="http://book.douban.com/subject/1444252/" target="_blank" rel="external">城市发展史</a>》 芒福德 </li>
+<li>《<a href="http://book.douban.com/subject/2053303/" target="_blank" rel="external">神话学：生食和熟食</a>》 洛德·列维-斯特劳斯 </li>
+<li>《<a href="http://book.douban.com/subject/2062217/" target="_blank" rel="external">神话学：从蜂蜜到烟灰</a>》 洛德·列维-斯特劳斯</li>
+<li>《<a href="http://book.douban.com/subject/20392523/" target="_blank" rel="external">没有人给他写信的上校</a>》 加西亚·马尔克斯</li>
+<li>《<a href="http://book.douban.com/subject/24891581/" target="_blank" rel="external">太阳电池、LED和二极管的原理</a>》 Adrian Kitai </li>
+<li>《<a href="http://book.douban.com/subject/6392133/" target="_blank" rel="external">国富论</a>》 亚当·斯密 </li>
+<li>《<a href="http://book.douban.com/subject/1047638/" target="_blank" rel="external">阿多诺</a>》 细见和之 </li>
+<li>《<a href="http://book.douban.com/subject/25788842/" target="_blank" rel="external">法兰克福学派史</a>》 埃米尔•瓦尔特-布什 </li>
+<li>《<a href="http://book.douban.com/subject/2974191/" target="_blank" rel="external">克尔凯郭尔：审美对象的建构</a>》 T.W.阿多诺 </li>
+<li>《<a href="http://book.douban.com/subject/5406378/" target="_blank" rel="external">论瓦尔特·本雅明</a>》 西奥多·阿多诺 / 雅克·德里达 </li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>大致整理了一下今年要读的书，其中有几本比较厚（比如《芥川龙之介全集》买了快 2 年了一册都还没读完），所以任重而道远啊……家里还有一些为了免运费顺手买的薄册子（比如奥威尔的《1984》）也要抽时间扫一遍……这么一整理感觉今年充实多了啊！頑張れ〜</p>
+<p>每本读完都会来写书评的，这样才能监督自己嘛~大家要是有今年相同在读的书可以组织书友会交流~</p>]]>
+    
+    </summary>
+    
+      <category term="challenge for 2015" scheme="http://blog.allenkung.com/tags/challenge-for-2015/"/>
+    
+      <category term="reading list for 2015" scheme="http://blog.allenkung.com/tags/reading-list-for-2015/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Challenge for 2015]]></title>
+    <link href="http://blog.allenkung.com/2015/01/Challenge-for-2015/"/>
+    <id>http://blog.allenkung.com/2015/01/Challenge-for-2015/</id>
+    <published>2015-01-17T23:13:15.000Z</published>
+    <updated>2015-01-18T00:14:54.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Mark_Zuckerbery_u2019s_challenge"><a href="#Mark_Zuckerbery_u2019s_challenge" class="headerlink" title="Mark Zuckerbery’s challenge"></a>Mark Zuckerbery’s challenge</h2><p>Mark Zuckerberg 在 FB 上征集他的 challenge for 2015:</p>
+<blockquote>
+<p>I’m crowdsourcing ideas for my next year’s personal challenge.<br>For background, every year I take on a challenge to broaden my perspective and learn something about the world beyond my work at Facebook.  </p>
+<p>In past years, some of my challenges have been:  </p>
+<ul>
+<li>Learning to speak Mandarin  </li>
+<li>Meeting one new person who doesn’t work at Facebook every day  </li>
+<li>Writing a thank you note each day to someone who made the world better  </li>
+<li>Being a vegetarian (or only eating meat if I killed the animal myself)  </li>
+<li>Wearing a tie every day  </li>
+</ul>
+<p>At our last town hall Q&amp;A, someone asked me what my challenge will be for the new year and I said I’d love ideas from our community.<br>I have an idea of what my next challenge might be, but I’m open to more ideas before the new year officially begins. So share your ideas here!</p>
+</blockquote>
+<p>看过 Mark 在清华<em>中文演讲</em>视频的人相信一定都印象深刻，虽然他的太太是个中国人，但是作为 FB 的 boss 那么努力学习 Mandarin 实在让让人觉得天才+勤奋的可怕。</p>
+<a id="more"></a>
+<p>在 Mark 之前的挑战中有一个我很感兴趣：</p>
+<blockquote>
+<p>Being a vegetarian (or only eating meat if I killed the animal myself)<br>素食主义（或者只吃亲手杀死动物的肉）</p>
+</blockquote>
+<p>不知道 Mark 这个想法从何而来，这是个有趣的想法我也很认同这一点：<em>在这自然之中，我只取我所需。我必须要明白，今日我所之于被我捕食动物的力量，有一天也会同样之于我，我是这伟大自然中的一环。</em> 我很怕杀死动物，但是也一直会纠结要不要吃素，可是不食肉类的话会忍不住。</p>
+<p>Mark’s challange for 2015 is to read a new book every other week – with an emphasis on learning about different cultures, beliefs, histories and technologies.</p>
+<h2 id="So_my_challenge_will_be_3F"><a href="#So_my_challenge_will_be_3F" class="headerlink" title="So my challenge will be?"></a>So my challenge will be?</h2><p>往年宏大的目标往往到年底发现没可能实现，今年就切成细小的短期目标来挑战吧：</p>
+<ol>
+<li><p>读书</p>
+<p> 跟 Mark 一样每两周读一本书，这样一年下来至少也可以读 48 本书，今年的类目应该包含这些：</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Michel_Foucault" target="_blank" rel="external">Michel Foucault</a> 的权力</li>
+<li><a href="http://zh.wikipedia.org/wiki/克勞德·李維-史陀" target="_blank" rel="external">Claude Lévi-Strauss</a> 的结构主义</li>
+<li><a href="http://en.wikipedia.org/wiki/Edward_Said" target="_blank" rel="external">Edward Said</a> 的原版书，东方主义、后殖民主义和多元文化主义</li>
+<li>存在主义</li>
+<li>女权主义</li>
+<li>经济学</li>
+<li>心理学</li>
+<li>现代及后现代主义艺术理论</li>
+<li>LED发光二极管原理和制造</li>
+<li>日本文学</li>
+<li>物理学</li>
+<li>艺术史和传记</li>
+<li>还有编程啦 ╮(╯▽╰)╭</li>
+</ul>
+</li>
+<li><p>旅行</p>
+<p> 一月底会去美国，希望能扩宽下视野发掘更多的可能性。然后还想去一次日本，其他的目的地就看有没有其他机会啦。</p>
+</li>
+<li><p>语言</p>
+<ol>
+<li><p>英语：</p>
+<ul>
+<li>要好好练习英语口语（背电影台词）</li>
+<li>每天坚持读英语文章来提升作为第二语言的熟练度</li>
+<li>然后技术文档也要尽量看英文原版的，最好是能帮助翻译一些技术文档（比如 Wordpress）</li>
+<li>偶尔也研究一下英语诗歌吧 </li>
+</ul>
+</li>
+<li><p>日语：</p>
+<ul>
+<li>要把假名全记住啊妈蛋</li>
+<li>学会简单的句型表达</li>
+<li>学会一些日常用语和旅行用语</li>
+<li>因为老妈喜欢日语，所以要教会老妈一些日常用语</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ol>
+<li><p>厨房</p>
+<p> 因为老了的关系吧？看到这句话「<strong>山川湖海，厨房与爱</strong>」就感动到不行，所以今年也要努力<strong>每个月学做一个菜</strong>吧！这样一年下来也能做一桌子菜来招待朋友了，以后少出去上馆子，多邀请朋友到家里磨练手艺、交流感情！之后慢慢列菜单吧，可能会是烘培方向。</p>
+</li>
+<li><p>编程</p>
+<ul>
+<li>PHP：把 wordpress 搞搞透，然后掌握 CI，再了解一个其他框架</li>
+<li>Nodejs：乱七八糟的工具都学着用起来，参看这篇《<a href="http://www.zhihu.com/question/22146521/answer/20462433" target="_blank" rel="external">前端工程师必修</a>》，争取成为一个合格的前端攻城师。</li>
+</ul>
+</li>
+<li><p>绘画和音乐</p>
+<p> beta 的 Ukulele 还在我这，今年要求不高！至少会弹唱一首简单的曲子！绘画的话平时多用 pad 胡乱图一些插画就好了</p>
+</li>
+<li><p>保持身材：保持锻炼和健康的饮食习惯就好了啦~稍微能有点 muscle 就更棒了！每周至少要去两次 gym（不然对不起我办的 5 年卡啊！）然后平时也要注意能多运动运动，不要偷懒就好啦。</p>
+</li>
+<li><p>最重要一点，多陪陪家人 ^^</p>
+</li>
+</ol>
+<p>记得逼自己经常写总结的话一定会在 2015 年有很多收获！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Mark_Zuckerbery_u2019s_challenge"><a href="#Mark_Zuckerbery_u2019s_challenge" class="headerlink" title="Mark Zuckerbery’s challenge"></a>Mark Zuckerbery’s challenge</h2><p>Mark Zuckerberg 在 FB 上征集他的 challenge for 2015:</p>
+<blockquote>
+<p>I’m crowdsourcing ideas for my next year’s personal challenge.<br>For background, every year I take on a challenge to broaden my perspective and learn something about the world beyond my work at Facebook.  </p>
+<p>In past years, some of my challenges have been:  </p>
+<ul>
+<li>Learning to speak Mandarin  </li>
+<li>Meeting one new person who doesn’t work at Facebook every day  </li>
+<li>Writing a thank you note each day to someone who made the world better  </li>
+<li>Being a vegetarian (or only eating meat if I killed the animal myself)  </li>
+<li>Wearing a tie every day  </li>
+</ul>
+<p>At our last town hall Q&amp;A, someone asked me what my challenge will be for the new year and I said I’d love ideas from our community.<br>I have an idea of what my next challenge might be, but I’m open to more ideas before the new year officially begins. So share your ideas here!</p>
+</blockquote>
+<p>看过 Mark 在清华<em>中文演讲</em>视频的人相信一定都印象深刻，虽然他的太太是个中国人，但是作为 FB 的 boss 那么努力学习 Mandarin 实在让让人觉得天才+勤奋的可怕。</p>]]>
+    
+    </summary>
+    
+      <category term="challenge for 2015" scheme="http://blog.allenkung.com/tags/challenge-for-2015/"/>
+    
+      <category term="challenge for a new year" scheme="http://blog.allenkung.com/tags/challenge-for-a-new-year/"/>
+    
+  </entry>
+  
+</feed>

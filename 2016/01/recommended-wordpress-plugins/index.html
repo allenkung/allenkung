@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>推荐几款实用的 Wordpress Plugin | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：
+
+JSON API
+Magic Fields 2
+WP Super Cache
+Disable Google Fonts
+WP Acceleration for China
+WordPress Security">
+  
+  <meta name="description" content="之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：
+
+JSON API
+Magic Fields 2
+WP Super Cache
+Disable Google Fonts
+WP Acceleration for China
+WordPress Security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="推荐几款实用的 Wordpress Plugin">
+<meta property="og:url" content="http://blog.allenkung.com/2016/01/recommended-wordpress-plugins/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：
+
+JSON API
+Magic Fields 2
+WP Super Cache
+Disable Google Fonts
+WP Acceleration for China
+WordPress Security">
+<meta property="og:updated_time" content="2016-01-29T09:56:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="推荐几款实用的 Wordpress Plugin">
+<meta name="twitter:description" content="之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：
+
+JSON API
+Magic Fields 2
+WP Super Cache
+Disable Google Fonts
+WP Acceleration for China
+WordPress Security">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/01/recommended-wordpress-plugins/">
+  <time datetime="2016-01-06T06:31:01.000Z">
+    2016-01-06
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">推荐几款实用的 Wordpress Plugin</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>之前看到给朋友做网站的英国老爷爷装了一堆 Wordpress Plugin，正好手边有个项目把 Wordpress 当 REST API 来用，就小小研究下了装了下面这几个 Plugin：</p>
+<ol>
+<li><a href="https://wordpress.org/plugins/json-api/" target="_blank" rel="external">JSON API</a></li>
+<li><a href="http://magicfields.org/" target="_blank" rel="external">Magic Fields 2</a></li>
+<li><a href="https://wordpress.org/plugins/wp-super-cache/" target="_blank" rel="external">WP Super Cache</a></li>
+<li><a href="http://blog.milandinic.com/wordpress/plugins/disable-google-fonts/" target="_blank" rel="external">Disable Google Fonts</a></li>
+<li><a href="http://lomu.me/post/wp-acceleration-for-china" target="_blank" rel="external">WP Acceleration for China</a></li>
+<li><a href="http://icwp.io/home" target="_blank" rel="external">WordPress Security Firewall</a></li>
+<li><a href="http://lesterchan.net/portfolio/programming/php/" target="_blank" rel="external">WP-DBManager</a></li>
+<li><a href="http://wordpress.org/extend/plugins/disable-comments/" target="_blank" rel="external">Disable Comments</a></li>
+<li><a href="http://wordpress.org/plugins/disable-wordpress-updates/" target="_blank" rel="external">Disable All WordPress Updates</a></li>
+<li><a href="http://www.jolanders.com/wordpress_plugins.php?plugin=custom-dashboard-help" target="_blank" rel="external">Custom Dashboard Help</a></li>
+<li><a href="http://wpdoc.de/plugins/" target="_blank" rel="external">Admin Dashboard Last Edits</a></li>
+<li><a href="http://w-shadow.com/blog/2008/12/20/admin-menu-editor-for-wordpress/" target="_blank" rel="external">Admin Menu Editor</a></li>
+</ol>
+<a id="more"></a>
+<p>如果安装 Wordpress Plugin 提示权限不够需要输入 FTP 账号验证的话，可以 SSH 到 Server 上配置下权限，Apache 和 Nginx 的默认用户是 www-data，通过以下文件可以看到:</p>
+<pre><code>$ cat /etc/nginx/nginx.conf
+</code></pre><p>或者：</p>
+<pre><code>$ ps -ef |grep apache2
+</code></pre><p>我们要做的就是把 Wordpress 所在目录的所有权交给 www-data:</p>
+<pre><code>$ sudo chgrp -R www-data ./wordpress
+$ sudo chown -R www-data:www-data ./wordpress
+</code></pre><p>接下来，重启，使配置生效:</p>
+<pre><code>$ sudo service nginx restart
+</code></pre><p>然后就发现终于可以愉快地玩耍啦！</p>
+<h3 id="1-_JSON_API"><a href="#1-_JSON_API" class="headerlink" title="1. JSON API"></a>1. JSON API</h3><p>虽然 Wordpress 在 4.4 <a href="https://wordpress.org/news/2015/12/clifford/" target="_blank" rel="external">Clifford</a> 开始把 REST API 纳入到 Core 中，但是我接触的时候用了 <a href="https://wordpress.org/plugins/json-api/" target="_blank" rel="external">JSON API</a> 这个插件。</p>
+<blockquote>
+<p>This plugin was created at <a href="http://moma.org/" target="_blank" rel="external">The Museum of Modern Art</a> for the weblog <a href="http://moma.org/explore/inside_out" target="_blank" rel="external">Inside/Out</a>, which is served from Ruby on Rails. Instead of reimplementing the site templates as a WordPress theme, we opted for a Rails front-end that displays content served from a WordPress back-end. JSON API provides the necessary interface for retrieving content and accepting comment submissions.</p>
+</blockquote>
+<p>事实上我就是看了这段介绍才对 REST API 有初步的认识，使用非常简单，比如对一个刚装完的 Wordpress 发送 GET request <code>http://localhost/wordpress/?json=1</code> 会返回 JSON 如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#10;  &#34;status&#34;: &#34;ok&#34;,&#10;  &#34;count&#34;: 1,&#10;  &#34;count_total&#34;: 1,&#10;  &#34;pages&#34;: 1,&#10;  &#34;posts&#34;: [&#10;    &#123;&#10;      &#34;id&#34;: 1,&#10;      &#34;type&#34;: &#34;post&#34;,&#10;      &#34;slug&#34;: &#34;hello-world&#34;,&#10;      &#34;url&#34;: &#34;http:\/\/localhost\/wordpress\/?p=1&#34;,&#10;      &#34;title&#34;: &#34;Hello world!&#34;,&#10;      &#34;title_plain&#34;: &#34;Hello world!&#34;,&#10;      &#34;content&#34;: &#34;&#60;p&#62;Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!&#60;\/p&#62;\n&#34;,&#10;      &#34;excerpt&#34;: &#34;Welcome to WordPress. This is your first post. Edit or delete it, then start blogging!\n&#34;,&#10;      &#34;date&#34;: &#34;2009-11-11 12:50:19&#34;,&#10;      &#34;modified&#34;: &#34;2009-11-11 12:50:19&#34;,&#10;      &#34;categories&#34;: [],&#10;      &#34;tags&#34;: [],&#10;      &#34;author&#34;: &#123;&#10;        &#34;id&#34;: 1,&#10;        &#34;slug&#34;: &#34;admin&#34;,&#10;        &#34;name&#34;: &#34;admin&#34;,&#10;        &#34;first_name&#34;: &#34;&#34;,&#10;        &#34;last_name&#34;: &#34;&#34;,&#10;        &#34;nickname&#34;: &#34;&#34;,&#10;        &#34;url&#34;: &#34;&#34;,&#10;        &#34;description&#34;: &#34;&#34;&#10;      &#125;,&#10;      &#34;comments&#34;: [&#10;        &#123;&#10;          &#34;id&#34;: 1,&#10;          &#34;name&#34;: &#34;Mr WordPress&#34;,&#10;          &#34;url&#34;: &#34;http:\/\/wordpress.org\/&#34;,&#10;          &#34;date&#34;: &#34;2009-11-11 12:50:19&#34;,&#10;          &#34;content&#34;: &#34;&#60;p&#62;Hi, this is a comment.&#60;br \/&#62;To delete a comment, just log in and view the post&#39;s comments. There you will have the option to edit or delete them.&#60;\/p&#62;\n&#34;,&#10;          &#34;parent&#34;: 0&#10;        &#125;&#10;      ],&#10;      &#34;comment_count&#34;: 1,&#10;      &#34;comment_status&#34;: &#34;open&#34;&#10;    &#125;&#10;  ]&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>Our old friend, in JSON format now. LOL. 我用了 NodeJS 的 <a href="https://github.com/request/request" target="_blank" rel="external">Request</a> middleware 去 call Wordpress 的 REST API 获取 JSON。</p>
+<h3 id="2-_Magic_Fields_2"><a href="#2-_Magic_Fields_2" class="headerlink" title="2. Magic Fields 2"></a>2. Magic Fields 2</h3><p>强烈推荐 <a href="http://magicfields.org/" target="_blank" rel="external">Magic Fields 2</a> 这个插件，可以根据不同需求生成表单，主要是</p>
+
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/Webdevelop/">Webdevelop</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/Wordpress/">Wordpress</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>

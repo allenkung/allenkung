@@ -1,0 +1,172 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>ejs 中的 HTML tag 转义问题 | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="最近在用 Express 开发公司网站，用了 i18n-node-2 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：
+这里是&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;链接&amp;lt;/a&amp;gt;的文字内容
+上面这段存到 JSON 数组里的话要转义一下：
+&amp;quot;这里是&amp;lt;a href=\&amp;quot;#\&amp;qu">
+  
+  <meta name="description" content="最近在用 Express 开发公司网站，用了 i18n-node-2 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：
+这里是&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;链接&amp;lt;/a&amp;gt;的文字内容
+上面这段存到 JSON 数组里的话要转义一下：
+&amp;quot;这里是&amp;lt;a href=\&amp;quot;#\&amp;qu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ejs 中的 HTML tag 转义问题">
+<meta property="og:url" content="http://blog.allenkung.com/2015/08/ejs-html-escape-problem/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="最近在用 Express 开发公司网站，用了 i18n-node-2 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：
+这里是&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;链接&amp;lt;/a&amp;gt;的文字内容
+上面这段存到 JSON 数组里的话要转义一下：
+&amp;quot;这里是&amp;lt;a href=\&amp;quot;#\&amp;qu">
+<meta property="og:updated_time" content="2015-11-24T07:59:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ejs 中的 HTML tag 转义问题">
+<meta name="twitter:description" content="最近在用 Express 开发公司网站，用了 i18n-node-2 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：
+这里是&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;链接&amp;lt;/a&amp;gt;的文字内容
+上面这段存到 JSON 数组里的话要转义一下：
+&amp;quot;这里是&amp;lt;a href=\&amp;quot;#\&amp;qu">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/08/ejs-html-escape-problem/">
+  <time datetime="2015-08-31T03:26:01.000Z">
+    2015-08-31
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">ejs 中的 HTML tag 转义问题</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>最近在用 <a href="http://expressjs.com/" target="_blank" rel="external">Express</a> 开发公司网站，用了 <a href="https://github.com/jeresig/i18n-node-2" target="_blank" rel="external">i18n-node-2</a> 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：</p>
+<pre><code>这里是&lt;a href=&quot;#&quot;&gt;链接&lt;/a&gt;的文字内容
+</code></pre><p>上面这段存到 JSON 数组里的话要转义一下：</p>
+<pre><code>&quot;这里是&lt;a href=\&quot;#\&quot;&gt;链接&lt;/a&gt;的文字内容&quot;
+</code></pre><p>但是在 ejs 模板中输出的时候 HTML tag 总是 output 转义字符串（Escape Sequence）：</p>
+<pre><code>这里是&amp;lt;a href=&amp;quot;#&amp;quot;&amp;gt;链接&amp;lt;/a&amp;gt;的文字内容
+</code></pre><p>查阅了 ejs 的 github <a href="https://github.com/tj/ejs" target="_blank" rel="external">README</a> 文档中有如下介绍：</p>
+<ul>
+<li>Unbuffered code for conditionals etc <code>&lt;% code %&gt;</code></li>
+<li>Escapes html by default with <code>&lt;%= code %&gt;</code></li>
+<li>Unescaped buffering with <code>&lt;%- code %&gt;</code></li>
+</ul>
+<p>发现想要 output HTML字符实体（Character Entities）的话只要使用 <code>&lt;%- code %&gt;</code>输出就可以啦！原来这么简单，本来还想是不是设计一个转义函数，瞬间觉得自己萌萌哒 ^_^</p>
+<hr>
+<p>相关资料：</p>
+<ul>
+<li><a href="http://www.css88.com/tool/html-escape/" target="_blank" rel="external">前端开发工具箱：HTML 在线转义工具</a></li>
+<li><a href="http://114.xixik.com/character/" target="_blank" rel="external">HTML 字符实体（Character Entities），转义字符串（Escape Sequence）</a></li>
+<li><a href="http://www.w3chtml.com/html/character.html" target="_blank" rel="external">HTML 转义字符</a></li>
+</ul>
+
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/Web-Development/">Web Development</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/Front-end/">Front-end</a>, <a class="tags-link" href="/tags/JavaScript/">JavaScript</a>, <a class="tags-link" href="/tags/ejs/">ejs</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>

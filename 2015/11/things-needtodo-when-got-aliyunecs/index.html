@@ -1,0 +1,220 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>入手 Aliyun ECS 后首先应该做的事情 | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="持续更新中……
+更改 root user 密码1$ passwd&amp;#10;Enter new UNIX password: &amp;#10;Retype new UNIX password: &amp;#10;passwd: password updated successfully">
+  
+  <meta name="description" content="持续更新中……
+更改 root user 密码1$ passwd&amp;#10;Enter new UNIX password: &amp;#10;Retype new UNIX password: &amp;#10;passwd: password updated successfully">
+<meta property="og:type" content="article">
+<meta property="og:title" content="入手 Aliyun ECS 后首先应该做的事情">
+<meta property="og:url" content="http://blog.allenkung.com/2015/11/things-needtodo-when-got-aliyunecs/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="持续更新中……
+更改 root user 密码1$ passwd&amp;#10;Enter new UNIX password: &amp;#10;Retype new UNIX password: &amp;#10;passwd: password updated successfully">
+<meta property="og:updated_time" content="2016-02-13T14:58:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="入手 Aliyun ECS 后首先应该做的事情">
+<meta name="twitter:description" content="持续更新中……
+更改 root user 密码1$ passwd&amp;#10;Enter new UNIX password: &amp;#10;Retype new UNIX password: &amp;#10;passwd: password updated successfully">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/11/things-needtodo-when-got-aliyunecs/">
+  <time datetime="2015-11-24T07:11:01.000Z">
+    2015-11-24
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">入手 Aliyun ECS 后首先应该做的事情</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>持续更新中……</p>
+<h2 id="u66F4_u6539_root_user__u5BC6_u7801"><a href="#u66F4_u6539_root_user__u5BC6_u7801" class="headerlink" title="更改 root user 密码"></a>更改 root user 密码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ passwd&#10;Enter new UNIX password: &#10;Retype new UNIX password: &#10;passwd: password updated successfully</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="u521B_u5EFA_u666E_u901A_user"><a href="#u521B_u5EFA_u666E_u901A_user" class="headerlink" title="创建普通 user"></a>创建普通 user</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ useradd -m hello&#10;$ passwd hello&#10;Enter new UNIX password: &#10;Retype new UNIX password: &#10;passwd: password updated successfully</span><br></pre></td></tr></table></figure>
+<p>-m, –create-home 创建用户的主目录 </p>
+<h2 id="u7ED9_u666E_u901A_user__u6DFB_u52A0_sodo__u547D_u4EE4_u4F7F_u7528_u6743_u9650"><a href="#u7ED9_u666E_u901A_user__u6DFB_u52A0_sodo__u547D_u4EE4_u4F7F_u7528_u6743_u9650" class="headerlink" title="给普通 user 添加 sodo 命令使用权限"></a>给普通 user 添加 sodo 命令使用权限</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>找到<code>root ALL=(ALL:ALL) ALL</code>，把新建的 user 添加到这行下面：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification&#10;root&#9;ALL=(ALL:ALL) ALL&#10;newuser&#9;ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<h2 id="u8BBE_u7F6E_user__u7684_shell_uFF1Ash_-_26gt_3B_bash"><a href="#u8BBE_u7F6E_user__u7684_shell_uFF1Ash_-_26gt_3B_bash" class="headerlink" title="设置 user 的 shell：sh -&gt; bash"></a>设置 user 的 shell：sh -&gt; bash</h2><p>/etc/passwd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newuser:x:1000:1000::/home/newuser:</span><br></pre></td></tr></table></figure>
+<p>发现 root 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root:x:0:0:root:/root:/bin/bash</span><br></pre></td></tr></table></figure>
+<p>照抄一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allen:x:1000:1000::/home/allen:/bin/bash</span><br></pre></td></tr></table></figure>
+<h2 id="u66F4_u6539_SSH__u9ED8_u8BA4_u7AEF_u53E3"><a href="#u66F4_u6539_SSH__u9ED8_u8BA4_u7AEF_u53E3" class="headerlink" title="更改 SSH 默认端口"></a>更改 SSH 默认端口</h2><ol>
+<li><p>修改/etc/ssh/sshd_config里的Port字段</p>
+<p> Port 22改为Port 1000（你自定义的端口）</p>
+</li>
+<li><p>重启sshd服务</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ service ssh restart</span><br></pre></td></tr></table></figure>
+<h2 id="u7981_u7528_root__u767B_u5F55"><a href="#u7981_u7528_root__u767B_u5F55" class="headerlink" title="禁用 root 登录"></a>禁用 root 登录</h2><p>在 <code>/etc/ssh/sshd_config</code> 里找到 <code>PermitRootLogin yes</code> 设置成 <code>no</code></p>
+<h2 id="u4FEE_u6539_Hostname__u4E3B_u673A_u540D"><a href="#u4FEE_u6539_Hostname__u4E3B_u673A_u540D" class="headerlink" title="修改 Hostname 主机名"></a>修改 Hostname 主机名</h2><ol>
+<li>hostname 命令</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hostname newname</span><br></pre></td></tr></table></figure>
+<ol>
+<li>/etc/hostname 文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/hostname</span><br></pre></td></tr></table></figure>
+<ol>
+<li>/etc/hosts</li>
+</ol>
+<p>logout 生效</p>
+<h2 id="u4FEE_u6539_Welcome_Msg"><a href="#u4FEE_u6539_Welcome_Msg" class="headerlink" title="修改 Welcome Msg"></a>修改 Welcome Msg</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi /etc/motd</span><br></pre></td></tr></table></figure>
+<h2 id="u5B89_u88C5_Git"><a href="#u5B89_u88C5_Git" class="headerlink" title="安装 Git"></a>安装 Git</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install libcurl4-gnutls-dev libexpat1-dev gettext \&#10;  libz-dev libssl-dev</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ apt-get install git</span><br></pre></td></tr></table></figure>
+<p><a href="https://git-scm.com/book/zh-tw/v1/開始-安裝Git" target="_blank" rel="external">安裝Git</a></p>
+<h2 id="u5B89_u88C5_Nodejs"><a href="#u5B89_u88C5_Nodejs" class="headerlink" title="安装 Nodejs"></a>安装 Nodejs</h2><p>印象中 Ubuntu 14.04 apt-get 自带的 Node 版本很老，前往 Node 官网寻找最新版本的包安装方式：《<a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions" target="_blank" rel="external">Installing Node.js via package manager</a>》。</p>
+<p>基本步骤如下：</p>
+<pre><code>curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+sudo apt-get install -y nodejs
+</code></pre><p>装完查看 Node 版本：</p>
+<pre><code>node -v
+</code></pre><p>接着安装 NPM：</p>
+<pre><code>sudo apt-get install npm
+</code></pre><p>国内 aliyun 的话还要装个 <a href="https://github.com/Pana/nrm" target="_blank" rel="external">nrm</a>，不然装东西慢到死！</p>
+<pre><code>sudo npm install nrm -g
+</code></pre><p>装完查看可用源：</p>
+<pre><code>$ nrm ls
+</code></pre><p>显示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">* npm ---- https://registry.npmjs.org/&#10;  cnpm --- http://r.cnpmjs.org/&#10;  taobao - http://registry.npm.taobao.org/&#10;  eu ----- http://registry.npmjs.eu/&#10;  au ----- http://registry.npmjs.org.au/&#10;  sl ----- http://npm.strongloop.com/&#10;  nj ----- https://registry.nodejitsu.com/&#10;  pt ----- http://registry.npmjs.pt/</span><br></pre></td></tr></table></figure>
+<p>切换源：</p>
+<pre><code>nrm use taobao
+</code></pre><h2 id="u5B89_u88C5_Nginx"><a href="#u5B89_u88C5_Nginx" class="headerlink" title="安装 Nginx"></a>安装 Nginx</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
+<h3 id="u7981_u7528_IP__u8BBF_u95EE"><a href="#u7981_u7528_IP__u8BBF_u95EE" class="headerlink" title="禁用 IP 访问"></a>禁用 IP 访问</h3><p>一般用户不会用 IP 访问网站，基本访问 IP 的都是恶意攻击。所以这边在 <code>/etc/nginx/sites-available</code> 里新建一个 config 文件，内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server &#123;&#10;&#9;listen    80&#9;default;&#10;&#9;server_name  _;&#10;&#9;return 500;&#10;&#9;# rewrite ^(.*) http://www.xxx.com permanent;  &#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>可以根据自己的需求直接返回 500 或者重定向到其他网址，不过直接访问 IP 的流量一般也没什么价值重定向。保存，然后 <code>ln -s</code> 到 <code>sites-enable</code> 目录，<code>sudo service nginx restart</code> 生效。</p>
+<p>* 但是这样的话，localhost 也会无法使用，暂时没有找到其他方法。</p>
+<h2 id="u5B89_u88C5_Apache"><a href="#u5B89_u88C5_Apache" class="headerlink" title="安装 Apache"></a>安装 Apache</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install apache2</span><br></pre></td></tr></table></figure>
+<h3 id="u7981_u7528_server-status"><a href="#u7981_u7528_server-status" class="headerlink" title="禁用 server-status"></a>禁用 server-status</h3><p>Apache 有时候默认开启了 server-status mod，在主机后面加上 <code>//server-status/</code> 会显示 server 相关的信息，禁用方法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo vi /etc/apache2/mods-available/status.conf</span><br></pre></td></tr></table></figure>
+<p>配置文件内容大致如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;IfModule mod_status.c&#62;&#10;#&#10;# Allow server status reports generated by mod_status,&#10;# with the URL of http://servername/server-status&#10;# Uncomment and change the &#34;.example.com&#34; to allow&#10;# access from other hosts.&#10;#&#10;&#60;Location /server-status&#62;&#10;    SetHandler server-status&#10;    Order deny,allow&#10;    Allow from all&#10;    Allow from localhost ip6-localhost&#10;#   Allow from .example.com&#10;&#60;/Location&#62;&#10;&#60;/IfModule&#62;</span><br></pre></td></tr></table></figure>
+<p>将其中的 <code>Allow from all</code> 改成 <code>Deny from all</code>，然后 <code>sudo service apache2 restart</code> 生效。</p>
+<h2 id="u5B89_u88C5_PHP"><a href="#u5B89_u88C5_PHP" class="headerlink" title="安装 PHP"></a>安装 PHP</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install php5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get install php5-mysql</span><br></pre></td></tr></table></figure>
+<h2 id="UFW_Firewall"><a href="#UFW_Firewall" class="headerlink" title="UFW Firewall"></a>UFW Firewall</h2><p>关闭所有外部对本机的访问（本机访问外部正常）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw default deny</span><br></pre></td></tr></table></figure>
+<p>开启/禁用相应端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw allow 80 &#20801;&#35768;&#22806;&#37096;&#35775;&#38382;80&#31471;&#21475;&#10;$ sudo ufw delete allow 80 &#31105;&#27490;&#22806;&#37096;&#35775;&#38382;80 &#31471;&#21475;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw allow from 192.168.1.1 &#20801;&#35768;&#27492;IP&#35775;&#38382;&#25152;&#26377;&#30340;&#26412;&#26426;&#31471;&#21475;&#10;$ sudo ufw deny smtp &#31105;&#27490;&#22806;&#37096;&#35775;&#38382;smtp&#26381;&#21153;&#10;$ sudo ufw delete allow smtp &#21024;&#38500;&#19978;&#38754;&#24314;&#31435;&#30340;&#26576;&#26465;&#35268;&#21017;&#10;$ sudo ufw deny proto tcp from 10.0.0.0/8 to 192.168.0.1 port 22 &#35201;&#25298;&#32477;&#25152;&#26377;&#30340;TCP&#27969;&#37327;&#20174;10.0.0.0/8 &#21040;192.168.0.1&#22320;&#22336;&#30340;22&#31471;&#21475;&#10;# &#21487;&#20197;&#20801;&#35768;&#25152;&#26377;RFC1918&#32593;&#32476;&#65288;&#23616;&#22495;&#32593;/&#26080;&#32447;&#23616;&#22495;&#32593;&#30340;&#65289;&#35775;&#38382;&#36825;&#20010;&#20027;&#26426;&#65288;/8,/16,/12&#26159;&#19968;&#31181;&#32593;&#32476;&#20998;&#32423;&#65289;&#65306;&#10;$ sudo ufw allow from 10.0.0.0/8&#10;$ sudo ufw allow from 172.16.0.0/12&#10;$ sudo ufw allow from 192.168.0.0/16</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ufw enable&#10;$ sudo ufw disable &#10;$ sudo ufw status</span><br></pre></td></tr></table></figure>
+<p><a href="http://wiki.ubuntu.org.cn/UFW防火墙简单设置" target="_blank" rel="external">UFW防火墙简单设置</a><br><a href="http://wiki.ubuntu.org.cn/Ufw使用指南" target="_blank" rel="external">Ufw使用指南</a></p>
+<p><a href="http://mozillazg.com/2013/01/linux-vps-first-things-need-to-do.html" target="_blank" rel="external">[linux]入手 VPS 后首先该做的事情</a></p>
+
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/Web-Development/">Web Development</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/Aliyun/">Aliyun</a>, <a class="tags-link" href="/tags/Linux/">Linux</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>

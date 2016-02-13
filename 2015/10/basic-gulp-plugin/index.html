@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>Gulp Plugin 入门 | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 plugin。其中一篇《前端从零单排之 Gulp》里提到了几个基本的 plugin，觉得很实用：
+
+Less compile (gulp-less)
+Autoprefixer (gulp-autoprefixer)
+Minify CSS (gulp-minify-css)
+JSHint (g">
+  
+  <meta name="description" content="最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 plugin。其中一篇《前端从零单排之 Gulp》里提到了几个基本的 plugin，觉得很实用：
+
+Less compile (gulp-less)
+Autoprefixer (gulp-autoprefixer)
+Minify CSS (gulp-minify-css)
+JSHint (g">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Gulp Plugin 入门">
+<meta property="og:url" content="http://blog.allenkung.com/2015/10/basic-gulp-plugin/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 plugin。其中一篇《前端从零单排之 Gulp》里提到了几个基本的 plugin，觉得很实用：
+
+Less compile (gulp-less)
+Autoprefixer (gulp-autoprefixer)
+Minify CSS (gulp-minify-css)
+JSHint (g">
+<meta property="og:updated_time" content="2015-11-21T02:51:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gulp Plugin 入门">
+<meta name="twitter:description" content="最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 plugin。其中一篇《前端从零单排之 Gulp》里提到了几个基本的 plugin，觉得很实用：
+
+Less compile (gulp-less)
+Autoprefixer (gulp-autoprefixer)
+Minify CSS (gulp-minify-css)
+JSHint (g">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/10/basic-gulp-plugin/">
+  <time datetime="2015-10-13T08:04:40.000Z">
+    2015-10-13
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">Gulp Plugin 入门</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>最近在学习 Gulp，刚开始看的时候一头雾水，看了几篇文章之后稍微有点理解是怎么运行的了，几乎都是依赖各种 <a href="http://gulpjs.com/plugins/" target="_blank" rel="external">plugin</a>。其中一篇《<a href="http://segmentfault.com/a/1190000000494326" target="_blank" rel="external">前端从零单排之 Gulp</a>》里提到了几个基本的 plugin，觉得很实用：</p>
+<ol>
+<li><a href="https://www.npmjs.com/package/gulp-less" target="_blank" rel="external">Less compile (gulp-less)</a></li>
+<li><a href="https://github.com/postcss/autoprefixer" target="_blank" rel="external">Autoprefixer (gulp-autoprefixer)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-minify-css" target="_blank" rel="external">Minify CSS (gulp-minify-css)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-jshint/" target="_blank" rel="external">JSHint (gulp-jshint)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-concat/" target="_blank" rel="external">Concatenation (gulp-concat)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-uglify/" target="_blank" rel="external">Uglify (gulp-uglify)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-imagemin/" target="_blank" rel="external">Compress images (gulp-imagemin)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-livereload" target="_blank" rel="external">LiveReload (gulp-livereload)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-clean" target="_blank" rel="external">Clean files for a clean build (gulp-clean)</a></li>
+<li><a href="https://npmjs.org/package/gulp-cache/" target="_blank" rel="external">Caching of images so only changed images are compressed (gulp-cache)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-notify/" target="_blank" rel="external">Notify of changes (gulp-notify)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-ejs/" target="_blank" rel="external">EJS Generator (gulp-ejs)</a></li>
+<li><a href="https://www.npmjs.com/package/gulp-watch" target="_blank" rel="external">gulp-watch</a></li>
+<li><a href="https://www.npmjs.com/package/main-bower-files" target="_blank" rel="external">main-bower-files</a></li>
+</ol>
+<a id="more"></a>
+<hr>
+<h3 id="1-_Less_compile__28gulp-less_29"><a href="#1-_Less_compile__28gulp-less_29" class="headerlink" title="1. Less compile (gulp-less)"></a>1. Less compile (gulp-less)</h3><p>自动编译 LESS 文件的插件。</p>
+<h3 id="2-_Autoprefixer__28gulp-autoprefixer_29"><a href="#2-_Autoprefixer__28gulp-autoprefixer_29" class="headerlink" title="2. Autoprefixer (gulp-autoprefixer)"></a>2. Autoprefixer (gulp-autoprefixer)</h3><p>自动分析 CSS 代码并编译成带有兼容前缀的 CSS：</p>
+<pre><code>a {
+    display: flex;
+}
+</code></pre><p>compiles to:</p>
+<pre><code>a {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
+}
+</code></pre><p>同时，也会自动去除没有必要的已经失效的前缀，比如：</p>
+<pre><code>a {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+</code></pre><p>compiles to:</p>
+<pre><code>a {
+    border-radius: 5px;
+}
+</code></pre><h3 id="3-_Minify_CSS__28gulp-minify-css_29"><a href="#3-_Minify_CSS__28gulp-minify-css_29" class="headerlink" title="3. Minify CSS (gulp-minify-css)"></a>3. Minify CSS (gulp-minify-css)</h3><p>自动压缩 CSS 文件的插件。</p>
+<h3 id="4-_JSHint__28gulp-jshint_29"><a href="#4-_JSHint__28gulp-jshint_29" class="headerlink" title="4. JSHint (gulp-jshint)"></a>4. JSHint (gulp-jshint)</h3><p>著名的 JavaScript 代码纠察工具 gulp 插件。</p>
+<h3 id="5-_Concatenation__28gulp-concat_29"><a href="#5-_Concatenation__28gulp-concat_29" class="headerlink" title="5. Concatenation (gulp-concat)"></a>5. Concatenation (gulp-concat)</h3><p>JavaScript Concatenation 文件合并插件，将多个 JS 文件合并编译成一个文件。</p>
+<h3 id="6-_Uglify__28gulp-uglify_29"><a href="#6-_Uglify__28gulp-uglify_29" class="headerlink" title="6. Uglify (gulp-uglify)"></a>6. Uglify (gulp-uglify)</h3><p>Minify JavaScript with UglifyJS2，JS 压缩插件。</p>
+<h3 id="7-_Compress_images__28gulp-imagemin_29"><a href="#7-_Compress_images__28gulp-imagemin_29" class="headerlink" title="7. Compress images (gulp-imagemin)"></a>7. Compress images (gulp-imagemin)</h3><p>图片压缩插件，Minify PNG, JPEG, GIF and SVG images.</p>
+<h3 id="8-_LiveReload__28gulp-livereload_29"><a href="#8-_LiveReload__28gulp-livereload_29" class="headerlink" title="8. LiveReload (gulp-livereload)"></a>8. LiveReload (gulp-livereload)</h3><p>实时监听刷新插件。</p>
+<h3 id="9-_Clean_files_for_a_clean_build__28gulp-clean_29"><a href="#9-_Clean_files_for_a_clean_build__28gulp-clean_29" class="headerlink" title="9. Clean files for a clean build (gulp-clean)"></a>9. Clean files for a clean build (gulp-clean)</h3><p>清除文件的插件，用于生成新文件之前。</p>
+<h3 id="10-_Caching_of_images_so_only_changed_images_are_compressed__28gulp-cache_29"><a href="#10-_Caching_of_images_so_only_changed_images_are_compressed__28gulp-cache_29" class="headerlink" title="10. Caching of images so only changed images are compressed (gulp-cache)"></a>10. Caching of images so only changed images are compressed (gulp-cache)</h3><p>缓存插件？还没搞懂，以后再补充。</p>
+<h3 id="11-_Notify_of_changes__28gulp-notify_29"><a href="#11-_Notify_of_changes__28gulp-notify_29" class="headerlink" title="11. Notify of changes (gulp-notify)"></a>11. Notify of changes (gulp-notify)</h3><p>gulp plugin to send messages based on Vinyl Files or Errors to Mac OS X, Linux or Windows using the node-notifier module. Fallbacks to Growl or simply logging</p>
+<h3 id="12-_EJS_Generator__28gulp-ejs_29"><a href="#12-_EJS_Generator__28gulp-ejs_29" class="headerlink" title="12. EJS Generator (gulp-ejs)"></a>12. EJS Generator (gulp-ejs)</h3><p>A plugin for Gulp that parses ejs template files</p>
+<h3 id="13-_gulp-watch"><a href="#13-_gulp-watch" class="headerlink" title="13. gulp-watch"></a>13. gulp-watch</h3><p>File watcher that uses super-fast chokidar and emits vinyl objects.</p>
+<h3 id="14-_main-bower-files"><a href="#14-_main-bower-files" class="headerlink" title="14. main-bower-files"></a>14. main-bower-files</h3><p>Get main files from your installed bower packages.</p>
+
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/Web-Development/">Web Development</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/Front-end/">Front-end</a>, <a class="tags-link" href="/tags/Javascript/">Javascript</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>

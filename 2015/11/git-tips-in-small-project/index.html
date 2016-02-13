@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>Small Project 中的 Git 使用心得 | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="因为 公司官网 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始就用了 Git 作为 Version Control System。
+比较了 GitHub 和 Bitbucket，虽然前者的 community 比较强大，但是后者给小 studio 提供了非常吸引人的 plan：
+
+Github：鼓励开源，按照 Pr">
+  
+  <meta name="description" content="因为 公司官网 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始就用了 Git 作为 Version Control System。
+比较了 GitHub 和 Bitbucket，虽然前者的 community 比较强大，但是后者给小 studio 提供了非常吸引人的 plan：
+
+Github：鼓励开源，按照 Pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Small Project 中的 Git 使用心得">
+<meta property="og:url" content="http://blog.allenkung.com/2015/11/git-tips-in-small-project/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="因为 公司官网 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始就用了 Git 作为 Version Control System。
+比较了 GitHub 和 Bitbucket，虽然前者的 community 比较强大，但是后者给小 studio 提供了非常吸引人的 plan：
+
+Github：鼓励开源，按照 Pr">
+<meta property="og:image" content="http://7jpo5r.com1.z0.glb.clouddn.com/blog/git-workflow.png-width620">
+<meta property="og:updated_time" content="2015-11-21T02:45:50.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Small Project 中的 Git 使用心得">
+<meta name="twitter:description" content="因为 公司官网 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始就用了 Git 作为 Version Control System。
+比较了 GitHub 和 Bitbucket，虽然前者的 community 比较强大，但是后者给小 studio 提供了非常吸引人的 plan：
+
+Github：鼓励开源，按照 Pr">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/11/git-tips-in-small-project/">
+  <time datetime="2015-11-20T05:43:11.000Z">
+    2015-11-20
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">Small Project 中的 Git 使用心得</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>因为 <a href="http://gamebau.com" target="_blank" rel="external">公司官网</a> 策划、设计（Sketch）、前端（Bootstrap）、后端（Express）都是我一个人搞定，所以考虑边学变尝试的角度，从一开始就用了 Git 作为 Version Control System。</p>
+<p>比较了 <a href="http://github.com" target="_blank" rel="external">GitHub</a> 和 <a href="http://bitbucket.org" target="_blank" rel="external">Bitbucket</a>，虽然前者的 community 比较强大，但是后者给小 studio 提供了非常吸引人的 plan：</p>
+<ul>
+<li><a href="https://github.com/pricing" target="_blank" rel="external">Github</a>：鼓励开源，按照 Private Repository 的数量收费；</li>
+<li><a href="https://bitbucket.org/product/pricing?tab=cloud-pricing" target="_blank" rel="external">Bitbucket</a>：按照 team 的人员数量收费，5 users 以内的 Private Repository 免费。</li>
+</ul>
+<p>这个 project 就我一个人，所以自然就选了 Bitbucket。一开始什么都在 master branch 上操作，主要是用来把白天公司 mbp 上没完成的代码 pass 到家里的 mbp 上继续写。然后觉得同时写各种功能变得越来越乱，就根据各种供能建了好多 branch，但是合来合去也觉得麻烦就怕会出错。</p>
+<p>稍微研究了下网上的 Git 部署策略文章，找到阮一峰老师的这篇《<a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">Git分支管理策略</a>》，终于找到适合自己的策略了。</p>
+<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/git-workflow.png-width620" alt="Git Workflow"></p>
+<!--readmore-->
+<p>大致是上图这样的 workflow，主要分成 3 个 branch:</p>
+<ol>
+<li>主线分支 Master</li>
+<li>开发分支 Develop</li>
+<li>临时性分支 temporary branches:<ul>
+<li>功能分支 Feature</li>
+<li>预发布分支 Release</li>
+<li>抓虫分支 Fixbug</li>
+</ul>
+</li>
+</ol>
+<p>具体各个 branch 的描述大家去看阮一峰老师的<a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="external">文章</a>，这里仅仅提一下几个重点。</p>
+<h4 id="u4EE3_u7801_u5E93_u5E94_u8BE5_u6709_u4E00_u4E2A_u3001_u4E14_u4EC5_u6709_u4E00_u4E2A_u4E3B_u5206_u652F_Master"><a href="#u4EE3_u7801_u5E93_u5E94_u8BE5_u6709_u4E00_u4E2A_u3001_u4E14_u4EC5_u6709_u4E00_u4E2A_u4E3B_u5206_u652F_Master" class="headerlink" title="代码库应该有一个、且仅有一个主分支 Master"></a>代码库应该有一个、且仅有一个主分支 Master</h4><p>首先，代码库应该有一个、且仅有一个主分支。所有提供给用户使用的正式版本，都在这个主分支上发布并用 Tag 标记。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag -a 1.2</span><br></pre></td></tr></table></figure>
+<h4 id="u4E3A_u4E86_u4FDD_u8BC1_u7248_u672C_u6F14_u8FDB_u7684_u6E05_u6670_uFF0C_u4F7F_u7528__u2013no-ff__u53C2_u6570"><a href="#u4E3A_u4E86_u4FDD_u8BC1_u7248_u672C_u6F14_u8FDB_u7684_u6E05_u6670_uFF0C_u4F7F_u7528__u2013no-ff__u53C2_u6570" class="headerlink" title="为了保证版本演进的清晰，使用 –no-ff 参数"></a>为了保证版本演进的清晰，使用 –no-ff 参数</h4><p>默认情况下，Git 执行”快进式合并”（fast-farward merge），会直接将 Master 分支指向 Develop 分支。使用–no-ff参数后，会执行正常合并，在Master分支上生成一个新节点。为了保证版本演进的清晰，我们希望采用这种做法。关于合并的更多解释，请参考 Benjamin Sandofsky 的《<a href="http://sandofsky.com/blog/git-workflow.html" target="_blank" rel="external">Understanding the Git Workflow</a>》。</p>
+<p>将Develop分支发布到Master分支的命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#20999;&#25442;&#21040;Master&#20998;&#25903;&#10;$ git checkout master&#10;&#10;# &#23545;Develop&#20998;&#25903;&#36827;&#34892;&#21512;&#24182;&#10;$ git merge --no-ff develop</span><br></pre></td></tr></table></figure>
+<h4 id="u8BB0_u5F97_u5220_u9664_u4E34_u65F6_u6027_u5206_u652F"><a href="#u8BB0_u5F97_u5220_u9664_u4E34_u65F6_u6027_u5206_u652F" class="headerlink" title="记得删除临时性分支"></a>记得删除临时性分支</h4><p>Feature、Release、Fixbug 这三种分支都属于临时性需要，使用完以后，应该删除，使得代码库的常设分支始终只有 Master 和 Develop。</p>
+<p>创建一个功能分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b feature-x develop</span><br></pre></td></tr></table></figure>
+<p>开发完成后，将功能分支合并到 develop 分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout develop&#10;$ git merge --no-ff feature-x</span><br></pre></td></tr></table></figure>
+<p>删除 feature 分支：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -d feature-x</span><br></pre></td></tr></table></figure>
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/Web-Development/">Web Development</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/Git/">Git</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>

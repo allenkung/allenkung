@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>Hexo Rsync Deploy | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="上周末刚买了 Linode 的 VPS，打算把自己和朋友的几个小站部署上去。之前准备折腾下 Ghost，但是在 mbp 本地部署的时候报错，而且因为是基于 nodejs 的 webserver，还要配置 nginx 反向代理，所以先搁置下。系统干干净净地装了 Apache，allenkung.com 和另外几个「此域名出售」的静态站反正一百年不更新挂着了事。
+剩下 blog 部分，blog.all">
+  
+  <meta name="description" content="上周末刚买了 Linode 的 VPS，打算把自己和朋友的几个小站部署上去。之前准备折腾下 Ghost，但是在 mbp 本地部署的时候报错，而且因为是基于 nodejs 的 webserver，还要配置 nginx 反向代理，所以先搁置下。系统干干净净地装了 Apache，allenkung.com 和另外几个「此域名出售」的静态站反正一百年不更新挂着了事。
+剩下 blog 部分，blog.all">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo Rsync Deploy">
+<meta property="og:url" content="http://blog.allenkung.com/2014/11/hexo-rsync/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="上周末刚买了 Linode 的 VPS，打算把自己和朋友的几个小站部署上去。之前准备折腾下 Ghost，但是在 mbp 本地部署的时候报错，而且因为是基于 nodejs 的 webserver，还要配置 nginx 反向代理，所以先搁置下。系统干干净净地装了 Apache，allenkung.com 和另外几个「此域名出售」的静态站反正一百年不更新挂着了事。
+剩下 blog 部分，blog.all">
+<meta property="og:updated_time" content="2014-11-30T09:49:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo Rsync Deploy">
+<meta name="twitter:description" content="上周末刚买了 Linode 的 VPS，打算把自己和朋友的几个小站部署上去。之前准备折腾下 Ghost，但是在 mbp 本地部署的时候报错，而且因为是基于 nodejs 的 webserver，还要配置 nginx 反向代理，所以先搁置下。系统干干净净地装了 Apache，allenkung.com 和另外几个「此域名出售」的静态站反正一百年不更新挂着了事。
+剩下 blog 部分，blog.all">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="blog">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2014/11/hexo-rsync/">
+  <time datetime="2014-11-25T12:35:08.000Z">
+    2014-11-25
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">Hexo Rsync Deploy</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>上周末刚买了 <a href="http://lindoe.com" target="_blank" rel="external">Linode</a> 的 VPS，打算把自己和朋友的几个小站部署上去。之前准备折腾下 <a href="http://ghost.org" target="_blank" rel="external">Ghost</a>，但是在 mbp 本地部署的时候报错，而且因为是基于 nodejs 的 webserver，还要配置 nginx 反向代理，所以先搁置下。系统干干净净地装了 Apache，<a href="http://allenkung.com" target="_blank" rel="external">allenkung.com</a> 和另外几个「<a href="http://wakfu.tips" target="_blank" rel="external"><em>此域名出售</em></a>」的静态站反正一百年不更新挂着了事。</p>
+<p>剩下 blog 部分，<a href="http://blog.allenkung.com">blog.allenkung.com</a> 是利用 <a href="http://hexo.io" target="_blank" rel="external">hexo</a> 部署在 <a href="http://github.com" target="_blank" rel="external">github</a> 上的，hexo 的 git deploy 机制很好用。但是小迟同学的 <a href="http://cakepoet.com" target="_blank" rel="external">cakepoet.com</a> 我计划尝试下使用 hexo 的 <a href="http://hexo.io/docs/deployment.html#Rsync" target="_blank" rel="external">Rsync deploy</a> 机制来部署。</p>
+<a id="more"></a>
+<p><em>Rsync是linux/Unix文件同步和传送工具。用于替代rcp的一个工具，rsync可以通过rsh或ssh使用，也能以daemon模式去运行，在以daemon方式运行时rsync server会开一个873端口，等待客户端去连接。连接时，rsync server会检查口令是否相符，若通过口令查核，则可以通过进行文件传输，第一次连通完成时，会把整份文件传输一次，以后则就只需进行增量备份.</em></p>
+<p>于是跟 alex 讨教了下 Rsync 的部署，在 VPS 上试验了一下：</p>
+<p>Step 2. 开启 Rsync 服务，将 <code>/etc/default/rsync</code> 文件中的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RSYNC_ENABLE = true</span><br></pre></td></tr></table></figure>
+<p>Step 2. 建立一个 conf 文件，文件内容参考这篇《<a href="http://coolnull.com/1899.html" target="_blank" rel="external">rsync命令详解</a>》：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo nano /etc/rsyncd.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[confname]&#9;&#9;&#9;&#9;&#9;&#9;//&#33258;&#23450;&#20041;&#27169;&#22359;&#21517;&#31216;&#10;path = /usr/local/nginx/conf&#9;//&#29992;&#26469;&#25351;&#23450;&#35201;&#22791;&#20221;&#30340;&#30446;&#24405;&#10;comment = Nginx conf&#10;ignore errors&#9;&#9;&#9;&#9;&#9;//&#21487;&#20197;&#24573;&#30053;&#19968;&#20123;IO&#38169;&#35823;&#10;read only = no&#9;&#9;&#9;&#9;&#9;//&#35774;&#32622; no&#65292;&#23458;&#25143;&#31471;&#21487;&#20197;&#19978;&#20256;&#25991;&#20214;&#65292;yes&#26159;&#21482;&#35835;&#10;write only = no&#9;&#9;&#9;&#9;&#9;//no &#20026;&#23458;&#25143;&#31471;&#21487;&#20197;&#19979;&#36733;&#65292;yes &#19981;&#33021;&#19979;&#36733;&#10;hosts allow = 192.168.2.0/24&#9;//&#21487;&#20197;&#36830;&#25509;&#30340; IP&#10;hosts deny = *&#9;&#9;&#9;&#9;&#9;//&#31105;&#27490;&#36830;&#25509;&#30340; IP&#10;list = false&#9;&#9;&#9;&#9;&#9;//&#23458;&#25143;&#35831;&#27714;&#26102;&#65292;&#20351;&#29992;&#27169;&#22359;&#21015;&#34920;&#10;uid = root&#10;gid = root&#10;auth users =  username&#9;&#9;&#9;//&#36830;&#25509;&#29992;&#25143;&#21517;&#65292;&#21644; linux &#31995;&#32479;&#29992;&#25143;&#21517;&#26080;&#20851;&#31995;&#10;secrets file = /etc/rsyncd.pass&#9;//&#39564;&#35777;&#23494;&#30721;&#25991;&#20214;</span><br></pre></td></tr></table></figure>
+<p>Step 3. 建立并编辑验证密码文件 rsyncd.pass，文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username:password</span><br></pre></td></tr></table></figure>
+<p>Step 4. 更改 <code>/etc/rsyncd.pass</code> 文件权限 600</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo chown 600 /etc/rsyncd.pass</span><br></pre></td></tr></table></figure>
+<p>至此，准备工作都做完了。我们测试一下吧：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rsync -av /databack username@172.16.78.192::confname</span><br></pre></td></tr></table></figure>
+<p><em>拷贝本地机器文件到远程 rsync 服务器(daemon 形式运行 rsync)中。当DST路径信息包含”::”分隔符时启动该模式。</em></p>
+<p>发现已经成功啦！那么回到此文的话题，在 hexo 中配置 rsync，编辑 <code>_config.yml</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deploy:&#10;  type: rsync&#10;  host: &#60;host&#62;&#10;  user: &#60;user&#62;&#10;  root: &#60;root&#62;&#10;  port: [port]&#10;  delete: [true|false]&#10;  verbose: [true|false]&#10;  ignore_errors: [true|false]</span><br></pre></td></tr></table></figure>
+<p>其中 <code>root</code> 和 <code>port</code> 两项比较困惑，先大致填一下，然后 <code>$ hexo d</code> 一下发现会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Permission denied</span><br></pre></td></tr></table></figure>
+<p>于是开始漫长地 check 帖子之旅，找到最接近的情况是<a href="https://github.com/hexojs/hexo/issues/24" target="_blank" rel="external">这个帖子</a>，但是 hexo 作者表示已经<a href="https://github.com/hexojs/hexo/commit/b59ee89a18ce63ec030be856b7f967a28b648dd0" target="_blank" rel="external">修复</a>并且 close 掉了这个 issue。</p>
+<p>于是开始扒 hexo 的 code，首先是要找 hexo 的安装目录：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm root -g&#10;/usr/local/lib/node_modules</span><br></pre></td></tr></table></figure>
+<p>然后在<code>node_modules/hexo/lib/plugins/deployer/rsync.js</code>找到这个文件，仔细的朋友会发现跟之前提到的时候作者修复 rsync bug 时候比，现在的文件目录是把 rsync 当成一个 plugin 来处理了，可见 hexo 也一直在进步中。</p>
+<p>进一步扒代码找到相关的逻辑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var params = [&#10;    args.delete === true ? &#39;--delete&#39; : &#39;&#39;,&#10;    args.verbose === true ? &#39;-v&#39; : &#39;&#39;,&#10;    args.ignore_errors === true ? &#39;--ignore-errors&#39; : &#39;&#39;,&#10;    &#39;-az&#39;,&#10;    &#39;public/&#39;,&#10;    &#39;-e&#39;,&#10;    &#39;ssh -p &#39; + args.port,&#10;    args.user + &#39;@&#39; + args.host + &#39;:&#39; + args.root&#10;  ].filter(function(arg)&#123;&#10;    return arg;&#10;  &#125;);&#10;run(&#39;rsync&#39;, params, function(code)&#123;&#10;    callback(code ? &#39;Deploy failed: rsync (code &#39; + code + &#39;)&#39; : null);&#10;&#125;);</span><br></pre></td></tr></table></figure>
+<p>可以看到 hexo 的 rsync deploy 模式是通过 ssh 的模式，貌似不能通过 daemon 模式去运行（有个很明显的好处就是不用通过系统用户去管理使用者的帐号密码，而可以通过 <code>/etc/rsyncd.pass</code> 文件来管理）。</p>
+<p>目前还没有找到解决方案，我去研究下。</p>
+
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/hexo/">hexo</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/hexo-rsync/">hexo rsync</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>
