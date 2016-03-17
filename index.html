@@ -58,6 +58,51 @@
   <header>
     
       <div class="icon"></div>
+      <a href="/2016/03/deduction-between-two-dates/">
+  <time datetime="2016-03-16T06:50:01.000Z">
+    2016-03-16
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title"><a href="/2016/03/deduction-between-two-dates/">JS 日期求差</a></h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：</p>
+<ul>
+<li>开始时间: startDate</li>
+<li>结束时间: endDate</li>
+<li>当前时间: currentDate</li>
+</ul>
+<p>本来打算用 <a href="http://momentjs.com/">moment.js</a> 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：</p>
+<pre><code>Math.ceil((new Date(&apos;2016-03-10&apos;).getTime() - 8*3600*1000 - Date.now()) / 86400000)
+</code></pre><p>突然意识到自己好弱啊  ʅ(‾◡◝) 然后打起精神去做了下 Research：</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2016/03/deduction-between-two-dates/#more" class="more-link">阅读全文</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+  
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
       <a href="/2016/02/ruts-under-snow/">
   <time datetime="2016-02-20T09:56:54.000Z">
     2016-02-20
@@ -73,7 +118,7 @@
   
   <div class="entry">
     
-      <p><img src="/images/ruts-under-snow-01.jpg" alt="Niseko Annupuri"></p>
+      <p><img src="/static/images/ruts-under-snow-01.jpg" alt="Niseko Hirafu, photo by Du Xin"></p>
 <p>大山里人们滑过的长长雪痕，不消片刻就被落雪覆盖了。雪地又恢复了它原本的平整，如同时间可以消磨一切，对于雪山来说更快，只需要片刻。</p>
 <p>这就是雪山的性格，雪的伤痕用雪覆盖。人也是一样吧，爱的伤痕应该用爱来覆盖。</p>
 <p>滑过雪的人有这样的经验，没有压过的粉雪异常松软，像棉花糖，调皮地滑过去把它们打散开来像云、像雾。有些可爱、羞涩的成分就像初恋一般。</p>
@@ -489,45 +534,6 @@
   </div>
   <footer class="end-sep">
     
-      
-      
-    
-    <div class="clearfix"></div>
-  </footer>
-</article>
-
-
-  
-    <article class="post">
-  <header>
-    
-      <div class="icon"></div>
-      <a href="/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/">
-  <time datetime="2015-08-23T16:47:58.000Z">
-    2015-08-24
-  </time>
-</a>
-    
-    
-  
-    <h1 class="title"><a href="/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/">凯瑟琳•雅丝：影像的时空维度与体系</a></h1>
-  
-
-  </header>
-  
-  <div class="entry">
-    
-      <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-01.JPG-width620" alt="凯瑟琳•雅丝：影像的时空维度与体系，民生美术馆"></p>
-<p>这次讲座之前我并不知道 <a href="https://en.wikipedia.org/wiki/Catherine_Yass">Catherine Yass</a> 其人，也未见过她的作品。下午还在犹豫要不要参加民生举办的这次讲座，但是主题“<a href="http://www.douban.com/event/25037774/">影像的时空维度与体系</a>”实在太吸引人。结果 Yass 女士的作品很有深度，为我打开了一扇窗，让人大开眼界。</p>
-<p>由于摄影师的作品中很喜欢颠倒重置画面，所以和我们视频讲座的时候也是颠倒的 LOL</p>
-    
-  </div>
-  <footer class="end-sep">
-    
-      
-        <div class="alignleft">
-          <a href="/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/#more" class="more-link">阅读全文</a>
-        </div>
       
       
     

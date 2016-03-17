@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  
+  <title>JS 日期求差 | Allen&#39;s Life</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
+    <meta name="description" content="想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：
+
+开始时间: startDate
+结束时间: endDate
+当前时间: currentDate
+
+本来打算用 moment.js 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：
+Math.ceil((ne">
+  
+  <meta name="description" content="想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：
+
+开始时间: startDate
+结束时间: endDate
+当前时间: currentDate
+
+本来打算用 moment.js 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：
+Math.ceil((ne">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 日期求差">
+<meta property="og:url" content="http://blog.allenkung.com/2016/03/deduction-between-two-dates/index.html">
+<meta property="og:site_name" content="Allen's Life">
+<meta property="og:description" content="想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：
+
+开始时间: startDate
+结束时间: endDate
+当前时间: currentDate
+
+本来打算用 moment.js 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：
+Math.ceil((ne">
+<meta property="og:updated_time" content="2016-03-17T06:45:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 日期求差">
+<meta name="twitter:description" content="想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：
+
+开始时间: startDate
+结束时间: endDate
+当前时间: currentDate
+
+本来打算用 moment.js 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：
+Math.ceil((ne">
+  
+  
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+
+<body>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content"><article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2016/03/deduction-between-two-dates/">
+  <time datetime="2016-03-16T06:50:01.000Z">
+    2016-03-16
+  </time>
+</a>
+    
+    
+  
+    <h1 class="title">JS 日期求差</h1>
+  
+
+  </header>
+  
+  <div class="entry">
+    
+      <p>想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：</p>
+<ul>
+<li>开始时间: startDate</li>
+<li>结束时间: endDate</li>
+<li>当前时间: currentDate</li>
+</ul>
+<p>本来打算用 <a href="http://momentjs.com/" target="_blank" rel="external">moment.js</a> 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：</p>
+<pre><code>Math.ceil((new Date(&apos;2016-03-10&apos;).getTime() - 8*3600*1000 - Date.now()) / 86400000)
+</code></pre><p>突然意识到自己好弱啊  ʅ(‾◡◝) 然后打起精神去做了下 Research：</p>
+<a id="more"></a>
+<h4 id="1-向正无穷取整-Math-ceil"><a href="#1-向正无穷取整-Math-ceil" class="headerlink" title="1. 向正无穷取整 Math.ceil()"></a>1. 向正无穷取整 Math.ceil()</h4><p>这个函数的作用是「向正无穷取整」，比如：</p>
+<pre><code>Math.ceil(.95);   // 1
+Math.ceil(4);     // 4
+Math.ceil(7.004); // 8
+</code></pre><p>所以上面的公式是对 <strong>( 开始时间 - UTC+8时差 - 当前时间 ) 向正无穷取整</strong>。其中 <code>new Date().getTime() === Date.now()</code>，据乔治同学说貌似前者兼容性更好。</p>
+<h4 id="2-引入时差校正-getTimezoneOffset"><a href="#2-引入时差校正-getTimezoneOffset" class="headerlink" title="2. 引入时差校正 getTimezoneOffset()"></a>2. 引入时差校正 getTimezoneOffset()</h4><p>上面乔治给的代码里引入的 <code>8*3600*1000</code> 便是为了校正 UTC+8 的时差：8 hours <em> 3600 seconds </em> 1000 milliseconds，因为 Date.now() 即便跑在客户端，返回的也是 UTC0 格林威治时间。所以这里引入 <strong>getTimezoneOffset()</strong>，此方法可返回格林威治时间和本地时间之间的时差（以分钟为单位），如此便可以通适不同的时区了（前提是 startDate 是当地时区的时间）。</p>
+<pre><code>var now = new Date();
+Math.ceil((new Date(&apos;2016-03-10&apos;).getTime() + now.getTimezoneOffset()*60*1000 - now.getTime()) / 86400000);
+</code></pre><h4 id="3-文字显示条件判断"><a href="#3-文字显示条件判断" class="headerlink" title="3. 文字显示条件判断"></a>3. 文字显示条件判断</h4><ol>
+<li>开始时间 &gt; 当前时间：里开始还有 X 天</li>
+<li>开始时间 &lt;＝ 当前时间 &amp;&amp; 结束时间 &gt; 当前时间：离结束还有 X 天</li>
+<li>结束时间 ＝ 当前时间：最后一天</li>
+<li>结束时间 &lt; 当前时间：已结束</li>
+</ol>
+<p>大致就是以上的逻辑，有空封装成函数放 github 上。</p>
+
+    
+  </div>
+  <footer>
+    
+      
+  <div class="categories">
+    <a class="categories-link" href="/categories/Coding/">Coding</a>
+  </div>
+
+      
+  <div class="tags">
+    <a class="tags-link" href="/tags/JaveScript/">JaveScript</a>
+  </div>
+
+    
+    <div class="clearfix"></div>
+  </footer>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">评论</h1>
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</div>
+  </div>
+  <footer id="footer"><div class="copyright">
+  
+  &copy; 2016 <a href="/">allen kung</a>
+  
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+<script type="text/javascript">
+  var disqus_shortname = 'allenkung';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  }());
+</script>
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
+
+</body>
+</html>

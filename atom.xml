@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.allenkung.com/"/>
-  <updated>2016-02-20T10:12:42.000Z</updated>
+  <updated>2016-03-17T06:45:01.000Z</updated>
   <id>http://blog.allenkung.com/</id>
   
   <author>
@@ -16,13 +16,68 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JS 日期求差</title>
+    <link href="http://blog.allenkung.com/2016/03/deduction-between-two-dates/"/>
+    <id>http://blog.allenkung.com/2016/03/deduction-between-two-dates/</id>
+    <published>2016-03-16T06:50:01.000Z</published>
+    <updated>2016-03-17T06:45:01.000Z</updated>
+    
+    <content type="html">&lt;p&gt;想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;开始时间: startDate&lt;/li&gt;
+&lt;li&gt;结束时间: endDate&lt;/li&gt;
+&lt;li&gt;当前时间: currentDate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本来打算用 &lt;a href=&quot;http://momentjs.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;moment.js&lt;/a&gt; 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Math.ceil((new Date(&amp;apos;2016-03-10&amp;apos;).getTime() - 8*3600*1000 - Date.now()) / 86400000)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;突然意识到自己好弱啊  ʅ(‾◡◝) 然后打起精神去做了下 Research：&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;1-向正无穷取整-Math-ceil&quot;&gt;&lt;a href=&quot;#1-向正无穷取整-Math-ceil&quot; class=&quot;headerlink&quot; title=&quot;1. 向正无穷取整 Math.ceil()&quot;&gt;&lt;/a&gt;1. 向正无穷取整 Math.ceil()&lt;/h4&gt;&lt;p&gt;这个函数的作用是「向正无穷取整」，比如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Math.ceil(.95);   // 1
+Math.ceil(4);     // 4
+Math.ceil(7.004); // 8
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;所以上面的公式是对 &lt;strong&gt;( 开始时间 - UTC+8时差 - 当前时间 ) 向正无穷取整&lt;/strong&gt;。其中 &lt;code&gt;new Date().getTime() === Date.now()&lt;/code&gt;，据乔治同学说貌似前者兼容性更好。&lt;/p&gt;
+&lt;h4 id=&quot;2-引入时差校正-getTimezoneOffset&quot;&gt;&lt;a href=&quot;#2-引入时差校正-getTimezoneOffset&quot; class=&quot;headerlink&quot; title=&quot;2. 引入时差校正 getTimezoneOffset()&quot;&gt;&lt;/a&gt;2. 引入时差校正 getTimezoneOffset()&lt;/h4&gt;&lt;p&gt;上面乔治给的代码里引入的 &lt;code&gt;8*3600*1000&lt;/code&gt; 便是为了校正 UTC+8 的时差：8 hours &lt;em&gt; 3600 seconds &lt;/em&gt; 1000 milliseconds，因为 Date.now() 即便跑在客户端，返回的也是 UTC0 格林威治时间。所以这里引入 &lt;strong&gt;getTimezoneOffset()&lt;/strong&gt;，此方法可返回格林威治时间和本地时间之间的时差（以分钟为单位），如此便可以通适不同的时区了（前提是 startDate 是当地时区的时间）。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;var now = new Date();
+Math.ceil((new Date(&amp;apos;2016-03-10&amp;apos;).getTime() + now.getTimezoneOffset()*60*1000 - now.getTime()) / 86400000);
+&lt;/code&gt;&lt;/pre&gt;&lt;h4 id=&quot;3-文字显示条件判断&quot;&gt;&lt;a href=&quot;#3-文字显示条件判断&quot; class=&quot;headerlink&quot; title=&quot;3. 文字显示条件判断&quot;&gt;&lt;/a&gt;3. 文字显示条件判断&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;开始时间 &amp;gt; 当前时间：里开始还有 X 天&lt;/li&gt;
+&lt;li&gt;开始时间 &amp;lt;＝ 当前时间 &amp;amp;&amp;amp; 结束时间 &amp;gt; 当前时间：离结束还有 X 天&lt;/li&gt;
+&lt;li&gt;结束时间 ＝ 当前时间：最后一天&lt;/li&gt;
+&lt;li&gt;结束时间 &amp;lt; 当前时间：已结束&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;大致就是以上的逻辑，有空封装成函数放 github 上。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;想实现一个需求：显示某个活动网页离开始日期还有几天，或者如果已经开始了，离结束日期还有几天。相关的时间变量有三个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;开始时间: startDate&lt;/li&gt;
+&lt;li&gt;结束时间: endDate&lt;/li&gt;
+&lt;li&gt;当前时间: currentDate&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本来打算用 &lt;a href=&quot;http://momentjs.com/&quot;&gt;moment.js&lt;/a&gt; 来实现，但是折腾了半天竟然没有找到简单求差的函数…… 然后请教了一下 eleme 的前端同事乔治，不消片刻就甩给我这段代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Math.ceil((new Date(&amp;apos;2016-03-10&amp;apos;).getTime() - 8*3600*1000 - Date.now()) / 86400000)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;突然意识到自己好弱啊  ʅ(‾◡◝) 然后打起精神去做了下 Research：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Coding" scheme="http://blog.allenkung.com/categories/Coding/"/>
+    
+    
+      <category term="JaveScript" scheme="http://blog.allenkung.com/tags/JaveScript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>雪痕</title>
     <link href="http://blog.allenkung.com/2016/02/ruts-under-snow/"/>
     <id>http://blog.allenkung.com/2016/02/ruts-under-snow/</id>
     <published>2016-02-20T09:56:54.000Z</published>
-    <updated>2016-02-20T10:12:42.000Z</updated>
+    <updated>2016-03-14T09:14:11.000Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;img src=&quot;/images/ruts-under-snow-01.jpg&quot; alt=&quot;Niseko Annupuri&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src=&quot;/static/images/ruts-under-snow-01.jpg&quot; alt=&quot;Niseko Hirafu, photo by Du Xin&quot;&gt;&lt;/p&gt;
 &lt;p&gt;大山里人们滑过的长长雪痕，不消片刻就被落雪覆盖了。雪地又恢复了它原本的平整，如同时间可以消磨一切，对于雪山来说更快，只需要片刻。&lt;/p&gt;
 &lt;p&gt;这就是雪山的性格，雪的伤痕用雪覆盖。人也是一样吧，爱的伤痕应该用爱来覆盖。&lt;/p&gt;
 &lt;p&gt;滑过雪的人有这样的经验，没有压过的粉雪异常松软，像棉花糖，调皮地滑过去把它们打散开来像云、像雾。有些可爱、羞涩的成分就像初恋一般。&lt;/p&gt;
@@ -43,8 +98,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;/images/ruts-under-snow-01.jpg&quot; alt=&quot;Niseko Annupuri&quot;&gt;&lt;/p&gt;
-&lt;p&gt;大山里人们滑过的长长雪痕，不消片刻就被落雪覆盖了。雪地又恢复了它原本的平整，如同时间可以消磨一切，对于雪山来说更快，只需要片刻。&lt;
+      &lt;p&gt;&lt;img src=&quot;/static/images/ruts-under-snow-01.jpg&quot; alt=&quot;Niseko Hirafu, photo by Du Xin&quot;&gt;&lt;/p&gt;
+&lt;p&gt;大山里人们滑过的长长雪痕，不消片刻就被落雪覆盖了。雪地又恢复了它原本的平整，如同时间可
     
     </summary>
     
@@ -1142,82 +1197,6 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-    
-      <category term="reading list for 2015" scheme="http://blog.allenkung.com/tags/reading-list-for-2015/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Reading List for 2015</title>
-    <link href="http://blog.allenkung.com/2015/01/Reading-List-for-2015/"/>
-    <id>http://blog.allenkung.com/2015/01/Reading-List-for-2015/</id>
-    <published>2015-01-18T11:31:52.000Z</published>
-    <updated>2015-01-18T12:37:10.000Z</updated>
-    
-    <content type="html">&lt;p&gt;大致整理了一下今年要读的书，其中有几本比较厚（比如《芥川龙之介全集》买了快 2 年了一册都还没读完），所以任重而道远啊……家里还有一些为了免运费顺手买的薄册子（比如奥威尔的《1984》）也要抽时间扫一遍……这么一整理感觉今年充实多了啊！頑張れ〜&lt;/p&gt;
-&lt;p&gt;每本读完都会来写书评的，这样才能监督自己嘛~大家要是有今年相同在读的书可以组织书友会交流~&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;ol&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/6021440/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;黑客与画家&lt;/a&gt;》 Paul Graham &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1192090/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;球状闪电&lt;/a&gt;》 刘慈欣 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20431965/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;只有医生知道!&lt;/a&gt;》 张羽 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25871624/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;开端：意图与方法 : 意图与方法&lt;/a&gt;》 Edward Said&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/26293066/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;你是一切的答案&lt;/a&gt;》 简里里&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25917542/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;共情时代&lt;/a&gt;》 弗朗斯•德瓦尔 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/24935042/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;时间之墟&lt;/a&gt;》 宝树 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25747217/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;只有医生知道！2&lt;/a&gt;》 张羽 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/11443351/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;谁比谁傻多少&lt;/a&gt;》 王朔 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20390373/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;人文主义与民主批评&lt;/a&gt;》 Edward Said&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/11613166/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;日本意气&lt;/a&gt;》 藤本箕山 / 九鬼周造 / 阿部次郎 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25811516/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;日本的八个审美意识&lt;/a&gt;》 黑川雅之 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1432673/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Life and Death in Shanghai&lt;/a&gt;》 Nien Cheng &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/6960434/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;川端康成文学的自然审美&lt;/a&gt;》吴舜立 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/19962419/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;1750-1890年的欧洲建筑&lt;/a&gt;》 巴里·伯格多尔 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/24863442/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;无印良品生活研究所&lt;/a&gt;》 無印良品 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1870268/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;美国大城市的死与生&lt;/a&gt;》 简·雅各布斯 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/5395162/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;天人五衰&lt;/a&gt;》 三岛由纪夫 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25660221/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;代表作和被代表作&lt;/a&gt;》 张佳玮 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2216583/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;沉重的肉身&lt;/a&gt;》 刘小枫 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1317885/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;寄语海狸&lt;/a&gt;》 萨特 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/24879730/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;日本AV影像史&lt;/a&gt;》 藤木TDC &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/19962936/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;只是孩子&lt;/a&gt;》 Patti Smith &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1036947/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;给青年小说家的信&lt;/a&gt;》 略萨&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2073481/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;城市与狗&lt;/a&gt;》 略萨&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20375518/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;模糊性的道德&lt;/a&gt;》西蒙娜·德·波伏瓦 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/6060421/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;假面自白&lt;/a&gt;》 三岛由纪夫 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20561931/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;恋爱中的建筑&lt;/a&gt;》 中村拓志 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/3090801/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;万有引力之虹&lt;/a&gt;》 托马斯·品钦 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2974879/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;梦的解析&lt;/a&gt;》弗洛伊德 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2155342/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;货币的非国家化&lt;/a&gt;》 弗里德里希·冯·哈耶克 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20507206/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;众病之王-癌症传&lt;/a&gt;》 悉达多·穆克吉 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20441938/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;字体故事&lt;/a&gt;》 西蒙·加菲尔德 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/6794036/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;害羞的屁股&lt;/a&gt;》 让-吕克·亨尼希 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1457542/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;芥川龙之介全集&lt;/a&gt;》 芥川龙之介 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1437687/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;性经验史&lt;/a&gt;》 米歇尔.福柯 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25721226/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;沉默的螺旋&lt;/a&gt;》 伊丽莎白·诺尔-诺依曼 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20392524/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;恶时辰&lt;/a&gt;》 加西亚·马尔克斯&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1444252/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;城市发展史&lt;/a&gt;》 芒福德 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2053303/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;神话学：生食和熟食&lt;/a&gt;》 洛德·列维-斯特劳斯 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2062217/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;神话学：从蜂蜜到烟灰&lt;/a&gt;》 洛德·列维-斯特劳斯&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/20392523/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;没有人给他写信的上校&lt;/a&gt;》 加西亚·马尔克斯&lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/24891581/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;太阳电池、LED和二极管的原理&lt;/a&gt;》 Adrian Kitai &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/6392133/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;国富论&lt;/a&gt;》 亚当·斯密 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/1047638/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;阿多诺&lt;/a&gt;》 细见和之 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/25788842/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;法兰克福学派史&lt;/a&gt;》 埃米尔•瓦尔特-布什 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/2974191/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;克尔凯郭尔：审美对象的建构&lt;/a&gt;》 T.W.阿多诺 &lt;/li&gt;
-&lt;li&gt;《&lt;a href=&quot;http://book.douban.com/subject/5406378/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;论瓦尔特·本雅明&lt;/a&gt;》 西奥多·阿多诺 / 雅克·德里达 &lt;/li&gt;
-&lt;/ol&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;大致整理了一下今年要读的书，其中有几本比较厚（比如《芥川龙之介全集》买了快 2 年了一册都还没读完），所以任重而道远啊……家里还有一些为了免运费顺手买的薄册子（比如奥威尔的《1984》）也要抽时间扫一遍……这么一整理感觉今年充实多了啊！頑張れ〜&lt;/p&gt;
-&lt;p&gt;每本读完都会来写书评的，这样才能监督自己嘛~大家要是有今年相同在读的书可以组织书友会交流~&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="challenge for 2015" scheme="http://blog.allenkung.com/tags/challenge-for-2015/"/>
     
       <category term="reading list for 2015" scheme="http://blog.allenkung.com/tags/reading-list-for-2015/"/>
     
