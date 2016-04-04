@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.allenkung.com/"/>
-  <updated>2016-04-04T04:21:07.000Z</updated>
+  <updated>2016-04-04T04:22:38.000Z</updated>
   <id>http://blog.allenkung.com/</id>
   
   <author>
@@ -20,25 +20,25 @@
     <link href="http://blog.allenkung.com/2016/04/made-a-new-avatar-pic/"/>
     <id>http://blog.allenkung.com/2016/04/made-a-new-avatar-pic/</id>
     <published>2016-04-04T03:09:34.000Z</published>
-    <updated>2016-04-04T04:21:07.000Z</updated>
+    <updated>2016-04-04T04:22:38.000Z</updated>
     
-    <content type="html">&lt;p&gt;&lt;img src=&quot;http://macallen.qiniu.com/static/images/made-a-new-avatar-pic/01.jpg&quot; alt=&quot;处理前后对比&quot;&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img src=&quot;http://macallen.qiniudn.com/static/images/made-a-new-avatar-pic/01.jpg&quot; alt=&quot;处理前后对比&quot;&gt;&lt;/p&gt;
 &lt;p&gt;好久没更新头像啦，所以就随手拍了一些，自拍真是技术活，挑不出好的所以只能拿 PS 来补了。初步的想法是做印刷叠印的效果，然后又想要天马行空一点所以在头发里叠加了星云的图片。&lt;/p&gt;
 &lt;h3 id=&quot;叠印效果&quot;&gt;&lt;a href=&quot;#叠印效果&quot; class=&quot;headerlink&quot; title=&quot;叠印效果&quot;&gt;&lt;/a&gt;叠印效果&lt;/h3&gt;&lt;p&gt;叠印效果是类似传统油墨印刷的时候 &lt;a href=&quot;https://zh.wikipedia.org/wiki/CMYK&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CMYK 分色制版&lt;/a&gt;，由于位置没有校正而出现的叠印错误，但是看着很手工的感觉。类似&lt;a href=&quot;https://zh.wikipedia.org/wiki/安藤忠雄&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;安藤忠雄&lt;/a&gt;的清水混凝土建筑，或是 Paris 的 &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%BE%90%E7%95%A2%E5%BA%A6%E4%B8%AD%E5%BF%83&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Centre Georges-Pompidou&lt;/a&gt;（蓬皮杜艺术中心），某种意义上是一种对工序的欣赏、一种工业美感吧！&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;h4 id=&quot;一、偏移-Channel（通道）&quot;&gt;&lt;a href=&quot;#一、偏移-Channel（通道）&quot; class=&quot;headerlink&quot; title=&quot;一、偏移 Channel（通道）&quot;&gt;&lt;/a&gt;一、偏移 Channel（通道）&lt;/h4&gt;&lt;p&gt;在 Channels 面板中找到对应的色彩通道（突然发现我做的时候用的是 RGB 哎，怪不得总觉得怪怪得，大家可以试试先把图片转成 CMYK），移动位置。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://macallen.qiniu.com/static/images/made-a-new-avatar-pic/02.jpg&quot; alt=&quot;移动 Channel（通道）&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://macallen.qiniudn.com/static/images/made-a-new-avatar-pic/02.jpg&quot; alt=&quot;移动 Channel（通道）&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;二、借助-Channel-创建选区&quot;&gt;&lt;a href=&quot;#二、借助-Channel-创建选区&quot; class=&quot;headerlink&quot; title=&quot;二、借助 Channel 创建选区&quot;&gt;&lt;/a&gt;二、借助 Channel 创建选区&lt;/h4&gt;&lt;p&gt;因为我的黑头发是画面中最暗的部分，所以借助 Red Channel 创建选区（command+鼠标左键），同时被选中的应该还有眉毛、眼睛和衣服的阴影部分。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://macallen.qiniu.com/static/images/made-a-new-avatar-pic/03.jpg&quot; alt=&quot;Channel 选区&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://macallen.qiniudn.com/static/images/made-a-new-avatar-pic/03.jpg&quot; alt=&quot;Channel 选区&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;三、通过-Mask-优化选区合成头发&quot;&gt;&lt;a href=&quot;#三、通过-Mask-优化选区合成头发&quot; class=&quot;headerlink&quot; title=&quot;三、通过 Mask 优化选区合成头发&quot;&gt;&lt;/a&gt;三、通过 Mask 优化选区合成头发&lt;/h4&gt;&lt;p&gt;在 layer 上新建 mask，把不想要的部分用 Brush Tool 涂掉（可以把 brush 的 hardness 调低一点，有个过渡看上去比较自然）。照一张星云的图片，注意要有大面积黑底的才会看着自然（取决于你的发色），基于之前的 layer 使用 Clipping Mask。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://macallen.qiniu.com/static/images/made-a-new-avatar-pic/04.jpg&quot; alt=&quot;Clipping Mask&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://macallen.qiniudn.com/static/images/made-a-new-avatar-pic/04.jpg&quot; alt=&quot;Clipping Mask&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;四、加入原照片底图&quot;&gt;&lt;a href=&quot;#四、加入原照片底图&quot; class=&quot;headerlink&quot; title=&quot;四、加入原照片底图&quot;&gt;&lt;/a&gt;四、加入原照片底图&lt;/h4&gt;&lt;p&gt;总共是三个 layers：星云素材、头发选区 mask、叠印效果的原图。很简单吧？你也去试试！&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://macallen.qiniu.com/static/images/made-a-new-avatar-pic/05.jpg&quot; alt=&quot;Layers Structure&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://macallen.qiniudn.com/static/images/made-a-new-avatar-pic/05.jpg&quot; alt=&quot;Layers Structure&quot;&gt;&lt;/p&gt;
 </content>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;http://macallen.qiniu.com/static/images/made-a-new-avatar-pic/01.jpg&quot; alt=&quot;处理前后对比&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;http://macallen.qiniudn.com/static/images/made-a-new-avatar-pic/01.jpg&quot; alt=&quot;处理前后对比&quot;&gt;&lt;/p&gt;
 &lt;p&gt;好久没更新头像啦，所以就随手拍了一些，自拍真是技术活，挑不出好的所以只能拿 PS 来补了。初步的想法是做印刷叠印的效果，然后又想要天马行空一点所以在头发里叠加了星云的图片。&lt;/p&gt;
 &lt;h3 id=&quot;叠印效果&quot;&gt;&lt;a href=&quot;#叠印效果&quot; class=&quot;headerlink&quot; title=&quot;叠印效果&quot;&gt;&lt;/a&gt;叠印效果&lt;/h3&gt;&lt;p&gt;叠印效果是类似传统油墨印刷的时候 &lt;a href=&quot;https://zh.wikipedia.org/wiki/CMYK&quot;&gt;CMYK 分色制版&lt;/a&gt;，由于位置没有校正而出现的叠印错误，但是看着很手工的感觉。类似&lt;a href=&quot;https://zh.wikipedia.org/wiki/安藤忠雄&quot;&gt;安藤忠雄&lt;/a&gt;的清水混凝土建筑，或是 Paris 的 &lt;a href=&quot;https://zh.wikipedia.org/wiki/%E9%BE%90%E7%95%A2%E5%BA%A6%E4%B8%AD%E5%BF%83&quot;&gt;Centre Georges-Pompidou&lt;/a&gt;（蓬皮杜艺术中心），某种意义上是一种对工序的欣赏、一种工业美感吧！&lt;/p&gt;
     
