@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Allen&#39;s Life</title>
   <subtitle>Was künstlich ist verlanst geschlossenen Raum.</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="/blog/atom.xml" rel="self"/>
   
-  <link href="https://allenkung.github.io/blog/"/>
+  <link href="https://allenkung.github.io/"/>
   <updated>2016-04-04T04:35:47.000Z</updated>
-  <id>https://allenkung.github.io/blog/</id>
+  <id>https://allenkung.github.io/</id>
   
   <author>
     <name>allen kung</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>仿叠印效果头像</title>
-    <link href="https://allenkung.github.io/blog/2016/04/made-a-new-avatar-pic/"/>
-    <id>https://allenkung.github.io/blog/2016/04/made-a-new-avatar-pic/</id>
+    <link href="https://allenkung.github.io/2016/04/made-a-new-avatar-pic/"/>
+    <id>https://allenkung.github.io/2016/04/made-a-new-avatar-pic/</id>
     <published>2016-04-04T03:09:34.000Z</published>
     <updated>2016-04-04T04:35:47.000Z</updated>
     
@@ -44,15 +44,15 @@
     
     </summary>
     
-      <category term="Design" scheme="https://allenkung.github.io/blog/categories/Design/"/>
+      <category term="Design" scheme="https://allenkung.github.io/categories/Design/"/>
     
     
   </entry>
   
   <entry>
     <title>JS 日期求差</title>
-    <link href="https://allenkung.github.io/blog/2016/03/deduction-between-two-dates/"/>
-    <id>https://allenkung.github.io/blog/2016/03/deduction-between-two-dates/</id>
+    <link href="https://allenkung.github.io/2016/03/deduction-between-two-dates/"/>
+    <id>https://allenkung.github.io/2016/03/deduction-between-two-dates/</id>
     <published>2016-03-16T06:50:01.000Z</published>
     <updated>2016-03-17T06:45:01.000Z</updated>
     
@@ -97,17 +97,17 @@ Math.ceil((new Date(&apos;2016-03-10&apos;).getTime() + now.getTimezoneOffset()*
     
     </summary>
     
-      <category term="Coding" scheme="https://allenkung.github.io/blog/categories/Coding/"/>
+      <category term="Coding" scheme="https://allenkung.github.io/categories/Coding/"/>
     
     
-      <category term="JaveScript" scheme="https://allenkung.github.io/blog/tags/JaveScript/"/>
+      <category term="JaveScript" scheme="https://allenkung.github.io/tags/JaveScript/"/>
     
   </entry>
   
   <entry>
     <title>雪痕</title>
-    <link href="https://allenkung.github.io/blog/2016/02/ruts-under-snow/"/>
-    <id>https://allenkung.github.io/blog/2016/02/ruts-under-snow/</id>
+    <link href="https://allenkung.github.io/2016/02/ruts-under-snow/"/>
+    <id>https://allenkung.github.io/2016/02/ruts-under-snow/</id>
     <published>2016-02-20T09:56:54.000Z</published>
     <updated>2016-03-14T09:14:11.000Z</updated>
     
@@ -142,8 +142,8 @@ Math.ceil((new Date(&apos;2016-03-10&apos;).getTime() + now.getTimezoneOffset()*
   
   <entry>
     <title>推荐几款实用的 Wordpress Plugin</title>
-    <link href="https://allenkung.github.io/blog/2016/01/recommended-wordpress-plugins/"/>
-    <id>https://allenkung.github.io/blog/2016/01/recommended-wordpress-plugins/</id>
+    <link href="https://allenkung.github.io/2016/01/recommended-wordpress-plugins/"/>
+    <id>https://allenkung.github.io/2016/01/recommended-wordpress-plugins/</id>
     <published>2016-01-06T06:31:01.000Z</published>
     <updated>2016-01-29T09:56:27.000Z</updated>
     
@@ -203,17 +203,17 @@ $ sudo chown -R www-data:www-data ./wordpress
     
     </summary>
     
-      <category term="Webdevelop" scheme="https://allenkung.github.io/blog/categories/Webdevelop/"/>
+      <category term="Webdevelop" scheme="https://allenkung.github.io/categories/Webdevelop/"/>
     
     
-      <category term="Wordpress" scheme="https://allenkung.github.io/blog/tags/Wordpress/"/>
+      <category term="Wordpress" scheme="https://allenkung.github.io/tags/Wordpress/"/>
     
   </entry>
   
   <entry>
     <title>入手 Aliyun ECS 后首先应该做的事情</title>
-    <link href="https://allenkung.github.io/blog/2015/11/things-needtodo-when-got-aliyunecs/"/>
-    <id>https://allenkung.github.io/blog/2015/11/things-needtodo-when-got-aliyunecs/</id>
+    <link href="https://allenkung.github.io/2015/11/things-needtodo-when-got-aliyunecs/"/>
+    <id>https://allenkung.github.io/2015/11/things-needtodo-when-got-aliyunecs/</id>
     <published>2015-11-24T07:11:01.000Z</published>
     <updated>2016-02-13T14:58:02.000Z</updated>
     
@@ -302,19 +302,19 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Web Development" scheme="https://allenkung.github.io/blog/categories/Web-Development/"/>
+      <category term="Web Development" scheme="https://allenkung.github.io/categories/Web-Development/"/>
     
     
-      <category term="Aliyun" scheme="https://allenkung.github.io/blog/tags/Aliyun/"/>
+      <category term="Aliyun" scheme="https://allenkung.github.io/tags/Aliyun/"/>
     
-      <category term="Linux" scheme="https://allenkung.github.io/blog/tags/Linux/"/>
+      <category term="Linux" scheme="https://allenkung.github.io/tags/Linux/"/>
     
   </entry>
   
   <entry>
     <title>Small Project 中的 Git 使用心得</title>
-    <link href="https://allenkung.github.io/blog/2015/11/git-tips-in-small-project/"/>
-    <id>https://allenkung.github.io/blog/2015/11/git-tips-in-small-project/</id>
+    <link href="https://allenkung.github.io/2015/11/git-tips-in-small-project/"/>
+    <id>https://allenkung.github.io/2015/11/git-tips-in-small-project/</id>
     <published>2015-11-20T05:43:11.000Z</published>
     <updated>2015-11-21T02:45:50.000Z</updated>
     
@@ -359,17 +359,17 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Web Development" scheme="https://allenkung.github.io/blog/categories/Web-Development/"/>
+      <category term="Web Development" scheme="https://allenkung.github.io/categories/Web-Development/"/>
     
     
-      <category term="Git" scheme="https://allenkung.github.io/blog/tags/Git/"/>
+      <category term="Git" scheme="https://allenkung.github.io/tags/Git/"/>
     
   </entry>
   
   <entry>
     <title>Webkit not respecting overflow:hidden with border radius</title>
-    <link href="https://allenkung.github.io/blog/2015/11/webkit-not-respecting-overflow-hidden-with-border-radius/"/>
-    <id>https://allenkung.github.io/blog/2015/11/webkit-not-respecting-overflow-hidden-with-border-radius/</id>
+    <link href="https://allenkung.github.io/2015/11/webkit-not-respecting-overflow-hidden-with-border-radius/"/>
+    <id>https://allenkung.github.io/2015/11/webkit-not-respecting-overflow-hidden-with-border-radius/</id>
     <published>2015-11-19T10:12:26.000Z</published>
     <updated>2015-11-20T05:35:49.000Z</updated>
     
@@ -401,19 +401,19 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Web Development" scheme="https://allenkung.github.io/blog/categories/Web-Development/"/>
+      <category term="Web Development" scheme="https://allenkung.github.io/categories/Web-Development/"/>
     
     
-      <category term="Front-end" scheme="https://allenkung.github.io/blog/tags/Front-end/"/>
+      <category term="Front-end" scheme="https://allenkung.github.io/tags/Front-end/"/>
     
-      <category term="CSS3" scheme="https://allenkung.github.io/blog/tags/CSS3/"/>
+      <category term="CSS3" scheme="https://allenkung.github.io/tags/CSS3/"/>
     
   </entry>
   
   <entry>
     <title>关于 GTD 的一些想法</title>
-    <link href="https://allenkung.github.io/blog/2015/10/ideas-about-GTD/"/>
-    <id>https://allenkung.github.io/blog/2015/10/ideas-about-GTD/</id>
+    <link href="https://allenkung.github.io/2015/10/ideas-about-GTD/"/>
+    <id>https://allenkung.github.io/2015/10/ideas-about-GTD/</id>
     <published>2015-10-18T18:33:26.000Z</published>
     <updated>2017-01-27T04:25:59.000Z</updated>
     
@@ -466,14 +466,14 @@ sudo apt-get install -y nodejs
     </summary>
     
     
-      <category term="GTD" scheme="https://allenkung.github.io/blog/tags/GTD/"/>
+      <category term="GTD" scheme="https://allenkung.github.io/tags/GTD/"/>
     
   </entry>
   
   <entry>
     <title>Gulp Plugin 入门</title>
-    <link href="https://allenkung.github.io/blog/2015/10/basic-gulp-plugin/"/>
-    <id>https://allenkung.github.io/blog/2015/10/basic-gulp-plugin/</id>
+    <link href="https://allenkung.github.io/2015/10/basic-gulp-plugin/"/>
+    <id>https://allenkung.github.io/2015/10/basic-gulp-plugin/</id>
     <published>2015-10-13T08:04:40.000Z</published>
     <updated>2015-11-21T02:51:26.000Z</updated>
     
@@ -553,19 +553,19 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Web Development" scheme="https://allenkung.github.io/blog/categories/Web-Development/"/>
+      <category term="Web Development" scheme="https://allenkung.github.io/categories/Web-Development/"/>
     
     
-      <category term="Front-end" scheme="https://allenkung.github.io/blog/tags/Front-end/"/>
+      <category term="Front-end" scheme="https://allenkung.github.io/tags/Front-end/"/>
     
-      <category term="Javascript" scheme="https://allenkung.github.io/blog/tags/Javascript/"/>
+      <category term="Javascript" scheme="https://allenkung.github.io/tags/Javascript/"/>
     
   </entry>
   
   <entry>
     <title>Tom Hunter: A Life In Photos</title>
-    <link href="https://allenkung.github.io/blog/2015/09/a-life-in-photos/"/>
-    <id>https://allenkung.github.io/blog/2015/09/a-life-in-photos/</id>
+    <link href="https://allenkung.github.io/2015/09/a-life-in-photos/"/>
+    <id>https://allenkung.github.io/2015/09/a-life-in-photos/</id>
     <published>2015-09-13T07:52:01.000Z</published>
     <updated>2015-09-13T17:43:54.000Z</updated>
     
@@ -611,19 +611,19 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Photography" scheme="https://allenkung.github.io/blog/categories/Photography/"/>
+      <category term="Photography" scheme="https://allenkung.github.io/categories/Photography/"/>
     
-      <category term="Lecture" scheme="https://allenkung.github.io/blog/categories/Photography/Lecture/"/>
+      <category term="Lecture" scheme="https://allenkung.github.io/categories/Photography/Lecture/"/>
     
     
-      <category term="Tom Hunter" scheme="https://allenkung.github.io/blog/tags/Tom-Hunter/"/>
+      <category term="Tom Hunter" scheme="https://allenkung.github.io/tags/Tom-Hunter/"/>
     
   </entry>
   
   <entry>
     <title>ejs 中的 HTML tag 转义问题</title>
-    <link href="https://allenkung.github.io/blog/2015/08/ejs-html-escape-problem/"/>
-    <id>https://allenkung.github.io/blog/2015/08/ejs-html-escape-problem/</id>
+    <link href="https://allenkung.github.io/2015/08/ejs-html-escape-problem/"/>
+    <id>https://allenkung.github.io/2015/08/ejs-html-escape-problem/</id>
     <published>2015-08-31T03:26:01.000Z</published>
     <updated>2015-11-24T07:59:51.000Z</updated>
     
@@ -655,21 +655,21 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Web Development" scheme="https://allenkung.github.io/blog/categories/Web-Development/"/>
+      <category term="Web Development" scheme="https://allenkung.github.io/categories/Web-Development/"/>
     
     
-      <category term="Front-end" scheme="https://allenkung.github.io/blog/tags/Front-end/"/>
+      <category term="Front-end" scheme="https://allenkung.github.io/tags/Front-end/"/>
     
-      <category term="JavaScript" scheme="https://allenkung.github.io/blog/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="https://allenkung.github.io/tags/JavaScript/"/>
     
-      <category term="ejs" scheme="https://allenkung.github.io/blog/tags/ejs/"/>
+      <category term="ejs" scheme="https://allenkung.github.io/tags/ejs/"/>
     
   </entry>
   
   <entry>
     <title>凯瑟琳•雅丝：影像的时空维度与体系</title>
-    <link href="https://allenkung.github.io/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/"/>
-    <id>https://allenkung.github.io/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/</id>
+    <link href="https://allenkung.github.io/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/"/>
+    <id>https://allenkung.github.io/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/</id>
     <published>2015-08-23T16:47:58.000Z</published>
     <updated>2015-08-26T18:55:25.000Z</updated>
     
@@ -712,19 +712,19 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Photography" scheme="https://allenkung.github.io/blog/categories/Photography/"/>
+      <category term="Photography" scheme="https://allenkung.github.io/categories/Photography/"/>
     
-      <category term="Lecture" scheme="https://allenkung.github.io/blog/categories/Photography/Lecture/"/>
+      <category term="Lecture" scheme="https://allenkung.github.io/categories/Photography/Lecture/"/>
     
     
-      <category term="Catherine Yass" scheme="https://allenkung.github.io/blog/tags/Catherine-Yass/"/>
+      <category term="Catherine Yass" scheme="https://allenkung.github.io/tags/Catherine-Yass/"/>
     
   </entry>
   
   <entry>
     <title>市井雄心</title>
-    <link href="https://allenkung.github.io/blog/2015/08/cities-and-ambition/"/>
-    <id>https://allenkung.github.io/blog/2015/08/cities-and-ambition/</id>
+    <link href="https://allenkung.github.io/2015/08/cities-and-ambition/"/>
+    <id>https://allenkung.github.io/2015/08/cities-and-ambition/</id>
     <published>2015-08-12T23:28:00.000Z</published>
     <updated>2015-08-16T05:06:02.000Z</updated>
     
@@ -761,13 +761,13 @@ sudo apt-get install -y nodejs
   
   <entry>
     <title>Impacting Society Through Photography</title>
-    <link href="https://allenkung.github.io/blog/2015/07/impacting-society-through-photography/"/>
-    <id>https://allenkung.github.io/blog/2015/07/impacting-society-through-photography/</id>
+    <link href="https://allenkung.github.io/2015/07/impacting-society-through-photography/"/>
+    <id>https://allenkung.github.io/2015/07/impacting-society-through-photography/</id>
     <published>2015-07-20T00:29:40.000Z</published>
     <updated>2015-08-22T05:25:53.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-01.jpg-width620" alt="Impacting Society Through Photography Poster"></p>
-<p>前不久又听了一场 Mark Neville 关于《<a href="http://www.douban.com/event/24747374/" target="_blank" rel="external">Impacting Society Through Photography 用摄影直接影响社会</a>》的讲座，作为《<a href="http://www.douban.com/event/24623183/" target="_blank" rel="external">时代映像：1960年以来的英国摄影</a>》特展的邀请作者，相较上次的<a href="/2015/05/giving-photos-back/" title="《归还照片》Mark Neville">《归还照片》Mark Neville</a>场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。</p>
+<p>前不久又听了一场 Mark Neville 关于《<a href="http://www.douban.com/event/24747374/" target="_blank" rel="external">Impacting Society Through Photography 用摄影直接影响社会</a>》的讲座，作为《<a href="http://www.douban.com/event/24623183/" target="_blank" rel="external">时代映像：1960年以来的英国摄影</a>》特展的邀请作者，相较上次的<a href="/blog/2015/05/giving-photos-back/" title="《归还照片》Mark Neville">《归还照片》Mark Neville</a>场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。</p>
 <a id="more"></a>
 <h4 id="反思和颠覆传统"><a href="#反思和颠覆传统" class="headerlink" title="反思和颠覆传统"></a>反思和颠覆传统</h4><p>在格拉斯哥项目书之前，Neville 先生印象中英国的传统 social documentary photography book 都是设计精美的白人富有阶级茶几上的装饰和摆放物。</p>
 <p>于是，Neville 先生通过反思这种存在的合理性决定要颠覆这种传统的 social documentary photography。Glasgow Book Project 的初衷就是要打破和颠覆传统，它的存在形式和对整个社区物质和精神的反馈，都已经超越和重绘了纪实摄影的边界，这种行为艺术式的激进颠覆突显了它的革命性所在。</p>
@@ -801,23 +801,23 @@ sudo apt-get install -y nodejs
     <summary type="html">
     
       &lt;p&gt;&lt;img src=&quot;http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-01.jpg-width620&quot; alt=&quot;Impacting Society Through Photography Poster&quot;&gt;&lt;/p&gt;
-&lt;p&gt;前不久又听了一场 Mark Neville 关于《&lt;a href=&quot;http://www.douban.com/event/24747374/&quot;&gt;Impacting Society Through Photography 用摄影直接影响社会&lt;/a&gt;》的讲座，作为《&lt;a href=&quot;http://www.douban.com/event/24623183/&quot;&gt;时代映像：1960年以来的英国摄影&lt;/a&gt;》特展的邀请作者，相较上次的&lt;a href=&quot;/2015/05/giving-photos-back/&quot; title=&quot;《归还照片》Mark Neville&quot;&gt;《归还照片》Mark Neville&lt;/a&gt;场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。&lt;/p&gt;
+&lt;p&gt;前不久又听了一场 Mark Neville 关于《&lt;a href=&quot;http://www.douban.com/event/24747374/&quot;&gt;Impacting Society Through Photography 用摄影直接影响社会&lt;/a&gt;》的讲座，作为《&lt;a href=&quot;http://www.douban.com/event/24623183/&quot;&gt;时代映像：1960年以来的英国摄影&lt;/a&gt;》特展的邀请作者，相较上次的&lt;a href=&quot;/blog/2015/05/giving-photos-back/&quot; title=&quot;《归还照片》Mark Neville&quot;&gt;《归还照片》Mark Neville&lt;/a&gt;场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。&lt;/p&gt;
     
     </summary>
     
-      <category term="Photography" scheme="https://allenkung.github.io/blog/categories/Photography/"/>
+      <category term="Photography" scheme="https://allenkung.github.io/categories/Photography/"/>
     
-      <category term="Lecture" scheme="https://allenkung.github.io/blog/categories/Photography/Lecture/"/>
+      <category term="Lecture" scheme="https://allenkung.github.io/categories/Photography/Lecture/"/>
     
     
-      <category term="Mark Neville" scheme="https://allenkung.github.io/blog/tags/Mark-Neville/"/>
+      <category term="Mark Neville" scheme="https://allenkung.github.io/tags/Mark-Neville/"/>
     
   </entry>
   
   <entry>
     <title>良心挂机头 Sigma 17-70/ƒ2.8-4 MACRO 入手</title>
-    <link href="https://allenkung.github.io/blog/2015/07/sigma-17-70/"/>
-    <id>https://allenkung.github.io/blog/2015/07/sigma-17-70/</id>
+    <link href="https://allenkung.github.io/2015/07/sigma-17-70/"/>
+    <id>https://allenkung.github.io/2015/07/sigma-17-70/</id>
     <published>2015-07-07T18:19:54.000Z</published>
     <updated>2015-07-07T19:12:10.000Z</updated>
     
@@ -848,15 +848,15 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Photography" scheme="https://allenkung.github.io/blog/categories/Photography/"/>
+      <category term="Photography" scheme="https://allenkung.github.io/categories/Photography/"/>
     
     
   </entry>
   
   <entry>
     <title>《归还照片》Mark Neville</title>
-    <link href="https://allenkung.github.io/blog/2015/05/giving-photos-back/"/>
-    <id>https://allenkung.github.io/blog/2015/05/giving-photos-back/</id>
+    <link href="https://allenkung.github.io/2015/05/giving-photos-back/"/>
+    <id>https://allenkung.github.io/2015/05/giving-photos-back/</id>
     <published>2015-05-18T22:18:41.000Z</published>
     <updated>2015-07-29T05:42:40.000Z</updated>
     
@@ -905,19 +905,19 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Photography" scheme="https://allenkung.github.io/blog/categories/Photography/"/>
+      <category term="Photography" scheme="https://allenkung.github.io/categories/Photography/"/>
     
-      <category term="Lecture" scheme="https://allenkung.github.io/blog/categories/Photography/Lecture/"/>
+      <category term="Lecture" scheme="https://allenkung.github.io/categories/Photography/Lecture/"/>
     
     
-      <category term="Mark Neville" scheme="https://allenkung.github.io/blog/tags/Mark-Neville/"/>
+      <category term="Mark Neville" scheme="https://allenkung.github.io/tags/Mark-Neville/"/>
     
   </entry>
   
   <entry>
     <title>2015 年初 California Sunshine 自驾（一）</title>
-    <link href="https://allenkung.github.io/blog/2015/04/california-trip-2015-part1/"/>
-    <id>https://allenkung.github.io/blog/2015/04/california-trip-2015-part1/</id>
+    <link href="https://allenkung.github.io/2015/04/california-trip-2015-part1/"/>
+    <id>https://allenkung.github.io/2015/04/california-trip-2015-part1/</id>
     <published>2015-04-22T05:49:57.000Z</published>
     <updated>2015-07-06T15:42:25.000Z</updated>
     
@@ -1001,17 +1001,17 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Travel" scheme="https://allenkung.github.io/blog/categories/Travel/"/>
+      <category term="Travel" scheme="https://allenkung.github.io/categories/Travel/"/>
     
     
-      <category term="2015 年初 California Sunshine 自驾" scheme="https://allenkung.github.io/blog/tags/2015-%E5%B9%B4%E5%88%9D-California-Sunshine-%E8%87%AA%E9%A9%BE/"/>
+      <category term="2015 年初 California Sunshine 自驾" scheme="https://allenkung.github.io/tags/2015-%E5%B9%B4%E5%88%9D-California-Sunshine-%E8%87%AA%E9%A9%BE/"/>
     
   </entry>
   
   <entry>
     <title>我的上进心并未死去 — 哲学随笔</title>
-    <link href="https://allenkung.github.io/blog/2015/04/a-philosophy-essay/"/>
-    <id>https://allenkung.github.io/blog/2015/04/a-philosophy-essay/</id>
+    <link href="https://allenkung.github.io/2015/04/a-philosophy-essay/"/>
+    <id>https://allenkung.github.io/2015/04/a-philosophy-essay/</id>
     <published>2015-04-13T14:14:57.000Z</published>
     <updated>2015-04-22T10:44:15.000Z</updated>
     
@@ -1068,7 +1068,7 @@ sudo apt-get install -y nodejs
 </blockquote>
 <p>¹ 化学家瓦格纳在实验室里试图破解创造的秘密。他在一个小玻璃瓶里混合了一些气体和液体，造出了一个小精灵。小精灵提醒其“父”不要砸碎他栖身的玻璃瓶，因为虽说自然之物可在自然界扩展，但艺术的产品只能占据一个有限的空间。 </p>
 <p>突然顿悟这就是造物的奥秘啊：所有的物体也好、文化也好，想要生存都必须划定一个界限，只有在其界限之内才有生存的意义和可能。那段时间正好也在玩摄影，读了一些顾铮的摄影理论，发现在纪德书中的这个发现简直就是艺术批判的神器！</p>
-<h3 id="六、人是一种自由的存在：萨特"><a href="#六、人是一种自由的存在：萨特" class="headerlink" title="六、人是一种自由的存在：萨特"></a>六、人是一种自由的存在：萨特</h3><p>而萨特，不得不提的<a href="https://zh.wikipedia.org/wiki/萨特" target="_blank" rel="external">萨特</a>，直到若干年以后从<a href="https://zh.wikipedia.org/wiki/马里奥·巴尔加斯·略萨" target="_blank" rel="external">略萨</a>的<a href="/2014/06/spirit-executive/" title="回忆">回忆</a>中读到他，才一下子搞明白当年第一次读到萨特的时候是怎样的心情。换句话说初识萨特的震动太过猛烈以致于多年后才能反应过来自己的人生已经截然不同。</p>
+<h3 id="六、人是一种自由的存在：萨特"><a href="#六、人是一种自由的存在：萨特" class="headerlink" title="六、人是一种自由的存在：萨特"></a>六、人是一种自由的存在：萨特</h3><p>而萨特，不得不提的<a href="https://zh.wikipedia.org/wiki/萨特" target="_blank" rel="external">萨特</a>，直到若干年以后从<a href="https://zh.wikipedia.org/wiki/马里奥·巴尔加斯·略萨" target="_blank" rel="external">略萨</a>的<a href="/blog/2014/06/spirit-executive/" title="回忆">回忆</a>中读到他，才一下子搞明白当年第一次读到萨特的时候是怎样的心情。换句话说初识萨特的震动太过猛烈以致于多年后才能反应过来自己的人生已经截然不同。</p>
 <blockquote>
 <p>萨特的存在主义是一种无神论的存在主义，这就是说，他既否定了上帝造人的神话，又否定了先天的性善论和性恶论。在他看来，是先有人，然后通过人的自由选择的行动，人才成为或是好人，或是恶人。英雄和懦夫都不是天生的，而是通过人的主动选择使他成为英雄或者懦夫，即存在先于本质。由于人的行为出自于自由选择，所以要承担责任，不但对行为的后果负责，而且对自己成为怎样的人也要承担责任。正因为如此，所以它是一种人道主义。它强调了人的主观能动性，又强调了自由承担责任的绝对性，是合乎情理的。萨特的存在主义是一种新的人生主张和人生信仰，它强调主体意识的自我选择、自我负责，其核心是主体的自由。</p>
 </blockquote>
@@ -1103,15 +1103,15 @@ sudo apt-get install -y nodejs
     
     </summary>
     
-      <category term="Philosophy" scheme="https://allenkung.github.io/blog/categories/Philosophy/"/>
+      <category term="Philosophy" scheme="https://allenkung.github.io/categories/Philosophy/"/>
     
     
   </entry>
   
   <entry>
     <title>简单又美味的冬日寿喜锅</title>
-    <link href="https://allenkung.github.io/blog/2015/02/%E7%AE%80%E5%8D%95%E5%8F%88%E7%BE%8E%E5%91%B3%E7%9A%84%E5%86%AC%E6%97%A5%E5%AF%BF%E5%96%9C%E9%94%85/"/>
-    <id>https://allenkung.github.io/blog/2015/02/简单又美味的冬日寿喜锅/</id>
+    <link href="https://allenkung.github.io/2015/02/%E7%AE%80%E5%8D%95%E5%8F%88%E7%BE%8E%E5%91%B3%E7%9A%84%E5%86%AC%E6%97%A5%E5%AF%BF%E5%96%9C%E9%94%85/"/>
+    <id>https://allenkung.github.io/2015/02/简单又美味的冬日寿喜锅/</id>
     <published>2015-02-11T15:30:08.000Z</published>
     <updated>2015-03-06T19:32:34.000Z</updated>
     
@@ -1174,14 +1174,14 @@ sudo apt-get install -y nodejs
     </summary>
     
     
-      <category term="chef&#39;s menu for 2015" scheme="https://allenkung.github.io/blog/tags/chef-s-menu-for-2015/"/>
+      <category term="chef&#39;s menu for 2015" scheme="https://allenkung.github.io/tags/chef-s-menu-for-2015/"/>
     
   </entry>
   
   <entry>
     <title>每日时间分配和效率的研究探讨</title>
-    <link href="https://allenkung.github.io/blog/2015/02/%E6%AF%8F%E6%97%A5%E6%97%B6%E9%97%B4%E5%88%86%E9%85%8D%E5%92%8C%E6%95%88%E7%8E%87%E7%9A%84%E7%A0%94%E7%A9%B6%E6%8E%A2%E8%AE%A8/"/>
-    <id>https://allenkung.github.io/blog/2015/02/每日时间分配和效率的研究探讨/</id>
+    <link href="https://allenkung.github.io/2015/02/%E6%AF%8F%E6%97%A5%E6%97%B6%E9%97%B4%E5%88%86%E9%85%8D%E5%92%8C%E6%95%88%E7%8E%87%E7%9A%84%E7%A0%94%E7%A9%B6%E6%8E%A2%E8%AE%A8/"/>
+    <id>https://allenkung.github.io/2015/02/每日时间分配和效率的研究探讨/</id>
     <published>2015-02-09T07:10:26.000Z</published>
     <updated>2015-02-09T08:24:43.000Z</updated>
     
