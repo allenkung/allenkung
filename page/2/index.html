@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
   
   <title>Allen&#39;s Life</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+    <meta name="author" content="allen kung">
+  
+  
   <meta property="og:type" content="website">
 <meta property="og:title" content="Allen's Life">
 <meta property="og:url" content="https://allenkung.github.io/page/2/index.html">
@@ -12,102 +17,60 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Allen's Life">
   
-    <link rel="alternate" href="/blog/atom.xml" title="Allen&#39;s Life" type="application/atom+xml">
   
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
   
+  <link rel="stylesheet" href="/css/style.css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="/blog/css/styles.css">
-  
-
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <div class="wrapper">
+    <header id="header">
+  <div class="title">
+    <h1><a href="/">Allen&#39;s Life</a></h1>
+    <p>Was künstlich ist verlanst geschlossenen Raum.</p>
+  </div>
+  <nav class="nav">
+    <ul>
       
-    </div>
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</header>
+    <div class="content">
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="main-menu-navbar">
-      <ul class="nav navbar-nav">
-        
-          <li><a class=""
-                 href="/blog/index.html">Home</a></li>
-        
-          <li><a class=""
-                 href="/blog/archives/">Archives</a></li>
-        
-      </ul>
 
-      <!--
-      <ul class="nav navbar-nav navbar-right">
-        
-          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
-        
-      </ul>
-      -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 
-  <div class="container">
-    <div class="blog-header">
-  <h1 class="blog-title">Allen&#39;s Life</h1>
+
   
-    <p class="lead blog-description">Was künstlich ist verlanst geschlossenen Raum.</p>
-  
-</div>
-
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-          
-  
-    <article id="post-ejs-html-escape-problem" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/08/ejs-html-escape-problem/">
+  <time datetime="2015-08-31T03:26:01.000Z">
+    2015-08-31
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/08/ejs-html-escape-problem/">ejs 中的 HTML tag 转义问题</a>
-    </h1>
+    <h1 class="title"><a href="/2015/08/ejs-html-escape-problem/">ejs 中的 HTML tag 转义问题</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/08/ejs-html-escape-problem/" class="article-date"><time datetime="2015-08-31T03:26:01.000Z" itemprop="datePublished">2015-08-31</time></a>
-</div>
-
+  
+  <div class="entry">
     
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Web-Development/">Web Development</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在用 <a href="http://expressjs.com/" target="_blank" rel="external">Express</a> 开发公司网站，用了 <a href="https://github.com/jeresig/i18n-node-2" target="_blank" rel="external">i18n-node-2</a> 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：</p>
+      <p>最近在用 <a href="http://expressjs.com/" target="_blank" rel="external">Express</a> 开发公司网站，用了 <a href="https://github.com/jeresig/i18n-node-2" target="_blank" rel="external">i18n-node-2</a> 这个多语言组件，需要将网站的文字部分都用 JSON 文件储存。遇到一个小问题，如果是带有 HTML 标签的内容，比如：</p>
 <pre><code>这里是&lt;a href=&quot;#&quot;&gt;链接&lt;/a&gt;的文字内容
 </code></pre><p>上面这段存到 JSON 数组里的话要转义一下：</p>
 <pre><code>&quot;这里是&lt;a href=\&quot;#\&quot;&gt;链接&lt;/a&gt;的文字内容&quot;
@@ -128,703 +91,473 @@
 <li><a href="http://www.w3chtml.com/html/character.html" target="_blank" rel="external">HTML 转义字符</a></li>
 </ul>
 
-      
-    </div>
-
     
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/08/ejs-html-escape-problem/" data-id="ciyptw2ym000t90rvwh99345z" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/08/ejs-html-escape-problem/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Front-end/">Front-end</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/ejs/">ejs</a></li></ul>
-
-
-    </footer>
   </div>
-  
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-backwards-forwards-in-out-upside-down-wrong-way-round" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/">
+  <time datetime="2015-08-23T16:47:58.000Z">
+    2015-08-24
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/">凯瑟琳•雅丝：影像的时空维度与体系</a>
-    </h1>
+    <h1 class="title"><a href="/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/">凯瑟琳•雅丝：影像的时空维度与体系</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/" class="article-date"><time datetime="2015-08-23T16:47:58.000Z" itemprop="datePublished">2015-08-24</time></a>
-</div>
-
+  
+  <div class="entry">
     
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Photography/">Photography</a> / <a class="article-category-link" href="/blog/categories/Photography/Lecture/">Lecture</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-01.JPG-width620" alt="凯瑟琳•雅丝：影像的时空维度与体系，民生美术馆"></p>
+      <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/catherine-yass-lecture-01.JPG-width620" alt="凯瑟琳•雅丝：影像的时空维度与体系，民生美术馆"></p>
 <p>这次讲座之前我并不知道 <a href="https://en.wikipedia.org/wiki/Catherine_Yass">Catherine Yass</a> 其人，也未见过她的作品。下午还在犹豫要不要参加民生举办的这次讲座，但是主题“<a href="http://www.douban.com/event/25037774/">影像的时空维度与体系</a>”实在太吸引人。结果 Yass 女士的作品很有深度，为我打开了一扇窗，让人大开眼界。</p>
 <p>由于摄影师的作品中很喜欢颠倒重置画面，所以和我们视频讲座的时候也是颠倒的 LOL</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
     
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/" data-id="ciyptw2yh000k90rvb8cmas8a" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Catherine-Yass/">Catherine Yass</a></li></ul>
-
-
-    </footer>
   </div>
-  
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/08/backwards-forwards-in-out-upside-down-wrong-way-round/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-cities-and-ambition" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/08/cities-and-ambition/">
+  <time datetime="2015-08-12T23:28:00.000Z">
+    2015-08-13
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/08/cities-and-ambition/">市井雄心</a>
-    </h1>
+    <h1 class="title"><a href="/2015/08/cities-and-ambition/">市井雄心</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/08/cities-and-ambition/" class="article-date"><time datetime="2015-08-12T23:28:00.000Z" itemprop="datePublished">2015-08-13</time></a>
-</div>
-
+  
+  <div class="entry">
     
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/cities-and-ambition.jpg" alt="逞强的配图君"></p>
+      <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/cities-and-ambition.jpg" alt="逞强的配图君"></p>
 <p>前段时间看到网上疯传 Pual Graham 的<a href="http://www.paulgraham.com/cities.html">《Cites and Ambition》</a>，大意是不同城市有不同的气质，人们在城市中摄取力量找到拼搏的方向，也可能沦为城市理想的一部分。文章最后，作者洗白表明生活在市井之间也要胸怀雄心大志。</p>
 <p>于是 Pual Graham 这篇文章的标题就被翻成了《市井雄心》，我也是因这个标题而被吸引。俗话说 lost in translation，Pual Graham 大篇幅在讲不同城市之间的不同气质，剑桥的智慧、纽约的钱、硅谷的改变世界等等，而一个“市井雄心”就把整篇文章的糖水部分洗白了。</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/08/cities-and-ambition/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
     
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/08/cities-and-ambition/" data-id="ciyptw2yk000q90rvyzueo55s" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/08/cities-and-ambition/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-
-    </footer>
   </div>
-  
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/08/cities-and-ambition/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-impacting-society-through-photography" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/07/impacting-society-through-photography/">
+  <time datetime="2015-07-20T00:29:40.000Z">
+    2015-07-20
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/07/impacting-society-through-photography/">Impacting Society Through Photography</a>
-    </h1>
+    <h1 class="title"><a href="/2015/07/impacting-society-through-photography/">Impacting Society Through Photography</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/07/impacting-society-through-photography/" class="article-date"><time datetime="2015-07-20T00:29:40.000Z" itemprop="datePublished">2015-07-20</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Photography/">Photography</a> / <a class="article-category-link" href="/blog/categories/Photography/Lecture/">Lecture</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-01.jpg-width620" alt="Impacting Society Through Photography Poster"></p>
-<p>前不久又听了一场 Mark Neville 关于《<a href="http://www.douban.com/event/24747374/">Impacting Society Through Photography 用摄影直接影响社会</a>》的讲座，作为《<a href="http://www.douban.com/event/24623183/">时代映像：1960年以来的英国摄影</a>》特展的邀请作者，相较上次的<a href="/blog/2015/05/giving-photos-back/" title="《归还照片》Mark Neville">《归还照片》Mark Neville</a>场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/07/impacting-society-through-photography/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/07/impacting-society-through-photography/" data-id="ciyptw2yr001090rv5vofqkdh" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/07/impacting-society-through-photography/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Mark-Neville/">Mark Neville</a></li></ul>
-
-
-    </footer>
-  </div>
   
+  <div class="entry">
+    
+      <p><img src="http://7jpo5r.com1.z0.glb.clouddn.com/blog/impacting-society-through-photography-01.jpg-width620" alt="Impacting Society Through Photography Poster"></p>
+<p>前不久又听了一场 Mark Neville 关于《<a href="http://www.douban.com/event/24747374/">Impacting Society Through Photography 用摄影直接影响社会</a>》的讲座，作为《<a href="http://www.douban.com/event/24623183/">时代映像：1960年以来的英国摄影</a>》特展的邀请作者，相较上次的<a href="/2015/05/giving-photos-back/" title="《归还照片》Mark Neville">《归还照片》Mark Neville</a>场，Neville 先生更多分享自己想要藉由摄影这种民主手段去影响社会的初衷。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/07/impacting-society-through-photography/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-sigma-17-70" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/07/sigma-17-70/">
+  <time datetime="2015-07-07T18:19:54.000Z">
+    2015-07-08
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/07/sigma-17-70/">良心挂机头 Sigma 17-70/ƒ2.8-4 MACRO 入手</a>
-    </h1>
+    <h1 class="title"><a href="/2015/07/sigma-17-70/">良心挂机头 Sigma 17-70/ƒ2.8-4 MACRO 入手</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/07/sigma-17-70/" class="article-date"><time datetime="2015-07-07T18:19:54.000Z" itemprop="datePublished">2015-07-08</time></a>
-</div>
-
+  
+  <div class="entry">
     
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Photography/">Photography</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="http://macallen.qiniudn.com/blog/sigma-17-70.jpg" alt="Sigma 17-70/f2.8-4 MACRO, ISO 100, 17mm, f/2.8, 1/80s "></p>
+      <p><img src="http://macallen.qiniudn.com/blog/sigma-17-70.jpg" alt="Sigma 17-70/f2.8-4 MACRO, ISO 100, 17mm, f/2.8, 1/80s "></p>
 <p>七八年前读大学的时候就在 YY 这枚人物风景静物小品老少皆宜的副厂挂机头，当然到今天已经更新换代过几代产品了。此头良心之处在于 17-70 的黄金档焦段、最大 ƒ2.8 光圈、HSM 超声波对焦马达、OS 防帕金森，外加 1:2 微距。所有上述炫酷功能加起来总共只要 1998，只要 998（误）！</p>
 <p>去年把柜子里的胶片相机陆陆续续都出掉了，也算玩过一些乱七八糟的<a href="http://flickr.com/people/macallen/">器材</a>。然后数码设备就只剩 05 年入的 Nikon D50 了（依然好用质量真好），镜头剩一枚 Sigma 10-20 残幅广角，主要用来拍摄风景和室内装潢。</p>
 <p>今年年初的时候考虑换机身，主要是老机器毕竟十年了出片质量感觉锐度不够，不知是机身成像单元老化衰减还是今日和网上的图片相比要求变高了。Beta 同学推荐索大法 a7 全画幅微单，骚气十足，但是菜家镜头群价格偏高，不符合我只用平民单反的价值观。</p>
 <p>然后转而考虑 Fuji 的复古旁轴系列，也是垂涎已久。x100 系列因为不能更换镜头所以不符合更换主力器材的出发点，x-pro1 现在价格公道、童叟无欺，而且镜头群个个良心。无奈见到真机后感觉体积略大，不符合我对小鸟依人的追求。</p>
 <p>再则考虑到之前的 nikon 口 10-20 镜头，为了降低更新成本，所以在 D5500 刚上市的时候抄底购入上一代入门机 D5300。这两代变化不是很大，且 D5300 已经去处了低通滤镜（虽然我也不知道具体啥用）。最坑的是因为买的国行，所以 GPS 被阉割了……</p>
 <p>正好手边有 Nikon 35/2 和广受好评的 Sigma 35/1.4，所以简单拍了一些样图供各位参考。大光圈依然是羡慕不来的，不过我最大的目的便是用 MACRO 来拍自己做的食物，敬请期待！</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/07/sigma-17-70/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
     
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/07/sigma-17-70/" data-id="ciyptw2yz001790rvira7lspt" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/07/sigma-17-70/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-
-    </footer>
   </div>
-  
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/07/sigma-17-70/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-giving-photos-back" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/05/giving-photos-back/">
+  <time datetime="2015-05-18T22:18:41.000Z">
+    2015-05-19
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/05/giving-photos-back/">《归还照片》Mark Neville</a>
-    </h1>
+    <h1 class="title"><a href="/2015/05/giving-photos-back/">《归还照片》Mark Neville</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/05/giving-photos-back/" class="article-date"><time datetime="2015-05-18T22:18:41.000Z" itemprop="datePublished">2015-05-19</time></a>
-</div>
-
+  
+    <div class="gallery">
+  <div class="photoset">
     
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Photography/">Photography</a> / <a class="article-category-link" href="/blog/categories/Photography/Lecture/">Lecture</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
       
-        <p>上周末去<a href="http://www.minshengart.com">民生美术馆</a>听了 <a href="http://www.markneville.com">Mark Neville</a> 的讲座《<a href="http://www.douban.com/event/24335033/">归还照片 Giving Photos Back</a>》，Mark 是一位来自伦敦的<em>摄影艺术家</em>，正如大卫·康帕尼所说，「艺术家马克·内维尔重新构想了纪实摄影可以做到的事情以及应该做到的事情」。</p>
+        <img src="http://macallen.qiniudn.com/blog/giving-photos-back-03.jpg">
+      
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="entry">
+    
+      <p>上周末去<a href="http://www.minshengart.com">民生美术馆</a>听了 <a href="http://www.markneville.com">Mark Neville</a> 的讲座《<a href="http://www.douban.com/event/24335033/">归还照片 Giving Photos Back</a>》，Mark 是一位来自伦敦的<em>摄影艺术家</em>，正如大卫·康帕尼所说，「艺术家马克·内维尔重新构想了纪实摄影可以做到的事情以及应该做到的事情」。</p>
 <p>讲座上，Mark 和大家 share 了过去的几个项目。Mark 的艺术作品是以一个个 project 的形式，所以每个 project 都有它的周期和阶段，Mark 展示了这些令人深思的作品从立项到完成和过程之间种种故事。从 Mark 的作品就可以看出，无疑他是一个非常优秀的 storyteller，在场的人们跟着 Mark 所描述的那些故事所包含的惊人清晰的细节，仿佛亲身参与到 Mark 的创作中。与此同时，也被 Mark 这些照片背后想要表述的苦苦寻求的隐喻所深深打动。在我看来，Mark 远超出了摄影师的范畴，他是一名令人尊敬的艺术家，相机只是他的工具。</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/05/giving-photos-back/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
     
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/05/giving-photos-back/" data-id="ciyptw2yo000w90rvd3opqvlx" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/05/giving-photos-back/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Mark-Neville/">Mark Neville</a></li></ul>
-
-
-    </footer>
   </div>
-  
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/05/giving-photos-back/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-california-trip-2015-part1" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/04/california-trip-2015-part1/">
+  <time datetime="2015-04-22T05:49:57.000Z">
+    2015-04-22
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/04/california-trip-2015-part1/">2015 年初 California Sunshine 自驾（一）</a>
-    </h1>
+    <h1 class="title"><a href="/2015/04/california-trip-2015-part1/">2015 年初 California Sunshine 自驾（一）</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/04/california-trip-2015-part1/" class="article-date"><time datetime="2015-04-22T05:49:57.000Z" itemprop="datePublished">2015-04-22</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Travel/">Travel</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在美帝出差了大半年的 Rohn 同学说：要不回国之前你飞过来，我们自驾西海岸晃一圈。作为一个对自己执行力低下还算有自知之明的人，就理所当然地把所有的攻略准备都交给了 Rohn 同学。美帝的公路交通太发达，魔都的驾照都不用公正就可以租车。其实这次加州旅行之前都没有怎么「自驾游」过，自己开车最远的旅行距离也就从上海开到绍兴滑雪，所以突然跑到异国他乡开上个几千公里路程也算是一种奇妙的经历。</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/04/california-trip-2015-part1/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/04/california-trip-2015-part1/" data-id="ciyptw2yi000n90rv55zs21k0" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/04/california-trip-2015-part1/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/2015-年初-California-Sunshine-自驾/">2015 年初 California Sunshine 自驾</a></li></ul>
-
-
-    </footer>
-  </div>
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      
+        <img src="http://macallen.qiniudn.com/blog/california-trip-2015-20.jpg">
+      
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="entry">
+    
+      <p>在美帝出差了大半年的 Rohn 同学说：要不回国之前你飞过来，我们自驾西海岸晃一圈。作为一个对自己执行力低下还算有自知之明的人，就理所当然地把所有的攻略准备都交给了 Rohn 同学。美帝的公路交通太发达，魔都的驾照都不用公正就可以租车。其实这次加州旅行之前都没有怎么「自驾游」过，自己开车最远的旅行距离也就从上海开到绍兴滑雪，所以突然跑到异国他乡开上个几千公里路程也算是一种奇妙的经历。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/04/california-trip-2015-part1/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-a-philosophy-essay" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/04/a-philosophy-essay/">
+  <time datetime="2015-04-13T14:14:57.000Z">
+    2015-04-13
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/04/a-philosophy-essay/">我的上进心并未死去 — 哲学随笔</a>
-    </h1>
+    <h1 class="title"><a href="/2015/04/a-philosophy-essay/">我的上进心并未死去 — 哲学随笔</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/04/a-philosophy-essay/" class="article-date"><time datetime="2015-04-13T14:14:57.000Z" itemprop="datePublished">2015-04-13</time></a>
-</div>
-
-    
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/Philosophy/">Philosophy</a>
-  </div>
-
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>「我的上进心并未死去」，这是小说《<a href="http://book.douban.com/subject/1082522/">家</a>》结尾巴金笔下的大哥觉新写给三弟觉慧的信上一行。本来这篇文章的题目应该更激列、或愤世嫉俗，比如「<a href="http://book.douban.com/subject/1082522/">我的奋斗</a> — 哲学笔记」（希特勒梗）；或者是更诗意的类似「<a href="http://book.douban.com/subject/1030294/">林中之路</a> — 哲学学习随笔」（海德格尔梗）。但随着年纪增大，年少时读过的觉新 — 这个既向腐旧的礼教妥协，同时又支持弟弟决绝的革命理想，左右摇摆、痛苦不已的两难角色 — 越来越生动和清晰。这个处境是不是很像萨特当年寻找的第三条路？回忆读哲学的过程，一路走来，就是抱着觉新的这种心态，一个塞林格笔下的麦田守望者。</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/04/a-philosophy-essay/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/04/a-philosophy-essay/" data-id="ciyptw2yf000h90rvbuw7hkua" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/04/a-philosophy-essay/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-
-    </footer>
-  </div>
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      
+        <img src="http://macallen.qiniudn.com/blog/a-philosophy-essay.jpg">
+      
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="entry">
+    
+      <p>「我的上进心并未死去」，这是小说《<a href="http://book.douban.com/subject/1082522/">家</a>》结尾巴金笔下的大哥觉新写给三弟觉慧的信上一行。本来这篇文章的题目应该更激列、或愤世嫉俗，比如「<a href="http://book.douban.com/subject/1082522/">我的奋斗</a> — 哲学笔记」（希特勒梗）；或者是更诗意的类似「<a href="http://book.douban.com/subject/1030294/">林中之路</a> — 哲学学习随笔」（海德格尔梗）。但随着年纪增大，年少时读过的觉新 — 这个既向腐旧的礼教妥协，同时又支持弟弟决绝的革命理想，左右摇摆、痛苦不已的两难角色 — 越来越生动和清晰。这个处境是不是很像萨特当年寻找的第三条路？回忆读哲学的过程，一路走来，就是抱着觉新的这种心态，一个塞林格笔下的麦田守望者。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/04/a-philosophy-essay/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-简单又美味的冬日寿喜锅" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/02/简单又美味的冬日寿喜锅/">
+  <time datetime="2015-02-11T15:30:08.000Z">
+    2015-02-11
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/02/简单又美味的冬日寿喜锅/">简单又美味的冬日寿喜锅</a>
-    </h1>
+    <h1 class="title"><a href="/2015/02/简单又美味的冬日寿喜锅/">简单又美味的冬日寿喜锅</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/02/简单又美味的冬日寿喜锅/" class="article-date"><time datetime="2015-02-11T15:30:08.000Z" itemprop="datePublished">2015-02-11</time></a>
-</div>
-
-    
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>做了才发现，想要吃上一顿寿喜锅出乎意料地简单呢！开始是看了<a href="http://www.xiachufang.com/recipe/126512/">下厨房</a>这个菜谱觉得也不麻烦才动了做「鋤焼き | すきゃき | sukiyaki」的念想，但是进一步研究了<a href="http://www.zhihu.com/question/21872922">知乎</a>的菜谱，发现如果偷懒一点的话连昆布汤底、柴鱼片和味淋都可以省去(/≥▽≤/)，直接买日式火锅酱油来调味就好了。</p>
-        
-          <p class="article-more-link">
-            <a class="btn btn-primary" href="/blog/2015/02/简单又美味的冬日寿喜锅/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/02/简单又美味的冬日寿喜锅/" data-id="ciyptw2z1001d90rvqdsxl0gf" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/02/简单又美味的冬日寿喜锅/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/chef-s-menu-for-2015/">chef's menu for 2015</a></li></ul>
-
-
-    </footer>
-  </div>
   
+    <div class="gallery">
+  <div class="photoset">
+    
+      
+        <img src="http://macallen.qiniudn.com/blog/sukiyaki2.jpg-width620">
+      
+        <img src="http://macallen.qiniudn.com/blog/sukiyaki1.jpg-width620">
+      
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+  
+  <div class="entry">
+    
+      <p>做了才发现，想要吃上一顿寿喜锅出乎意料地简单呢！开始是看了<a href="http://www.xiachufang.com/recipe/126512/">下厨房</a>这个菜谱觉得也不麻烦才动了做「鋤焼き | すきゃき | sukiyaki」的念想，但是进一步研究了<a href="http://www.zhihu.com/question/21872922">知乎</a>的菜谱，发现如果偷懒一点的话连昆布汤底、柴鱼片和味淋都可以省去(/≥▽≤/)，直接买日式火锅酱油来调味就好了。</p>
+    
+  </div>
+  <footer class="end-sep">
+    
+      
+        <div class="alignleft">
+          <a href="/2015/02/简单又美味的冬日寿喜锅/#more" class="more-link">Read More</a>
+        </div>
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
-    <article id="post-每日时间分配和效率的研究探讨" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
+    <article class="post">
+  <header>
+    
+      <div class="icon"></div>
+      <a href="/2015/02/每日时间分配和效率的研究探讨/">
+  <time datetime="2015-02-09T07:10:26.000Z">
+    2015-02-09
+  </time>
+</a>
+    
     
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2015/02/每日时间分配和效率的研究探讨/">每日时间分配和效率的研究探讨</a>
-    </h1>
+    <h1 class="title"><a href="/2015/02/每日时间分配和效率的研究探讨/">每日时间分配和效率的研究探讨</a></h1>
   
-
 
   </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/blog/2015/02/每日时间分配和效率的研究探讨/" class="article-date"><time datetime="2015-02-09T07:10:26.000Z" itemprop="datePublished">2015-02-09</time></a>
-</div>
-
+  
+  <div class="entry">
     
-    
-
-  </div>
-  <div class="article-inner">
-
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>年初列了许多需要完成的目标，最近在思考从何着手，突然发现自己一直以来都忽略了一个显而易见的事实：无论工作狂还是拖延症晚期病患，<strong>一天只有 24 小时</strong>。想明白了这个问题，再算一算每天的闲余时间，不禁有股紧迫感涌上心来（当然拖延症该来的时候还是不可阻挡地来）。</p>
+      <p>年初列了许多需要完成的目标，最近在思考从何着手，突然发现自己一直以来都忽略了一个显而易见的事实：无论工作狂还是拖延症晚期病患，<strong>一天只有 24 小时</strong>。想明白了这个问题，再算一算每天的闲余时间，不禁有股紧迫感涌上心来（当然拖延症该来的时候还是不可阻挡地来）。</p>
 <p><img src="http://macallen.qiniudn.com/blog/daily-life-time.jpg" alt="每天的24小时"></p>
 <p>工作日去掉「睡眠」和「交通」、「工作」固定占用的时间，还要算上吃饭（一日三餐平均每顿 1 小时，再强行挤进洗漱的时间），<strong>每天只剩下可怜的 4 小时可供自己调用的业余时间了。</strong>周末如果不睡懒觉的话，也就多出 8 x 2 小时，这样一周满打满算也就 <em>( 4 x 7 ) + ( 8 x 2 ) = 44 小时</em>。如果按照「一万小时定律[^1]」来算，那么所有的业余时间用来做同一件事情，四年半以后就可以成为这个领域的专家。如果同时有多个业余爱好，那么需要花上十年或者更久才行，强烈感觉到<strong>再不行动就老了！</strong></p>
 <p>以前总感觉还有整年的时间不争朝夕，其实就算完全放弃社交、发呆装傻的时间，一年也只有 2280 小时 / 95 天属于自己的时间（自由时间伤不起）。</p>
 <p>写到这里，觉得有必要把年初定的目标们重新计划一下才能确保年尾能顺利交差啊！</p>
 <p>[^1]: 人们眼中的天才之所以卓越非凡，并非天资超人一等，而是付出了持续不断的努力。1万小时的锤炼是任何人从平凡变成超凡的必要条件（要成为某个领域的专家，需要 10000 小时）。 —— 格拉德威尔《异类》</p>
 
-      
-    </div>
-
     
-      
-
-    
-
-    <footer class="article-footer">
-      <a data-url="https://allenkung.github.io/blog/2015/02/每日时间分配和效率的研究探讨/" data-id="ciyptw2z1001c90rvmf9c5t46" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-        <a href="https://allenkung.github.io/blog/2015/02/每日时间分配和效率的研究探讨/#disqus_thread" class="article-comment-link">
-          <i class="fa fa-comment"></i> Comments
-        </a>
-      
-      
-
-    </footer>
   </div>
-  
+  <footer class="end-sep">
+    
+      
+      
+    
+    <div class="clearfix"></div>
+  </footer>
 </article>
 
 
-
   
 
-
-  <div id="page-nav">
-    <nav><ul class="pagination"><li><a class="page-prev" rel="prev" href="/blog/blog/"><i class="fa fa-chevron-left"></i> Prev</a></li><li><a class="page-number" href="/blog/blog/">1</a></li><li class="active"><span class="page-number">2</span></li><li><a class="page-number" href="/blog/blog/page/3/">3</a></li><li><a class="page-number" href="/blog/blog/page/4/">4</a></li><li><a class="page-next" rel="next" href="/blog/blog/page/3/">Next <i class="fa fa-chevron-right"></i></a></li></ul></nav>
-  </div>
-
-
-
-        </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          
-  <div class="sidebar-module sidebar-module-inset">
-  <h4>About</h4>
-  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+  <nav id="pagination">
+  
+    <a href="/" class="prev">Prev</a>
+  
+  
+    <a href="/page/3/" class="next">Next</a>
+  
+  <div class="clearfix"></div>
+</nav>
 
 </div>
-
-
+  </div>
+  <footer id="footer"><div class="copyright">
   
-  <div class="sidebar-module">
-    <h4>Categories</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Coding/">Coding</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Design/">Design</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Movie/">Movie</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Philosophy/">Philosophy</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Photography/">Photography</a><span class="sidebar-module-list-count">5</span><ul class="sidebar-module-list-child"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Photography/Lecture/">Lecture</a><span class="sidebar-module-list-count">4</span></li></ul></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Travel/">Travel</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Web-Development/">Web Development</a><span class="sidebar-module-list-count">5</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/Webdevelop/">Webdevelop</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/exhibition/">exhibition</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/hexo/">hexo</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/categories/movie/">movie</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
-
-
-
+  &copy; 2017 <a href="/">allen kung</a>
   
-  <div class="sidebar-module">
-    <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/2015-年初-California-Sunshine-自驾/">2015 年初 California Sunshine 自驾</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Aliyun/">Aliyun</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/CSS3/">CSS3</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Catherine-Yass/">Catherine Yass</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Edward-Said/">Edward Said</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Front-end/">Front-end</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/GTD/">GTD</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Git/">Git</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/JavaScript/">JavaScript</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Javascript/">Javascript</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/JaveScript/">JaveScript</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Journey/">Journey</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Linux/">Linux</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Llosa/">Llosa</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Mark-Neville/">Mark Neville</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Multiculturalism/">Multiculturalism</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Newsroom/">Newsroom</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Orientalism/">Orientalism</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Satre/">Satre</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Tom-Hunter/">Tom Hunter</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/Wordpress/">Wordpress</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/challenge-for-2015/">challenge for 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/challenge-for-a-new-year/">challenge for a new year</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/chef-s-menu-for-2015/">chef's menu for 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/ejs/">ejs</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/hexo-rsync/">hexo rsync</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/mac/">mac</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/reading-list-for-2015/">reading list for 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/东方主义/">东方主义</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/刘小东/">刘小东</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/多元文化主义/">多元文化主义</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/摄影/">摄影</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/tags/文青/">文青</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
+</div>
+<div class="theme-copyright">
+  Theme <a href="#">Notepaper</a>, based on <a href="#">Modernist</a>.
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//libs.baidu.com/jquery/1.8.0/jquery.min.js"></script>
+<script src="/js/scale.fix.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
 
 
-
-  
-  <div class="sidebar-module">
-    <h4>Tag Cloud</h4>
-    <p class="tagcloud">
-      <a href="/blog/tags/2015-年初-California-Sunshine-自驾/" style="font-size: 10px;">2015 年初 California Sunshine 自驾</a> <a href="/blog/tags/Aliyun/" style="font-size: 10px;">Aliyun</a> <a href="/blog/tags/CSS3/" style="font-size: 10px;">CSS3</a> <a href="/blog/tags/Catherine-Yass/" style="font-size: 10px;">Catherine Yass</a> <a href="/blog/tags/Edward-Said/" style="font-size: 10px;">Edward Said</a> <a href="/blog/tags/Front-end/" style="font-size: 20px;">Front-end</a> <a href="/blog/tags/GTD/" style="font-size: 10px;">GTD</a> <a href="/blog/tags/Git/" style="font-size: 10px;">Git</a> <a href="/blog/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/blog/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/blog/tags/JaveScript/" style="font-size: 10px;">JaveScript</a> <a href="/blog/tags/Journey/" style="font-size: 10px;">Journey</a> <a href="/blog/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/blog/tags/Llosa/" style="font-size: 10px;">Llosa</a> <a href="/blog/tags/Mark-Neville/" style="font-size: 15px;">Mark Neville</a> <a href="/blog/tags/Multiculturalism/" style="font-size: 10px;">Multiculturalism</a> <a href="/blog/tags/Newsroom/" style="font-size: 10px;">Newsroom</a> <a href="/blog/tags/Orientalism/" style="font-size: 10px;">Orientalism</a> <a href="/blog/tags/Satre/" style="font-size: 10px;">Satre</a> <a href="/blog/tags/Tom-Hunter/" style="font-size: 10px;">Tom Hunter</a> <a href="/blog/tags/Wordpress/" style="font-size: 10px;">Wordpress</a> <a href="/blog/tags/challenge-for-2015/" style="font-size: 15px;">challenge for 2015</a> <a href="/blog/tags/challenge-for-a-new-year/" style="font-size: 10px;">challenge for a new year</a> <a href="/blog/tags/chef-s-menu-for-2015/" style="font-size: 10px;">chef's menu for 2015</a> <a href="/blog/tags/ejs/" style="font-size: 10px;">ejs</a> <a href="/blog/tags/hexo-rsync/" style="font-size: 10px;">hexo rsync</a> <a href="/blog/tags/mac/" style="font-size: 10px;">mac</a> <a href="/blog/tags/reading-list-for-2015/" style="font-size: 15px;">reading list for 2015</a> <a href="/blog/tags/东方主义/" style="font-size: 10px;">东方主义</a> <a href="/blog/tags/刘小东/" style="font-size: 10px;">刘小东</a> <a href="/blog/tags/多元文化主义/" style="font-size: 10px;">多元文化主义</a> <a href="/blog/tags/摄影/" style="font-size: 10px;">摄影</a> <a href="/blog/tags/文青/" style="font-size: 10px;">文青</a>
-    </p>
-  </div>
-
-
-  
-  <div class="sidebar-module">
-    <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2016/04/">April 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2016/03/">March 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2016/02/">February 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2016/01/">January 2016</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/11/">November 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/10/">October 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/09/">September 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/08/">August 2015</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/07/">July 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/05/">May 2015</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/04/">April 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/02/">February 2015</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2015/01/">January 2015</a><span class="sidebar-module-list-count">4</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2014/12/">December 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2014/11/">November 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2014/09/">September 2014</a><span class="sidebar-module-list-count">1</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2014/07/">July 2014</a><span class="sidebar-module-list-count">2</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/blog/archives/2014/06/">June 2014</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
-
-
-
-  
-  <div class="sidebar-module">
-    <h4>Recents</h4>
-    <ul class="sidebar-module-list">
-      
-        <li>
-          <a href="/blog/2016/04/made-a-new-avatar-pic/">仿叠印效果头像</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2016/03/deduction-between-two-dates/">JS 日期求差</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2016/02/ruts-under-snow/">雪痕</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2016/01/recommended-wordpress-plugins/">推荐几款实用的 Wordpress Plugin</a>
-        </li>
-      
-        <li>
-          <a href="/blog/2015/11/things-needtodo-when-got-aliyunecs/">入手 Aliyun ECS 后首先应该做的事情</a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-
-        </div>
-    </div>
-  </div>
-  <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; 2017 allen kung<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-  
-<script>
+<script type="text/javascript">
   var disqus_shortname = 'allenkung';
-  
+
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
+  }());
 </script>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-
-
-<script src="/blog/js/script.js"></script>
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox();
+  })(jQuery);
+</script>
 
 </body>
 </html>
